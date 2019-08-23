@@ -9,7 +9,7 @@ import { last, range } from 'lodash'
 
 export class TriangleComponent implements OnInit {
   @Input() rowCount = 1
-  rows: Array<number[]> = []
+  rows: Array<Array<{ selected: boolean, value: number }>> = []
   counters = 0
   perimeter = 0
 
@@ -29,8 +29,11 @@ export class TriangleComponent implements OnInit {
       } else {
         this.perimeter += 2
       }
-      const r = range(1, row + 1)
-      this.rows.push(r)
+      const counters: Array<{ selected: boolean, value: number }> = []
+      for (let i = 0; i < row; i++) {
+        counters.push({selected: false, value: 1})
+      }
+      this.rows.push(counters)
       this.counters += row
     })
   }
