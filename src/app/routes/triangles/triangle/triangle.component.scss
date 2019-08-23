@@ -17,6 +17,10 @@
   &.selected {
     color: $appOrange;
   }
+
+  &.active {
+    color: $appBlue;
+  }
 }
 
 .triangle-row {
