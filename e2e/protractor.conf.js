@@ -4,9 +4,7 @@
 
 const { SpecReporter } = require('jasmine-spec-reporter');
 
-/**
- * @type { import("protractor").Config }
- */
+// noinspection JSUnusedGlobalSymbols
 exports.config = {
   allScriptsTimeout: 11000,
   specs: [
@@ -27,6 +25,7 @@ exports.config = {
     require('ts-node').register({
       project: require('path').join(__dirname, './tsconfig.json')
     });
+    // noinspection JSCheckFunctionSignatures
     jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
   }
 };
