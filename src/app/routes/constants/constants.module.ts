@@ -4,7 +4,9 @@ import { ConstantsRoutingModule } from './constants-routing.module'
 import { ConstantsComponent } from './constants.component'
 
 @NgModule({
-  declarations: [ConstantsComponent],
+  declarations: [
+    ConstantsComponent
+  ],
   imports: [
     CommonModule,
     ConstantsRoutingModule

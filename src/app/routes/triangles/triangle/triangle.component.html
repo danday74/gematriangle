@@ -1,0 +1,22 @@
+<div class="title">T{{ rowCount }}</div>
+
+<ng-container *ngFor="let row of rows">
+  <div class="triangle-row">
+    <ng-container *ngFor="let counter of row">
+      x
+    </ng-container>
+  </div>
+</ng-container>
+
+<div class="summary">
+  <table>
+    <tr>
+      <td>perimeter</td>
+      <td>counters</td>
+    </tr>
+    <tr>
+      <td>{{ perimeter }}</td>
+      <td>{{ counters }}</td>
+    </tr>
+  </table>
+</div>
