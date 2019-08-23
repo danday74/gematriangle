@@ -1,9 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { TrianglesRoutingModule } from './triangles-routing.module';
-import { TrianglesComponent } from './triangles.component';
-
+import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { TrianglesRoutingModule } from './triangles-routing.module'
+import { TrianglesComponent } from './triangles.component'
 
 @NgModule({
   declarations: [TrianglesComponent],
@@ -12,4 +10,5 @@ import { TrianglesComponent } from './triangles.component';
     TrianglesRoutingModule
   ]
 })
-export class TrianglesModule { }
+
+export class TrianglesModule {}
