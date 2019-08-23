@@ -3,7 +3,7 @@
 <ng-container *ngFor="let row of rows">
   <div class="triangle-row">
     <ng-container *ngFor="let counter of row">
-      <i (click)="toggleCounterSelect(counter)" class="fa fa-circle counter" [ngClass]="{selected: counter.selected}" aria-hidden="true"></i>
+      <i (click)="toggleCounterSelect(counter)" class="fa fa-circle counter" [ngClass]="{selected: counter.selected}" [title]="'row ' + counter.pos.row + ' pos ' + counter.pos.col"></i>
     </ng-container>
   </div>
 </ng-container>
