@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { range } from 'lodash'
 import { takeUntil } from 'rxjs/operators'
 import { TrianglesService } from '../triangles.service'
-import { DestroyerComponent } from '../../../../utils/destroyer.component'
+import { DestroyerComponent } from '../../../utils/destroyer.component'
 
 @Component({
   selector: 'app-triangle',

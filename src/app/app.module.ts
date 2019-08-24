@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { BaseModule } from './base/base.module'
-import { DestroyerComponent } from '../utils/destroyer.component'
+import { DestroyerComponent } from './utils/destroyer.component'
 
 @NgModule({
   declarations: [

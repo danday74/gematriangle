@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { DestroyerComponent } from '../../../utils/destroyer.component'
+import { DestroyerComponent } from '../../utils/destroyer.component'
 import { TrianglesService } from './triangles.service'
 import { takeUntil } from 'rxjs/operators'
 
