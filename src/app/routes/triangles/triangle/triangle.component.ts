@@ -1,5 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core'
-import { last, range } from 'lodash'
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core'
+import { range } from 'lodash'
+import { takeUntil } from 'rxjs/operators'
+import { TrianglesService } from '../triangles.service'
+import { DestroyerComponent } from '../../../../utils/destroyer.component'
 
 @Component({
   selector: 'app-triangle',
@@ -7,39 +10,51 @@ import { last, range } from 'lodash'
   styleUrls: ['./triangle.component.scss']
 })
 
-export class TriangleComponent implements OnInit {
-  @Input() rowCount = 1
-  rows: Array<Array<{ active: boolean, selected: boolean, value: number, pos: { row: number, col: number } }>> = []
-  counters = 0
-  perimeter = 0
-  selected = 0
+export class TriangleComponent extends DestroyerComponent implements OnInit, OnChanges {
 
-  ngOnInit() {
-    this.updateRows(this.rowCount)
+  @Input() rowCount = 1
+
+  rows: Array<Array<{ active: boolean, selected: boolean, value: number, pos: { row: number, col: number } }>> = []
+  alignCenter = true
+
+  constructor(private trianglesService: TrianglesService) {
+    super()
   }
 
-  updateRows(rowCount) {
-    this.counters = 0
-    this.perimeter = 0
-    const rng = range(1, rowCount + 1)
-    rng.forEach((row) => {
-      if (row === 1) {
-        this.perimeter += 1
-      } else if (row === last(rng)) {
-        this.perimeter += row
-      } else {
-        this.perimeter += 2
-      }
-      const counters: Array<{ active: boolean, selected: boolean, value: number, pos: { row: number, col: number } }> = []
-      for (let i = 0; i < row; i++) {
-        counters.push({active: false, selected: false, value: 1, pos: {row, col: i + 1}})
-      }
-      this.rows.push(counters)
-      this.counters += row
+  ngOnInit() {
+
+    this.trianglesService.toolboxToggleAlign$.pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe(() => {
+      this.alignCenter = !this.alignCenter
     })
+
+    const rng = range(1, this.rowCount + 1)
+    rng.forEach((row) => {
+      this.addRow(row)
+    })
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.rowCount && !changes.rowCount.firstChange) {
+      if (changes.rowCount.currentValue > changes.rowCount.previousValue) this.addRow(changes.rowCount.currentValue)
+      if (changes.rowCount.currentValue < changes.rowCount.previousValue) this.removeRow()
+    }
   }
 
   onCounterClick(counter) {
     counter.active = !counter.active
+  }
+
+  private addRow(row) {
+    const counters: Array<{ active: boolean, selected: boolean, value: number, pos: { row: number, col: number } }> = []
+    for (let i = 1; i <= row; i++) {
+      counters.push({active: false, selected: false, value: 1, pos: {row, col: i}})
+    }
+    this.rows.push(counters)
+  }
+
+  private removeRow() {
+    this.rows.pop()
   }
 }

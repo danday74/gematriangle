@@ -1,7 +1,17 @@
-<div class="triangle-toolbox toolbox">
-  <button class="btn btn-outline-dark" (click)="onClick()">
-    <i class="fa fa-lg" [ngClass]="faIcon" aria-hidden="true"></i>
-  </button>
-  {{ text }}
-  <i class="fa fa-info-circle" aria-hidden="true" [title]="help"></i>
+<div class="toolbox-button">
+  <table>
+    <tr>
+      <td>
+        <button class="btn btn-outline-dark btn-sm" (click)="onClick()">
+          <i class="fa" [ngClass]="faIcon" aria-hidden="true"></i>
+        </button>
+      </td>
+      <td>
+        <span class="text">{{ text }}</span>
+      </td>
+      <td>
+        <i class="fa fa-info-circle fa-lg info" aria-hidden="true" [title]="help"></i>
+      </td>
+    </tr>
+  </table>
 </div>

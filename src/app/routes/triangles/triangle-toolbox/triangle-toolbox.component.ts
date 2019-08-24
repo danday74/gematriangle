@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { TrianglesService } from '../triangles.service'
 
 @Component({
   selector: 'app-triangle-toolbox',
@@ -7,11 +8,27 @@ import { Component, OnInit } from '@angular/core'
 })
 
 export class TriangleToolboxComponent implements OnInit {
-  constructor() {}
+
+  alignCenter = true
+
+  constructor(private trianglesService: TrianglesService) {}
 
   ngOnInit() {}
 
-  onDrawClick() {
-    console.log('onDrawClick')
+  onIncreaseSizeClick() {
+    this.trianglesService.onToolboxIncreaseSize()
+  }
+
+  onDecreaseSizeClick() {
+    this.trianglesService.onToolboxDecreaseSize()
+  }
+
+  onDrawLinesClick() {
+    this.trianglesService.onToolboxDrawLines()
+  }
+
+  onToggleAlign() {
+    this.trianglesService.onToolboxToggleAlign()
+    this.alignCenter = !this.alignCenter
   }
 }

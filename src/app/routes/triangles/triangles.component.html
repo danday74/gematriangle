@@ -1,11 +1,14 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-      <app-triangle [rowCount]="42"></app-triangle>
-    </div>
-    <div class="col-2">
-      <app-triangle-toolbox></app-triangle-toolbox>
+    <div class="col-12">
+      <div class="triangle-outer-wrapper">
+        <div class="triangle-inner-wrapper">
+          <app-triangle [rowCount]="rowCount"></app-triangle>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
+<app-triangle-toolbox></app-triangle-toolbox>
+<app-triangle-stats [rowCount]="rowCount"></app-triangle-stats>

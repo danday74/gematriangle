@@ -4,13 +4,15 @@ import { TrianglesRoutingModule } from './triangles-routing.module'
 import { TrianglesComponent } from './triangles.component'
 import { TriangleComponent } from './triangle/triangle.component'
 import { TriangleToolboxComponent } from './triangle-toolbox/triangle-toolbox.component'
-import { ToolboxModule } from '../../reusable/toolbox/toolbox.module'
+import { ToolboxModule } from '../../reusable/toolbox/toolbox.module';
+import { TriangleStatsComponent } from './triangle-stats/triangle-stats.component'
 
 @NgModule({
   declarations: [
     TrianglesComponent,
     TriangleComponent,
-    TriangleToolboxComponent
+    TriangleToolboxComponent,
+    TriangleStatsComponent
   ],
   imports: [
     CommonModule,

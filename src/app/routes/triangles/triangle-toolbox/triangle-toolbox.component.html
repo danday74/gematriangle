@@ -1,4 +1,10 @@
 <div class="triangle-toolbox toolbox">
-  <app-toolbox-button text="Draw" faIcon="fa-pencil" help="Click two or more counters and then click draw to draw straight lines between them"
-                      (clicked)="onDrawClick()"></app-toolbox-button>
+  <app-toolbox-button text="Increase Size" faIcon="fa-plus" help="Increase the triangle size"
+                      (clicked)="onIncreaseSizeClick()"></app-toolbox-button>
+  <app-toolbox-button text="Decrease Size" faIcon="fa-minus" help="Decrease the triangle size"
+                      (clicked)="onDecreaseSizeClick()"></app-toolbox-button>
+  <app-toolbox-button text="Draw Lines" faIcon="fa-pencil" help="Select two or more counters and then click 'Draw Lines' to draw straight lines between them"
+                      (clicked)="onDrawLinesClick()"></app-toolbox-button>
+  <app-toolbox-button text="Toggle Align" [faIcon]="alignCenter ? 'fa-align-center' : 'fa-align-left'" help="Toggle between a centered triangle and a right angled triangle"
+                      (clicked)="onToggleAlign()"></app-toolbox-button>
 </div>

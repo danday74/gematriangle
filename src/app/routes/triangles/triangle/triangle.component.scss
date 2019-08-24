@@ -7,26 +7,43 @@
 }
 
 .counter {
-  font-size: 12px;
-  margin-left: 1px;
-  margin-right: 1px;
-  color: #DDD;
-  cursor: pointer;
+  display: inline-block;
+  background-color: #DDD;
+  border-radius: 90px;
   pointer-events: auto;
+  cursor: pointer;
+  width: 10px;
+  height: 10px;
 
   &.selected {
-    color: $appOrange;
+    background-color: $appOrange;
   }
 
   &.active {
-    color: $appBlue;
+    background-color: $appBlue;
   }
 }
 
 .triangle-row {
-  text-align: center;
-  margin-top: -13px;
   pointer-events: none;
+  &.triangle-align-center {
+    text-align: center;
+    margin-top: -14px;
+
+    .counter {
+      margin-left: 1px;
+      margin-right: 1px;
+    }
+  }
+  &.triangle-align-left {
+    text-align: left;
+    margin-top: -12px;
+
+    .counter {
+      margin-left: 1px;
+      margin-right: 1px;
+    }
+  }
 }
 
 .summary {

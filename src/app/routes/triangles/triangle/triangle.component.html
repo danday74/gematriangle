@@ -1,25 +1,9 @@
 <div class="title">T{{ rowCount }}</div>
 
 <ng-container *ngFor="let row of rows">
-  <div class="triangle-row">
+  <div class="triangle-row" [ngClass]="alignCenter ? 'triangle-align-center' : 'triangle-align-left'">
     <ng-container *ngFor="let counter of row">
-      <i (click)="onCounterClick(counter)" class="fa fa-circle counter" [title]="'row ' + counter.pos.row + ' pos ' + counter.pos.col" [ngClass]="counter">
-      </i>
+      <div class="counter" [ngClass]="counter" [title]="'row ' + counter.pos.row + ' pos ' + counter.pos.col" (click)="onCounterClick(counter)"></div>
     </ng-container>
   </div>
 </ng-container>
-
-<div class="summary">
-  <table>
-    <tr>
-      <td>perimeter</td>
-      <td>counters</td>
-      <td>selected</td>
-    </tr>
-    <tr>
-      <td>{{ perimeter }}</td>
-      <td>{{ counters }}</td>
-      <td>{{ selected }}</td>
-    </tr>
-  </table>
-</div>
