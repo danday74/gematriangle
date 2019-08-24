@@ -6,6 +6,7 @@ import { TriangleComponent } from './triangle/triangle.component'
 import { TriangleToolboxComponent } from './triangle-toolbox/triangle-toolbox.component'
 import { ToolboxModule } from '../../reusable/toolbox/toolbox.module'
 import { TriangleStatsComponent } from './triangle-stats/triangle-stats.component'
+import { NumberModule } from '../../reusable/number/number.module'
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { TriangleStatsComponent } from './triangle-stats/triangle-stats.componen
   imports: [
     CommonModule,
     TrianglesRoutingModule,
-    ToolboxModule
+    ToolboxModule,
+    NumberModule
   ]
 })
 
