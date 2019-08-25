@@ -9,6 +9,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
 export class ToolboxButtonComponent {
 
   @Input() faIcon: string
+  @Input() faColor: string
   @Input() text: string
   @Input() help: string
 

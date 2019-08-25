@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core'
+import { triangle } from '../../../utils/triangle'
 
 @Component({
   selector: 'app-triangle-stats',
@@ -27,10 +28,10 @@ export class TriangleStatsComponent implements OnInit, OnChanges {
   }
 
   private setPerimeter(rowCount) {
-    this.perimeter = (rowCount) > 1 ? rowCount * 3 - 3 : 1
+    this.perimeter = triangle.perimeter(rowCount)
   }
 
   private setCounters(rowCount) {
-    this.counters = rowCount * (rowCount + 1) / 2
+    this.counters = triangle.term(rowCount)
   }
 }

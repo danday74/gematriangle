@@ -7,6 +7,8 @@ import { TriangleToolboxComponent } from './triangle-toolbox/triangle-toolbox.co
 import { ToolboxModule } from '../../reusable/toolbox/toolbox.module'
 import { TriangleStatsComponent } from './triangle-stats/triangle-stats.component'
 import { NumberModule } from '../../reusable/number/number.module'
+import { DropdownModule } from 'primeng/dropdown'
+import { FormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { NumberModule } from '../../reusable/number/number.module'
     CommonModule,
     TrianglesRoutingModule,
     ToolboxModule,
-    NumberModule
+    NumberModule,
+    DropdownModule,
+    FormsModule
   ]
 })
 

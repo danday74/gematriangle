@@ -1,10 +1,27 @@
-<div class="triangle-toolbox toolbox">
-  <app-toolbox-button text="Increase Size" faIcon="fa-plus" help="Increase the triangle size"
-                      (clicked)="onIncreaseSizeClick()"></app-toolbox-button>
-  <app-toolbox-button text="Decrease Size" faIcon="fa-minus" help="Decrease the triangle size"
-                      (clicked)="onDecreaseSizeClick()"></app-toolbox-button>
-  <app-toolbox-button text="Draw Lines" faIcon="fa-pencil" help="Select two or more counters and then click 'Draw Lines' to draw straight lines between them"
-                      (clicked)="onDrawLinesClick()"></app-toolbox-button>
-  <app-toolbox-button text="Toggle Align" [faIcon]="alignCenter ? 'fa-align-center' : 'fa-align-left'" help="Toggle between a centered triangle and a right angled triangle"
-                      (clicked)="onToggleAlign()"></app-toolbox-button>
+<div class="toolbox">
+  <div class="triangle-toolbox">
+    <app-toolbox-button text="Increase Size" faIcon="fa-plus" (clicked)="onIncreaseSizeClick()"
+                        help="Increase the triangle size"></app-toolbox-button>
+    <app-toolbox-button text="Decrease Size" faIcon="fa-minus" (clicked)="onDecreaseSizeClick()"
+                        help="Decrease the triangle size"></app-toolbox-button>
+    <app-toolbox-button text="Draw Lines" faIcon="fa-pencil" (clicked)="onDrawLinesClick()"
+                        help="Click two or more counters and then click 'Draw Lines' to draw straight lines between them"></app-toolbox-button>
+    <app-toolbox-button text="Erase Lines" faIcon="fa-eraser" (clicked)="onEraseLinesClick()"
+                        help="Click two or more counters and then click 'Erase Lines' to remove straight lines between them"></app-toolbox-button>
+    <app-toolbox-button text="Clear Active" faIcon="fa-circle" (clicked)="onClearActiveClick()" faColor="#000"
+                        help="Clear active counters"></app-toolbox-button>
+    <app-toolbox-button text="Clear Selected" faIcon="fa-circle" (clicked)="onClearSelectedClick()" faColor="#DDD"
+                        help="Clear selected counters"></app-toolbox-button>
+    <app-toolbox-button text="Toggle Align" [faIcon]="alignCenter ? 'fa-align-center' : 'fa-align-left'" (clicked)="onToggleAlign()"
+                        help="Toggle between a centered triangle and a right angled triangle"></app-toolbox-button>
+    <div class="select-counters">
+      <p-dropdown [options]="activateCountersOptions" [(ngModel)]="activateCountersOption" (onChange)="activateCounters($event)"></p-dropdown>
+    </div>
+  </div>
+  <ng-container *ngIf="starOfDavid">
+    <div class="star">
+      <i class="fa fa-star fa-5x" aria-hidden="true" [title]="'T' + rowCount + ' houses a star of David (S' + starOfDavid.n + ') perfectly'"></i>
+      <div class="term" [title]="'T' + rowCount + ' houses a star of David (S' + starOfDavid.n + ') perfectly'">{{ starOfDavid.term }}</div>
+    </div>
+  </ng-container>
 </div>

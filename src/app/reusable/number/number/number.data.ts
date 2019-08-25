@@ -58,6 +58,10 @@ export const numberData = {
     number: 110,
     reason: '37 + 73'
   },
+  153: {
+    number: 153,
+    reason: 'Miraculous catch of fish in John'
+  },
   541: {
     number: 541,
     reason: 'Israel'
