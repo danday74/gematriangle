@@ -52,6 +52,10 @@ export const numberData = {
     number: 3168,
     reason: 'LORD JESUS CHRIST (Greek)'
   },
+  1039740: {
+    number: 1039740,
+    reason: 'YAH * YAHWEH * EL * ELOHIM'
+  },
 
   // OTHERS
   110: {

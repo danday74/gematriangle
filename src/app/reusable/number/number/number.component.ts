@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core'
-import { numberData } from './number.data'
+import { numberData } from '../../../../data/number.data'
 
 @Component({
   selector: 'app-number',

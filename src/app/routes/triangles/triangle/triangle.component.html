@@ -4,7 +4,7 @@
   <div class="triangle-row" [ngClass]="alignCenter ? 'triangle-align-center' : 'triangle-align-left'">
     <ng-container *ngFor="let counter of row">
       <div class="counter" [ngClass]="counter" (click)="onCounterClick(counter)"
-           [title]="'(' + counter.pos.row + ', ' + counter.pos.col + ') count ' + counter.count"></div>
+           [title]="'(' + counter.pos.row + ', ' + counter.pos.col + ') count=' + counter.count + ' value=' + counter.value"></div>
     </ng-container>
   </div>
 </ng-container>

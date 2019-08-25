@@ -3,6 +3,10 @@ import { range } from 'lodash'
 import { takeUntil } from 'rxjs/operators'
 import { TrianglesService } from '../triangles.service'
 import { DestroyerComponent } from '../../../utils/destroyer.component'
+import { Counter } from './counter'
+import { triangle } from '../../../utils/triangle'
+import { TriangleCounterValueService } from './triangle-counter-value.service'
+import { TriangleCounterValueMode } from './triangle-counter-value-mode.enum'
 
 @Component({
   selector: 'app-triangle',
@@ -14,14 +18,17 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
 
   @Input() rowCount = 1
 
-  rows: Array<Array<{ active: boolean, selected: boolean, value: number, pos: { row: number, col: number } }>> = []
   alignCenter = true
+  mode: TriangleCounterValueMode
+  rows: Array<Array<Counter>> = []
 
-  constructor(private trianglesService: TrianglesService) {
+  constructor(private trianglesService: TrianglesService, private triangleCounterValueService: TriangleCounterValueService) {
     super()
   }
 
   ngOnInit() {
+
+    this.mode = TriangleCounterValueMode.Pascal
 
     this.trianglesService.toolboxToggleAlign$.pipe(
       takeUntil(this.unsubscribe$)
@@ -47,9 +54,12 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   }
 
   private addRow(row) {
-    const counters: Array<{ active: boolean, selected: boolean, value: number, pos: { row: number, col: number } }> = []
+    const counters: Array<Counter> = []
+    const term = triangle.term(row - 1)
     for (let i = 1; i <= row; i++) {
-      counters.push({active: false, selected: false, value: 1, pos: {row, col: i}})
+      const counter = {active: false, selected: false, count: term + i, value: 0, pos: {row, col: i}}
+      counter.value = this.triangleCounterValueService.getCounterValue(counter, this.mode)
+      counters.push(counter)
     }
     this.rows.push(counters)
   }
