@@ -225,7 +225,7 @@ export const numberData = {
   },
   2701: {
     number: 2701,
-    reason: 'Genesis 1:1 AND 37 x 73 which is Wisdom in Hebrew'
+    reason: 'Genesis 1:1 AND 37 (Ordinal) x 73 (Standard) which is Wisdom in Hebrew - see Proverbs 3:19 Jeremiah 10:12'
   },
   3773: {
     number: 3773,
