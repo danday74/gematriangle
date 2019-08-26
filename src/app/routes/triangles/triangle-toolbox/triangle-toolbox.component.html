@@ -15,7 +15,8 @@
     <app-toolbox-button text="Toggle Align" [faIcon]="alignCenter ? 'fa-align-center' : 'fa-align-left'" (clicked)="onToggleAlign()"
                         help="Toggle between a centered triangle and a right angled triangle"></app-toolbox-button>
     <div class="activate-counters">
-      <p-dropdown [options]="activateCountersOptions" [(ngModel)]="activateCountersOption" (onChange)="activateCounters($event)" [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'"></p-dropdown>
+      <p-dropdown [options]="activateCountersOptions" [(ngModel)]="activateCountersOption" (onChange)="activateCounters($event)"
+                  [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'"></p-dropdown>
     </div>
   </div>
   <ng-container *ngIf="starOfDavid">
