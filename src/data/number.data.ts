@@ -225,7 +225,7 @@ export const numberData = {
   },
   2701: {
     number: 2701,
-    reason: 'Genesis 1:1 AND Wisdom in Hebrew 37 (Ordinal) x 73 (Standard) - see Proverbs 3:19 Jeremiah 10:12'
+    reason: 'Genesis 1:1 AND Wisdom in Hebrew is 37 (Ordinal) x 73 (Standard) - see Proverbs 3:19 Jeremiah 10:12'
   },
   3773: {
     number: 3773,
