@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser'
-import { NgModule } from '@angular/core'
+import { APP_INITIALIZER, NgModule } from '@angular/core'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { BaseModule } from './base/base.module'
 import { DestroyerComponent } from './utils/destroyer.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ToastrModule } from 'ngx-toastr'
+import { dataInitialiser } from './initialisers/data-initialiser'
 
 @NgModule({
   declarations: [
@@ -27,7 +28,14 @@ import { ToastrModule } from 'ngx-toastr'
     }),
     BaseModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: dataInitialiser,
+      deps: [],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 

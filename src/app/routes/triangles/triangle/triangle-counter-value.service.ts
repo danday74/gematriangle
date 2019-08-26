@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { TriangleCounterValueMode } from './triangle-counter-value-mode.enum'
-import { factorial } from 'mathjs'
+import { bignumber, factorial } from 'mathjs'
 import { Counter } from './counter'
 import { cloneDeep } from 'lodash'
 import { pi } from '../../../../data/pi-1m'
@@ -23,10 +23,11 @@ export class TriangleCounterValueService {
     pos = cloneDeep(pos)
     pos.row -= 1
     pos.col -= 1
-    const facRow: any = factorial(pos.row)
-    const facCol: any = factorial(pos.col)
-    const facRowCol: any = factorial(pos.row - pos.col)
-    return facRow / (facCol * facRowCol)
+    const facRow: any = factorial(bignumber(pos.row))
+    const facCol: any = factorial(bignumber(pos.col))
+    const facRowCol: any = factorial(bignumber(pos.row - pos.col))
+    const bottom = facCol.times(facRowCol)
+    return facRow.dividedBy(bottom).round()
   }
 
   private getPiValue(count) {
@@ -35,7 +36,7 @@ export class TriangleCounterValueService {
 
   private getPiDecimalsValue(count) {
     const pie = parseInt(pi[count], 10)
-    if (pie == null) throw Error('Cannot get PI position ' + (count))
+    if (pie == null) throw Error('Cannot get PI position ' + count)
     return pie
   }
 }
