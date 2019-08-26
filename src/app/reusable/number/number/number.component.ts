@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core'
 import { numberData } from '../../../../data/number.data'
+import { ToastrService } from 'ngx-toastr'
 
 @Component({
   selector: 'app-number',
@@ -20,7 +21,7 @@ export class NumberComponent implements OnInit, OnChanges {
     count: number
   }
 
-  constructor() {}
+  constructor(private toastr: ToastrService) {}
 
   ngOnInit() {
     this.checkNumber(this.num)
@@ -45,6 +46,7 @@ export class NumberComponent implements OnInit, OnChanges {
     const textAndCount = this.getTextAndCount()
     this.props.text = textAndCount.text
     this.props.count = textAndCount.count
+    if (this.props.special) this.toastr.success(`Special number found ${this.props.special.number} ... ${this.props.special.reason}`)
   }
 
   getTriangleTerm(num: number) {

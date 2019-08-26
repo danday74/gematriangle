@@ -2,14 +2,22 @@ import { Injectable } from '@angular/core'
 import { TriangleCounterValueMode } from './triangle-counter-value-mode.enum'
 import { bignumber, factorial } from 'mathjs'
 import { Counter } from './counter'
-import { cloneDeep } from 'lodash'
+import { cloneDeep, memoize } from 'lodash'
 import { pi } from '../../../../data/pi-1m'
 
 @Injectable({providedIn: 'root'})
 export class TriangleCounterValueService {
 
+  constructor() {
+    this.getPascalValue = memoize(this.getPascalValue, (pos) => `${pos.row}-${pos.col}`)
+    this.getPiValue = memoize(this.getPiValue)
+    this.getPiDecimalsValue = memoize(this.getPiDecimalsValue)
+  }
+
   getCounterValue(counter: Counter, mode: TriangleCounterValueMode) {
     switch (mode) {
+      case TriangleCounterValueMode.None:
+        return null
       case TriangleCounterValueMode.Pascal:
         return this.getPascalValue(counter.pos)
       case TriangleCounterValueMode.Pi:
