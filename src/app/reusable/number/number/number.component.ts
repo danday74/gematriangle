@@ -11,6 +11,9 @@ import { ToastrService } from 'ngx-toastr'
 export class NumberComponent implements OnInit, OnChanges {
 
   @Input() num: number
+  @Input() source: string
+  @Input() rowCount: number
+
   props: {
     37: number,
     73: number,
@@ -46,7 +49,10 @@ export class NumberComponent implements OnInit, OnChanges {
     const textAndCount = this.getTextAndCount()
     this.props.text = textAndCount.text
     this.props.count = textAndCount.count
-    if (this.props.special) this.toastr.success(`Special number found ${this.props.special.number} ... ${this.props.special.reason}`)
+    if (this.props.special) {
+      const msg = `T${this.rowCount} special number found ${this.props.special.number} for ${this.source} ... ${this.props.special.reason}`
+      this.toastr.info(msg)
+    }
   }
 
   getTriangleTerm(num: number) {

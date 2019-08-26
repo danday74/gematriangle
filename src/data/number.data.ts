@@ -20,6 +20,10 @@ export const numberData = {
     number: 284,
     reason: 'GOD (THEOS in Greek)'
   },
+  345: {
+    number: 345,
+    reason: 'THE NAME (HASHEM in Hebrew - Lev 24:11,16) AND Moses (Deuteronomy 18:15,18)'
+  },
   373: {
     number: 373,
     reason: 'WORD (LOGOS in Greek)'
@@ -221,7 +225,7 @@ export const numberData = {
   },
   2701: {
     number: 2701,
-    reason: '37 x 73'
+    reason: 'Genesis 1:1 AND 37 x 73 which is Wisdom in Hebrew'
   },
   3773: {
     number: 3773,
