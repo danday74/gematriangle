@@ -96,7 +96,7 @@ export class TriangleToolboxComponent implements OnInit {
 
   onChangeColorClick(color) {
     this.color = color
-    this.storageService.setItem('counter-color', color)
+    this.storageService.setItem('triangle-counter-color', color)
   }
 
   onChangeModeClick(mode) {
