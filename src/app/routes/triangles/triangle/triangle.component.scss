@@ -20,9 +20,12 @@
 
 .triangle-row {
   pointer-events: none;
+  padding-left: 9px;
+  padding-right: 9px;
+
   &.triangle-align-center {
+    margin: -14px auto;
     text-align: center;
-    margin-top: -14px;
 
     .counter {
       margin-left: 1px;
