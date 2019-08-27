@@ -14,6 +14,7 @@ export class TriangleToolboxComponent {
 
   @Input() rowCount: number
   alignCenter = true
+  color = 'app-red'
   star = star
 
   get starOfDavid() {
@@ -84,5 +85,9 @@ export class TriangleToolboxComponent {
   onRowCountChange(rowCount) {
     rowCount = rowCount || 1
     if (rowCount !== this.rowCount) this.trianglesService.onToolboxChangeRowCount(rowCount)
+  }
+
+  onChangeColorClick(color) {
+    this.color = color
   }
 }

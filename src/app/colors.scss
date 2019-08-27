@@ -1,17 +1,75 @@
 // http://scg.ar-ch.org
 
-$appBlue: darken(#4184A3, 5%);
 $appGrey: #DDD;
-$appOrange: darken(#FE6500, 5%);
 
-.app-blue {
-  color: $appBlue;
-}
+$appRed: red;
+$appYellow: yellow;
+$appPink: pink;
+$appGreen: green;
+$appOrange: darken(#FE6500, 5%);
+$appPurple: purple;
+$appBlue: darken(#4184A3, 5%);
 
 .app-grey {
   color: $appGrey;
 }
 
+.app-grey-bg {
+  background-color: $appGrey;
+}
+
+.app-red {
+  color: $appRed;
+}
+
+.app-red-bg {
+  background-color: $appRed;
+}
+
+.app-yellow {
+  color: $appYellow;
+}
+
+.app-yellow-bg {
+  background-color: $appYellow;
+}
+
+.app-pink {
+  color: $appPink;
+}
+
+.app-pink-bg {
+  background-color: $appPink;
+}
+
+.app-green {
+  color: $appGreen;
+}
+
+.app-green-bg {
+  background-color: $appGreen;
+}
+
 .app-orange {
   color: $appOrange;
+}
+
+.app-orange-bg {
+  background-color: $appOrange;
+}
+
+.app-purple {
+  color: $appPurple;
+}
+
+.app-purple-bg {
+  background-color: $appPurple;
+}
+
+.app-blue {
+  color: $appBlue;
+}
+
+.app-blue-bg {
+  background-color: $appBlue;
 }
