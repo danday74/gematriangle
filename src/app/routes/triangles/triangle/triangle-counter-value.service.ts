@@ -18,6 +18,10 @@ export class TriangleCounterValueService {
     switch (mode) {
       case TriangleCounterValueMode.None:
         return null
+      case TriangleCounterValueMode.Genesis1v1Standard:
+        return this.getGenesis1v1StandardValue(counter.count)
+      case TriangleCounterValueMode.Genesis1v1Ordinal:
+        return this.getGenesis1v1OrdinalValue(counter.count)
       case TriangleCounterValueMode.Pascal:
         return this.getPascalValue(counter.pos)
       case TriangleCounterValueMode.Pi:
@@ -25,6 +29,18 @@ export class TriangleCounterValueService {
       case TriangleCounterValueMode.PiDecimals:
         return this.getPiDecimalsValue(counter.count)
     }
+  }
+
+  private getGenesis1v1StandardValue(count) {
+    count--
+    const values = [2, 200, 1, 300, 10, 400, 2, 200, 1, 1, 30, 5, 10, 40, 1, 400, 5, 300, 40, 10, 40, 6, 1, 400, 5, 1, 200, 90]
+    return count < values.length ? values[count] : null
+  }
+
+  private getGenesis1v1OrdinalValue(count) {
+    count--
+    const values = [2, 20, 1, 21, 10, 22, 2, 20, 1, 1, 12, 5, 10, 13, 1, 22, 5, 21, 13, 10, 13, 6, 1, 22, 5, 1, 20, 18]
+    return count < values.length ? values[count] : null
   }
 
   private getPascalValue(pos) {

@@ -4,6 +4,7 @@ import { triangle } from '../../../utils/triangle'
 import { star } from 'src/app/utils/star'
 import { debounce } from 'lodash'
 import { StorageService } from '../../../services/storage.service'
+import { TriangleCounterValueMode } from '../triangle/triangle-counter-value-mode.enum'
 
 @Component({
   selector: 'app-triangle-toolbox',
@@ -24,6 +25,15 @@ export class TriangleToolboxComponent implements OnInit {
     return n ? {n, term: star.term(n)} : null
   }
 
+  counterValuesOptions = [
+    {label: 'No values selected', value: TriangleCounterValueMode.None},
+    {label: 'Genesis 1:1 (std)', value: TriangleCounterValueMode.Genesis1v1Standard},
+    {label: 'Genesis 1:1 (ord)', value: TriangleCounterValueMode.Genesis1v1Ordinal},
+    {label: 'Pascal\'s triangle', value: TriangleCounterValueMode.Pascal},
+    {label: 'PI', value: TriangleCounterValueMode.Pi},
+    {label: 'PI decimals', value: TriangleCounterValueMode.PiDecimals}
+  ]
+
   activateCountersOptions = [
     {label: 'Select to activate', value: null},
     {label: 'Activate corners', value: 'corners'},
@@ -32,7 +42,9 @@ export class TriangleToolboxComponent implements OnInit {
     {label: 'Activate center', value: 'center'},
     {label: 'Activate star of David', value: 'star'}
   ]
+
   activateCountersOption: any
+  counterValuesOption: any
 
   constructor(private trianglesService: TrianglesService, private storageService: StorageService) {
     this.onRowCountChange = debounce(this.onRowCountChange, 500, {leading: false, trailing: true})
@@ -62,6 +74,10 @@ export class TriangleToolboxComponent implements OnInit {
   onToggleAlign() {
     this.trianglesService.onToolboxToggleAlign()
     this.alignCenter = !this.alignCenter
+  }
+
+  changeCounterValues(option) {
+    console.log('option', option)
   }
 
   activateCounters(option) {

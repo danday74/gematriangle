@@ -28,7 +28,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
 
   ngOnInit() {
 
-    this.mode = TriangleCounterValueMode.Pi
+    this.mode = TriangleCounterValueMode.Genesis1v1Standard
 
     this.trianglesService.toolboxToggleAlign$.pipe(
       takeUntil(this.unsubscribe$)

@@ -96,11 +96,18 @@
 
     <hr class="sep2">
 
-    <!-- Activate counters dropdown -->
-    <div class="activate-counters">
-      <p-dropdown [options]="activateCountersOptions" [(ngModel)]="activateCountersOption" (onChange)="activateCounters($event)"
+    <!-- Dropdowns -->
+    <div class="select-counter-values">
+      <p-dropdown [options]="counterValuesOptions" [(ngModel)]="counterValuesOption" (onChange)="changeCounterValues($event)"
                   [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'"></p-dropdown>
     </div>
+
+    <ng-container *ngIf="mode === 'line'">
+      <div class="activate-counters">
+        <p-dropdown [options]="activateCountersOptions" [(ngModel)]="activateCountersOption" (onChange)="activateCounters($event)"
+                    [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'"></p-dropdown>
+      </div>
+    </ng-container>
   </div>
 
   <!-- Star of David -->
