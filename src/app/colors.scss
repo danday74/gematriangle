@@ -1,4 +1,17 @@
 // http://scg.ar-ch.org
 
-$appOrange: darken(#FE6500, 5%);
 $appBlue: darken(#4184A3, 5%);
+$appGrey: #DDD;
+$appOrange: darken(#FE6500, 5%);
+
+.app-blue {
+  color: $appBlue;
+}
+
+.app-grey {
+  color: $appGrey;
+}
+
+.app-orange {
+  color: $appOrange;
+}
