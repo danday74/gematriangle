@@ -1,6 +1,7 @@
 <div class="toolbox">
   <div class="triangle-toolbox">
 
+    <!-- T Selector -->
     <div class="tea-wrapper">
       <span class="tea">T</span>
       <span class="spinner-wrapper">
@@ -11,6 +12,7 @@
 
     <hr class="sep1">
 
+    <!-- Buttons -->
     <div class="btn-toolbar" role="toolbar">
       <div class="btn-group mr-2 mb-2" role="group">
         <button class="btn btn-outline-dark btn-sm" title="Draw Lines" (click)="onDrawLinesClick()">
@@ -39,11 +41,14 @@
 
     <hr class="sep2">
 
+    <!-- Activate counters dropdown -->
     <div class="activate-counters">
       <p-dropdown [options]="activateCountersOptions" [(ngModel)]="activateCountersOption" (onChange)="activateCounters($event)"
                   [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'"></p-dropdown>
     </div>
   </div>
+
+  <!-- Star of David -->
   <ng-container *ngIf="starOfDavid">
     <div class="star">
       <i class="fa fa-star fa-5x" aria-hidden="true" [title]="'T' + rowCount + ' houses a star of David (S' + starOfDavid.n + ') perfectly'"></i>
