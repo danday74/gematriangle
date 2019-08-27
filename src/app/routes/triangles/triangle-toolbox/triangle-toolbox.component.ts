@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 import { TrianglesService } from '../triangles.service'
 import { triangle } from '../../../utils/triangle'
 import { star } from 'src/app/utils/star'
 import { debounce } from 'lodash'
+import { StorageService } from '../../../services/storage.service'
 
 @Component({
   selector: 'app-triangle-toolbox',
@@ -10,20 +11,17 @@ import { debounce } from 'lodash'
   styleUrls: ['./triangle-toolbox.component.scss']
 })
 
-export class TriangleToolboxComponent {
+export class TriangleToolboxComponent implements OnInit {
 
   @Input() rowCount: number
   alignCenter = true
-  color = 'app-red'
+  color: string
+  mode: string
   star = star
 
   get starOfDavid() {
     const n = triangle.housesStarOfDavid(this.rowCount)
     return n ? {n, term: star.term(n)} : null
-  }
-
-  constructor(private trianglesService: TrianglesService) {
-    this.onRowCountChange = debounce(this.onRowCountChange, 500, {leading: false, trailing: true})
   }
 
   activateCountersOptions = [
@@ -35,6 +33,15 @@ export class TriangleToolboxComponent {
     {label: 'Activate star of David', value: 'star'}
   ]
   activateCountersOption: any
+
+  constructor(private trianglesService: TrianglesService, private storageService: StorageService) {
+    this.onRowCountChange = debounce(this.onRowCountChange, 500, {leading: false, trailing: true})
+  }
+
+  ngOnInit() {
+    this.color = this.storageService.getItem('triangle-counter-color') || 'app-red'
+    this.mode = this.storageService.getItem('triangle-mode') || 'paint'
+  }
 
   onDrawLinesClick() {
     // this.trianglesService.onToolboxDrawLines()
@@ -89,5 +96,11 @@ export class TriangleToolboxComponent {
 
   onChangeColorClick(color) {
     this.color = color
+    this.storageService.setItem('counter-color', color)
+  }
+
+  onChangeModeClick(mode) {
+    this.mode = mode
+    this.storageService.setItem('triangle-mode', mode)
   }
 }

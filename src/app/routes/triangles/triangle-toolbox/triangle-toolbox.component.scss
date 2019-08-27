@@ -26,12 +26,40 @@
   border-radius: 5px;
 }
 
+button.line-mode {
+  background-image: url('/assets/icons/line-mode.png');
+  background-repeat: no-repeat;
+  background-size: 14px;
+  background-position: center;
+
+  &:hover, &.active {
+    background-image: url('/assets/icons/line-mode-hover.png');
+  }
+}
+
+button.fill-mode {
+  background-image: url('/assets/icons/fill-mode.png');
+  background-repeat: no-repeat;
+  background-size: 15px;
+  background-position: center;
+
+  &:hover, &.active {
+    background-image: url('/assets/icons/fill-mode-hover.png');
+  }
+}
+
+.mode {
+  position: relative;
+  top: 4px;
+  left: 1px;
+}
+
 .sep1 {
   margin-top: -1px;
   margin-bottom: 10px;
 }
 
-.sep2, .sep3 {
+.sep2 {
   margin-top: 2px;
   margin-bottom: 10px;
 }
