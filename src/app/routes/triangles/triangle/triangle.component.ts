@@ -6,7 +6,7 @@ import { DestroyerComponent } from '../../../utils/destroyer.component'
 import { Counter } from './counter'
 import { triangle } from '../../../utils/triangle'
 import { TriangleCounterValueService } from './triangle-counter-value.service'
-import { TriangleCounterValueMode } from './triangle-counter-value-mode.enum'
+import { TriangleCounterValues } from './triangle-counter-values.enum'
 import { TriangleToolboxMessage } from '../triangle-toolbox/triangle-toolbox-message.enum'
 
 @Component({
@@ -20,7 +20,10 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   @Input() rowCount = 1
 
   alignCenter = true
-  mode: TriangleCounterValueMode
+  color: string
+  mode: string
+  counterValues: TriangleCounterValues
+
   rows: Array<Array<Counter>> = []
 
   constructor(private trianglesService: TrianglesService, private triangleCounterValueService: TriangleCounterValueService) {
@@ -28,14 +31,19 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   }
 
   ngOnInit() {
-
-    this.mode = TriangleCounterValueMode.Genesis1v1Standard
-
     this.trianglesService.triangleToolboxMessage$.pipe(
       takeUntil(this.unsubscribe$)
     ).subscribe((message) => {
-
       switch (message.name) {
+        case TriangleToolboxMessage.ChangeColor:
+          this.color = message.value
+          break
+        case TriangleToolboxMessage.ChangeCounterValues:
+          this.counterValues = message.value
+          break
+        case TriangleToolboxMessage.ChangeMode:
+          this.mode = message.value
+          break
         case TriangleToolboxMessage.ToggleAlign:
           this.alignCenter = message.value
           break
@@ -60,7 +68,17 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   }
 
   onCounterClick(counter) {
-    counter.active = !counter.active
+    switch (this.mode) {
+      case 'paint':
+        counter.selected = this.color
+        break
+      case 'line':
+        counter.active = !counter.active
+        break
+      case 'fill':
+        console.log('TODO fill')
+        break
+    }
   }
 
   private addRow(row) {
@@ -68,7 +86,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     const term = triangle.term(row - 1)
     for (let i = 1; i <= row; i++) {
       const counter = {active: false, selected: false, count: term + i, value: 0, pos: {row, col: i}}
-      counter.value = this.triangleCounterValueService.getCounterValue(counter, this.mode)
+      counter.value = this.triangleCounterValueService.getCounterValue(counter, this.counterValues)
       counters.push(counter)
     }
     this.rows.push(counters)

@@ -4,7 +4,7 @@ import { triangle } from '../../../utils/triangle'
 import { star } from 'src/app/utils/star'
 import { debounce } from 'lodash'
 import { StorageService } from '../../../services/storage.service'
-import { TriangleCounterValueMode } from '../triangle/triangle-counter-value-mode.enum'
+import { TriangleCounterValues } from '../triangle/triangle-counter-values.enum'
 
 @Component({
   selector: 'app-triangle-toolbox',
@@ -26,12 +26,12 @@ export class TriangleToolboxComponent implements OnInit {
   }
 
   counterValuesOptions = [
-    {label: 'No values selected', value: TriangleCounterValueMode.None},
-    {label: 'Genesis 1:1 (std)', value: TriangleCounterValueMode.Genesis1v1Standard},
-    {label: 'Genesis 1:1 (ord)', value: TriangleCounterValueMode.Genesis1v1Ordinal},
-    {label: 'Pascal\'s triangle', value: TriangleCounterValueMode.Pascal},
-    {label: 'PI', value: TriangleCounterValueMode.Pi},
-    {label: 'PI decimals', value: TriangleCounterValueMode.PiDecimals}
+    {label: 'No values selected', value: TriangleCounterValues.None},
+    {label: 'Genesis 1:1 (std)', value: TriangleCounterValues.Genesis1v1Standard},
+    {label: 'Genesis 1:1 (ord)', value: TriangleCounterValues.Genesis1v1Ordinal},
+    {label: 'Pascal\'s triangle', value: TriangleCounterValues.Pascal},
+    {label: 'PI', value: TriangleCounterValues.Pi},
+    {label: 'PI decimals', value: TriangleCounterValues.PiDecimals}
   ]
 
   activateCountersOptions = [
@@ -52,7 +52,11 @@ export class TriangleToolboxComponent implements OnInit {
 
   ngOnInit() {
     this.color = this.storageService.getItem('triangle-counter-color') || 'app-red'
+    this.counterValuesOption = this.storageService.getItem('triangle-counter-values') || TriangleCounterValues.None
     this.mode = this.storageService.getItem('triangle-mode') || 'paint'
+    this.onChangeColorClick(this.color)
+    this.changeCounterValues(this.counterValuesOption)
+    this.onChangeModeClick(this.mode)
   }
 
   onDrawLinesClick() {
@@ -74,10 +78,6 @@ export class TriangleToolboxComponent implements OnInit {
   onToggleAlign() {
     this.alignCenter = !this.alignCenter
     this.trianglesService.onToggleAlign(this.alignCenter)
-  }
-
-  changeCounterValues(option) {
-    console.log('option', option)
   }
 
   activateCounters(option) {
@@ -110,13 +110,21 @@ export class TriangleToolboxComponent implements OnInit {
     if (rowCount !== this.rowCount) this.trianglesService.onChangeRowCount(rowCount)
   }
 
+  changeCounterValues(evt) {
+    const counterValues = evt.value || evt
+    this.trianglesService.onChangeCounterValues(counterValues)
+    this.storageService.setItem('triangle-counter-values', counterValues)
+  }
+
   onChangeColorClick(color) {
     this.color = color
+    this.trianglesService.onChangeColor(color)
     this.storageService.setItem('triangle-counter-color', color)
   }
 
   onChangeModeClick(mode) {
     this.mode = mode
+    this.trianglesService.onChangeMode(mode)
     this.storageService.setItem('triangle-mode', mode)
   }
 }

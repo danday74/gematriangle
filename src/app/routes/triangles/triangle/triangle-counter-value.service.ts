@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { TriangleCounterValueMode } from './triangle-counter-value-mode.enum'
+import { TriangleCounterValues } from './triangle-counter-values.enum'
 import { bignumber, factorial } from 'mathjs'
 import { Counter } from './counter'
 import { cloneDeep, memoize } from 'lodash'
@@ -14,19 +14,19 @@ export class TriangleCounterValueService {
     this.getPiDecimalsValue = memoize(this.getPiDecimalsValue)
   }
 
-  getCounterValue(counter: Counter, mode: TriangleCounterValueMode) {
+  getCounterValue(counter: Counter, mode: TriangleCounterValues) {
     switch (mode) {
-      case TriangleCounterValueMode.None:
+      case TriangleCounterValues.None:
         return null
-      case TriangleCounterValueMode.Genesis1v1Standard:
+      case TriangleCounterValues.Genesis1v1Standard:
         return this.getGenesis1v1StandardValue(counter.count)
-      case TriangleCounterValueMode.Genesis1v1Ordinal:
+      case TriangleCounterValues.Genesis1v1Ordinal:
         return this.getGenesis1v1OrdinalValue(counter.count)
-      case TriangleCounterValueMode.Pascal:
+      case TriangleCounterValues.Pascal:
         return this.getPascalValue(counter.pos)
-      case TriangleCounterValueMode.Pi:
+      case TriangleCounterValues.Pi:
         return this.getPiValue(counter.count)
-      case TriangleCounterValueMode.PiDecimals:
+      case TriangleCounterValues.PiDecimals:
         return this.getPiDecimalsValue(counter.count)
     }
   }
