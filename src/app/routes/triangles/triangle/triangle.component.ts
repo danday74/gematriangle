@@ -44,8 +44,12 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.rowCount && !changes.rowCount.firstChange) {
-      if (changes.rowCount.currentValue > changes.rowCount.previousValue) this.addRow(changes.rowCount.currentValue)
-      if (changes.rowCount.currentValue < changes.rowCount.previousValue) this.removeRow()
+      if (changes.rowCount.currentValue > changes.rowCount.previousValue) {
+        for (let i = changes.rowCount.previousValue + 1; i <= changes.rowCount.currentValue; i++) this.addRow(i)
+      }
+      if (changes.rowCount.currentValue < changes.rowCount.previousValue) {
+        for (let i = changes.rowCount.previousValue - 1; i >= changes.rowCount.currentValue; i--) this.removeRow()
+      }
     }
   }
 

@@ -21,20 +21,11 @@ export class TrianglesComponent extends DestroyerComponent implements OnInit {
   ngOnInit() {
     this.rowCount = this.storageService.getItem('row-count') || 37
 
-    this.trianglesService.toolboxIncreaseSize$.pipe(
+    this.trianglesService.toolboxChangeRowCount$.pipe(
       takeUntil(this.unsubscribe$)
-    ).subscribe(() => {
-      this.rowCount++
+    ).subscribe((rowCount: number) => {
+      this.rowCount = rowCount
       this.storageService.setItem('row-count', this.rowCount)
-    })
-
-    this.trianglesService.toolboxDecreaseSize$.pipe(
-      takeUntil(this.unsubscribe$)
-    ).subscribe(() => {
-      if (this.rowCount > 1) {
-        this.rowCount--
-        this.storageService.setItem('row-count', this.rowCount)
-      }
     })
   }
 }

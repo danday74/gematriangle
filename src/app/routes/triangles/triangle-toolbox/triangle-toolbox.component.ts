@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { TrianglesService } from '../triangles.service'
 import { triangle } from '../../../utils/triangle'
 import { star } from 'src/app/utils/star'
+import { debounce } from 'lodash'
 
 @Component({
   selector: 'app-triangle-toolbox',
@@ -9,18 +10,22 @@ import { star } from 'src/app/utils/star'
   styleUrls: ['./triangle-toolbox.component.scss']
 })
 
-export class TriangleToolboxComponent implements OnInit {
+export class TriangleToolboxComponent {
 
   @Input() rowCount: number
   alignCenter = true
   star = star
+
+  rowCountText
 
   get starOfDavid() {
     const n = triangle.housesStarOfDavid(this.rowCount)
     return n ? {n, term: star.term(n)} : null
   }
 
-  constructor(private trianglesService: TrianglesService) {}
+  constructor(private trianglesService: TrianglesService) {
+    this.onRowCountChange = debounce(this.onRowCountChange, 500, {leading: false, trailing: true})
+  }
 
   activateCountersOptions = [
     {label: 'Select to activate', value: null},
@@ -32,30 +37,20 @@ export class TriangleToolboxComponent implements OnInit {
   ]
   activateCountersOption: any
 
-  ngOnInit() {}
-
-  onIncreaseSizeClick() {
-    this.trianglesService.onToolboxIncreaseSize()
-  }
-
-  onDecreaseSizeClick() {
-    this.trianglesService.onToolboxDecreaseSize()
-  }
-
   onDrawLinesClick() {
-    this.trianglesService.onToolboxDrawLines()
+    // this.trianglesService.onToolboxDrawLines()
   }
 
   onEraseLinesClick() {
-    this.trianglesService.onToolboxEraseLines()
+    // this.trianglesService.onToolboxEraseLines()
   }
 
   onClearActiveClick() {
-    this.trianglesService.onToolboxClearActive()
+    // this.trianglesService.onToolboxClearActive()
   }
 
   onClearSelectedClick() {
-    this.trianglesService.onToolboxClearSelected()
+    // this.trianglesService.onToolboxClearSelected()
   }
 
   onToggleAlign() {
@@ -67,24 +62,29 @@ export class TriangleToolboxComponent implements OnInit {
     if (option.value) {
       switch (option.value) {
         case 'corners':
-          this.trianglesService.onToolboxActivateCorners()
+          // this.trianglesService.onToolboxActivateCorners()
           break
         case 'midpoints':
-          this.trianglesService.onToolboxActivateMidpoints()
+          // this.trianglesService.onToolboxActivateMidpoints()
           break
         case 'midpoints-plus':
-          this.trianglesService.onToolboxActivateMidpointsPlus()
+          // this.trianglesService.onToolboxActivateMidpointsPlus()
           break
         case 'center':
-          this.trianglesService.onToolboxActivateCenter()
+          // this.trianglesService.onToolboxActivateCenter()
           break
         case 'star':
-          this.trianglesService.onToolboxActivateStar()
+          // this.trianglesService.onToolboxActivateStar()
           break
       }
     }
     setTimeout(() => {
       this.activateCountersOption = null
     })
+  }
+
+  onRowCountChange(rowCount) {
+    rowCount = rowCount || 1
+    if (rowCount !== this.rowCount) this.trianglesService.onToolboxChangeRowCount(rowCount)
   }
 }

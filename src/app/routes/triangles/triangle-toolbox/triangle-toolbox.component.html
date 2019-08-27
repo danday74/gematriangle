@@ -1,9 +1,12 @@
 <div class="toolbox">
   <div class="triangle-toolbox">
-    <app-toolbox-button text="Increase Size" faIcon="fa-plus" (clicked)="onIncreaseSizeClick()"
-                        help="Increase the triangle size"></app-toolbox-button>
-    <app-toolbox-button text="Decrease Size" faIcon="fa-minus" (clicked)="onDecreaseSizeClick()"
-                        help="Decrease the triangle size"></app-toolbox-button>
+
+    <span class="tea">T</span>
+    <span class="spinner-wrapper">
+      <p-spinner maxlength="4" [size]="5" [min]="1" [max]="1001" [ngModel]="rowCount" (ngModelChange)="onRowCountChange($event)"
+                 [inputStyle]="{'padding': '0 5px', 'font-size': '18px', 'font-weight': 'bold'}"></p-spinner>
+    </span>
+
     <app-toolbox-button text="Draw Lines" faIcon="fa-pencil" (clicked)="onDrawLinesClick()"
                         help="Click two or more counters and then click 'Draw Lines' to draw straight lines between them"></app-toolbox-button>
     <app-toolbox-button text="Erase Lines" faIcon="fa-eraser" (clicked)="onEraseLinesClick()"
