@@ -16,8 +16,6 @@ export class TriangleToolboxComponent {
   alignCenter = true
   star = star
 
-  rowCountText
-
   get starOfDavid() {
     const n = triangle.housesStarOfDavid(this.rowCount)
     return n ? {n, term: star.term(n)} : null
