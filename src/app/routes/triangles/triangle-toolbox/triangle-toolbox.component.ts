@@ -5,7 +5,6 @@ import { star } from 'src/app/utils/star'
 import { debounce } from 'lodash'
 import { StorageService } from '../../../services/storage.service'
 import { TriangleCounterValueMode } from '../triangle/triangle-counter-value-mode.enum'
-import { TriangleToolboxMessage } from './triangle-toolbox-message.enum'
 
 @Component({
   selector: 'app-triangle-toolbox',
@@ -48,7 +47,7 @@ export class TriangleToolboxComponent implements OnInit {
   counterValuesOption: any
 
   constructor(private trianglesService: TrianglesService, private storageService: StorageService) {
-    this.onRowCountChange = debounce(this.onRowCountChange, 500, {leading: false, trailing: true})
+    this.onChangeRowCount = debounce(this.onChangeRowCount, 500, {leading: false, trailing: true})
   }
 
   ngOnInit() {
@@ -74,7 +73,7 @@ export class TriangleToolboxComponent implements OnInit {
 
   onToggleAlign() {
     this.alignCenter = !this.alignCenter
-    this.trianglesService.onTriangleToolboxMessage(TriangleToolboxMessage.ToggleAlign, this.alignCenter)
+    this.trianglesService.onToggleAlign(this.alignCenter)
   }
 
   changeCounterValues(option) {
@@ -106,9 +105,9 @@ export class TriangleToolboxComponent implements OnInit {
     })
   }
 
-  onRowCountChange(rowCount) {
+  onChangeRowCount(rowCount) {
     rowCount = rowCount || 1
-    if (rowCount !== this.rowCount) this.trianglesService.onTriangleToolboxMessage(TriangleToolboxMessage.ChangeRowCount, rowCount)
+    if (rowCount !== this.rowCount) this.trianglesService.onChangeRowCount(rowCount)
   }
 
   onChangeColorClick(color) {

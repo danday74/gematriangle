@@ -11,4 +11,12 @@ export class TrianglesService {
   onTriangleToolboxMessage(name: TriangleToolboxMessage, value: any) {
     this.triangleToolboxMessageSource.next({name, value})
   }
+
+  onChangeRowCount(rowCount: number) {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.ChangeRowCount, rowCount)
+  }
+
+  onToggleAlign(alignCenter: boolean) {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.ToggleAlign, alignCenter)
+  }
 }
