@@ -7,6 +7,7 @@ import { Counter } from './counter'
 import { triangle } from '../../../utils/triangle'
 import { TriangleCounterValueService } from './triangle-counter-value.service'
 import { TriangleCounterValueMode } from './triangle-counter-value-mode.enum'
+import { TriangleToolboxMessage } from '../triangle-toolbox/triangle-toolbox-message.enum'
 
 @Component({
   selector: 'app-triangle',
@@ -30,10 +31,15 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
 
     this.mode = TriangleCounterValueMode.Genesis1v1Standard
 
-    this.trianglesService.toolboxToggleAlign$.pipe(
+    this.trianglesService.triangleToolboxMessage$.pipe(
       takeUntil(this.unsubscribe$)
-    ).subscribe(() => {
-      this.alignCenter = !this.alignCenter
+    ).subscribe((message) => {
+
+      switch (message.name) {
+        case TriangleToolboxMessage.ToggleAlign:
+          this.alignCenter = message.value
+          break
+      }
     })
 
     const rng = range(1, this.rowCount + 1)

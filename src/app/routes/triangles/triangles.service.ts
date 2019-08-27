@@ -1,22 +1,14 @@
 import { Injectable } from '@angular/core'
 import { Subject } from 'rxjs'
+import { TriangleToolboxMessage } from './triangle-toolbox/triangle-toolbox-message.enum'
 
 @Injectable({providedIn: 'root'})
 export class TrianglesService {
 
-  private toolboxChangeRowCountSource = new Subject<number>()
-  toolboxChangeRowCount$ = this.toolboxChangeRowCountSource.asObservable()
+  private triangleToolboxMessageSource = new Subject<{ name: TriangleToolboxMessage, value: any }>()
+  triangleToolboxMessage$ = this.triangleToolboxMessageSource.asObservable()
 
-  private toolboxToggleAlignSource = new Subject<boolean>()
-  toolboxToggleAlign$ = this.toolboxToggleAlignSource.asObservable()
-
-  constructor() {}
-
-  onToolboxChangeRowCount(rowCount: number) {
-    this.toolboxChangeRowCountSource.next(rowCount)
-  }
-
-  onToolboxToggleAlign() {
-    this.toolboxToggleAlignSource.next(true)
+  onTriangleToolboxMessage(name: TriangleToolboxMessage, value: any) {
+    this.triangleToolboxMessageSource.next({name, value})
   }
 }

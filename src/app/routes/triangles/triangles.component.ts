@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core'
 import { DestroyerComponent } from '../../utils/destroyer.component'
 import { TrianglesService } from './triangles.service'
-import { takeUntil } from 'rxjs/operators'
+import { filter, takeUntil } from 'rxjs/operators'
 import { StorageService } from '../../services/storage.service'
+import { TriangleToolboxMessage } from './triangle-toolbox/triangle-toolbox-message.enum'
 
 @Component({
   selector: 'app-triangles',
@@ -21,10 +22,11 @@ export class TrianglesComponent extends DestroyerComponent implements OnInit {
   ngOnInit() {
     this.rowCount = this.storageService.getItem('row-count') || 37
 
-    this.trianglesService.toolboxChangeRowCount$.pipe(
-      takeUntil(this.unsubscribe$)
-    ).subscribe((rowCount: number) => {
-      this.rowCount = rowCount
+    this.trianglesService.triangleToolboxMessage$.pipe(
+      takeUntil(this.unsubscribe$),
+      filter(message => message.name === TriangleToolboxMessage.ChangeRowCount)
+    ).subscribe((message) => {
+      this.rowCount = message.value
       this.storageService.setItem('row-count', this.rowCount)
     })
   }

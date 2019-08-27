@@ -5,6 +5,7 @@ import { star } from 'src/app/utils/star'
 import { debounce } from 'lodash'
 import { StorageService } from '../../../services/storage.service'
 import { TriangleCounterValueMode } from '../triangle/triangle-counter-value-mode.enum'
+import { TriangleToolboxMessage } from './triangle-toolbox-message.enum'
 
 @Component({
   selector: 'app-triangle-toolbox',
@@ -72,8 +73,8 @@ export class TriangleToolboxComponent implements OnInit {
   }
 
   onToggleAlign() {
-    this.trianglesService.onToolboxToggleAlign()
     this.alignCenter = !this.alignCenter
+    this.trianglesService.onTriangleToolboxMessage(TriangleToolboxMessage.ToggleAlign, this.alignCenter)
   }
 
   changeCounterValues(option) {
@@ -107,7 +108,7 @@ export class TriangleToolboxComponent implements OnInit {
 
   onRowCountChange(rowCount) {
     rowCount = rowCount || 1
-    if (rowCount !== this.rowCount) this.trianglesService.onToolboxChangeRowCount(rowCount)
+    if (rowCount !== this.rowCount) this.trianglesService.onTriangleToolboxMessage(TriangleToolboxMessage.ChangeRowCount, rowCount)
   }
 
   onChangeColorClick(color) {
