@@ -51,7 +51,7 @@ export class TriangleToolboxComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.color = this.storageService.getItem('triangle-counter-color') || 'app-red'
+    this.color = this.storageService.getItem('triangle-counter-color') || 'appRed'
     this.counterValuesOption = this.storageService.getItem('triangle-counter-values') || TriangleCounterValues.None
     this.mode = this.storageService.getItem('triangle-mode') || 'paint'
     this.onChangeColorClick(this.color)

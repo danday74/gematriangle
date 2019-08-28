@@ -1,5 +1,6 @@
 // http://scg.ar-ch.org
 
+$appActive: linear-gradient(to bottom, #000000 0%,#ffffff 100%);
 $appGrey: #DDD;
 
 $appRed: red;
@@ -10,66 +11,70 @@ $appOrange: darken(#FE6500, 5%);
 $appPurple: purple;
 $appBlue: darken(#4184A3, 5%);
 
-.app-grey {
+.appActive {
+  background: $appActive;
+}
+
+.appGrey {
   color: $appGrey;
 }
 
-.app-grey-bg {
+.appGreyBg {
   background-color: $appGrey;
 }
 
-.app-red {
+.appRed {
   color: $appRed;
 }
 
-.app-red-bg {
+.appRedBg {
   background-color: $appRed;
 }
 
-.app-yellow {
+.appYellow {
   color: $appYellow;
 }
 
-.app-yellow-bg {
+.appYellowBg {
   background-color: $appYellow;
 }
 
-.app-pink {
+.appPink {
   color: $appPink;
 }
 
-.app-pink-bg {
+.appPinkBg {
   background-color: $appPink;
 }
 
-.app-green {
+.appGreen {
   color: $appGreen;
 }
 
-.app-green-bg {
+.appGreenBg {
   background-color: $appGreen;
 }
 
-.app-orange {
+.appOrange {
   color: $appOrange;
 }
 
-.app-orange-bg {
+.appOrangeBg {
   background-color: $appOrange;
 }
 
-.app-purple {
+.appPurple {
   color: $appPurple;
 }
 
-.app-purple-bg {
+.appPurpleBg {
   background-color: $appPurple;
 }
 
-.app-blue {
+.appBlue {
   color: $appBlue;
 }
 
-.app-blue-bg {
+.appBlueBg {
   background-color: $appBlue;
 }

@@ -2,19 +2,14 @@
 
 .counter {
   display: inline-block;
-  background-color: $appGrey;
   border-radius: 90px;
   pointer-events: auto;
   cursor: pointer;
   width: 10px;
   height: 10px;
 
-  &.selected {
-    background-color: $appOrange;
-  }
-
-  &.active {
-    background-color: #000;
+  &.spin {
+    animation: spin 2s linear infinite;  /* duration must be same as spinInterval */
   }
 }
 

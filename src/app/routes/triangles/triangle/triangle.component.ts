@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core'
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core'
 import { range } from 'lodash'
 import { takeUntil } from 'rxjs/operators'
 import { TrianglesService } from '../triangles.service'
@@ -15,7 +15,7 @@ import { TriangleToolboxMessage } from '../triangle-toolbox/triangle-toolbox-mes
   styleUrls: ['./triangle.component.scss']
 })
 
-export class TriangleComponent extends DestroyerComponent implements OnInit, OnChanges {
+export class TriangleComponent extends DestroyerComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() rowCount = 1
 
@@ -23,6 +23,8 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   color: string
   mode: string
   counterValues: TriangleCounterValues
+  countersWaitingToSpin = []
+  spinInterval
 
   rows: Array<Array<Counter>> = []
 
@@ -31,6 +33,13 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   }
 
   ngOnInit() {
+    this.spinInterval = setInterval(() => {
+      this.countersWaitingToSpin.forEach(counter => {
+        counter.spin = true
+      })
+      this.countersWaitingToSpin = []
+    }, 2000) // interval must be same as .spin duration
+
     this.trianglesService.triangleToolboxMessage$.pipe(
       takeUntil(this.unsubscribe$)
     ).subscribe((message) => {
@@ -67,13 +76,19 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     }
   }
 
+  ngOnDestroy() {
+    clearInterval(this.spinInterval)
+    super.ngOnDestroy()
+  }
+
   onCounterClick(counter) {
+    counter.spin = false
     switch (this.mode) {
       case 'paint':
-        counter.selected = this.color
+        counter.color = counter.color === this.color ? null : this.color
         break
       case 'line':
-        counter.active = !counter.active
+        this.setCounterActivation(counter, !counter.active)
         break
       case 'fill':
         console.log('TODO fill')
@@ -81,11 +96,20 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     }
   }
 
+  private setCounterActivation(counter: Counter, activate: boolean) {
+    if (activate) {
+      counter.active = true
+      this.countersWaitingToSpin.push(counter)
+    } else {
+      counter.active = false
+    }
+  }
+
   private addRow(row) {
     const counters: Array<Counter> = []
     const term = triangle.term(row - 1)
     for (let i = 1; i <= row; i++) {
-      const counter = {active: false, selected: false, count: term + i, value: 0, pos: {row, col: i}}
+      const counter: Counter = {active: false, color: null, count: term + i, value: 0, pos: {row, col: i}, spin: false}
       counter.value = this.triangleCounterValueService.getCounterValue(counter, this.counterValues)
       counters.push(counter)
     }

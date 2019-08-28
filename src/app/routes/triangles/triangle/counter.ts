@@ -1,7 +1,8 @@
 export interface Counter {
   active: boolean
-  selected: boolean
+  color: string
   count: number
   value: number
   pos: { row: number, col: number }
+  spin: false
 }
