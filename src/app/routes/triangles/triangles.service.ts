@@ -29,6 +29,14 @@ export class TrianglesService {
     this.onTriangleToolboxMessage(TriangleToolboxMessage.ChangeRowCount, rowCount)
   }
 
+  onClearActive() {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.ClearActive, null)
+  }
+
+  onClearSelected() {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.ClearSelected, null)
+  }
+
   onToggleAlign(alignCenter: boolean) {
     this.onTriangleToolboxMessage(TriangleToolboxMessage.ToggleAlign, alignCenter)
   }

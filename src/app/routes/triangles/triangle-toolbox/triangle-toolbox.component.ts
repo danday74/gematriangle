@@ -68,11 +68,11 @@ export class TriangleToolboxComponent implements OnInit {
   }
 
   onClearActiveClick() {
-    // this.trianglesService.onToolboxClearActive()
+    this.trianglesService.onClearActive()
   }
 
   onClearSelectedClick() {
-    // this.trianglesService.onToolboxClearSelected()
+    this.trianglesService.onClearSelected()
   }
 
   onToggleAlign() {

@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core'
-import { range } from 'lodash'
+import { filter, flatten, range } from 'lodash'
 import { takeUntil } from 'rxjs/operators'
 import { TrianglesService } from '../triangles.service'
 import { DestroyerComponent } from '../../../utils/destroyer.component'
@@ -51,7 +51,14 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
           this.counterValues = message.value
           break
         case TriangleToolboxMessage.ChangeMode:
+          this.clearActive()
           this.mode = message.value
+          break
+        case TriangleToolboxMessage.ClearActive:
+          this.clearActive()
+          break
+        case TriangleToolboxMessage.ClearSelected:
+          this.clearSelected()
           break
         case TriangleToolboxMessage.ToggleAlign:
           this.alignCenter = message.value
@@ -79,6 +86,18 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   ngOnDestroy() {
     clearInterval(this.spinInterval)
     super.ngOnDestroy()
+  }
+
+  clearActive() {
+    const allCounters = flatten(this.rows)
+    const counters = filter(allCounters, {active: true})
+    counters.forEach(counter => counter.active = false)
+  }
+
+  clearSelected() {
+    const allCounters = flatten(this.rows)
+    const counters = filter(allCounters, counter => counter.color != null)
+    counters.forEach(counter => counter.color = null)
   }
 
   onCounterClick(counter) {

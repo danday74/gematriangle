@@ -2,7 +2,7 @@
   <div class="triangle-row" [ngClass]="alignCenter ? 'triangle-align-center' : 'triangle-align-left'" [style.width.px]="(i + 1) * 12 + 18">
     <ng-container *ngFor="let counter of row">
       <div class="counter" (click)="onCounterClick(counter)"
-           [class.appActive]="counter.active" [class.spin]="counter.spin" [ngClass]="counter.color ? counter.color + 'Bg' : 'appGreyBg'"
+           [class.appActiveBg]="counter.active" [class.spin]="counter.spin" [ngClass]="counter.color ? counter.color + 'Bg' : 'appGreyBg'"
            [title]="'(' + counter.pos.row + ', ' + counter.pos.col + ') count=' + counter.count + (counter.value == null ? '' : ' value=' + counter.value)">
       </div>
     </ng-container>
