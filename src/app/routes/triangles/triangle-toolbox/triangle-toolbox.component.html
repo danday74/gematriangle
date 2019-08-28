@@ -9,7 +9,10 @@
                    [inputStyle]="{'padding': '0 5px', 'font-size': '18px', 'font-weight': 'bold'}"></p-spinner>
       </span>
       <!-- Active color -->
-      <div class="active-color" [ngClass]="color + 'Bg'"></div>
+      <div class="active-color">
+        <div class="active-color-1" [ngClass]="mode === 'line' ? 'appBlackBg' : color + 'Bg'"></div>
+        <div class="active-color-2" [ngClass]="color + 'Bg'"></div>
+      </div>
     </div>
 
     <hr class="sep1">

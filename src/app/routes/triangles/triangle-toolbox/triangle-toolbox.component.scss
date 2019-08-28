@@ -16,14 +16,35 @@
   top: -11px;
 }
 
+$activeColorWidth: 60;
+$activeColorHeight: 29;
+$activeColorBorderRadius: 5px;
+
 .active-color {
   top: 10px;
-  width: 60px;
-  height: 29px;
+  width: $activeColorWidth + unquote("px");
+  height: $activeColorHeight + unquote("px");
   display: inline-block;
   margin-left: 10px;
   border: 1px solid #000;
-  border-radius: 5px;
+  border-radius: $activeColorBorderRadius;
+}
+
+.active-color-1, .active-color-2 {
+  width: ($activeColorWidth / 2 - 1) + unquote("px");
+  height: ($activeColorHeight - 2) + unquote("px");
+}
+
+.active-color-1 {
+  float: left;
+  border-top-left-radius: $activeColorBorderRadius;
+  border-bottom-left-radius: $activeColorBorderRadius;
+}
+
+.active-color-2 {
+  float: right;
+  border-top-right-radius: $activeColorBorderRadius;
+  border-bottom-right-radius: $activeColorBorderRadius;
 }
 
 button.line-mode {

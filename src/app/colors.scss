@@ -1,6 +1,7 @@
 // http://scg.ar-ch.org
 
 $appActive: linear-gradient(to bottom, #000000 0%, #ffffff 100%);
+$appBlack: #000;
 $appGrey: #DDD;
 
 $appRed: red;
@@ -12,11 +13,19 @@ $appPurple: purple;
 $appBlue: darken(#4184A3, 5%);
 
 .appActive {
-  color: #000;
+  color: $appBlack;
 }
 
 .appActiveBg {
   background: $appActive;
+}
+
+.appBlack {
+  color: $appBlack;
+}
+
+.appBlackBg {
+  background-color: $appBlack;
 }
 
 .appGrey {

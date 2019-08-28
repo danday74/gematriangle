@@ -10,4 +10,8 @@ Activate dropdown only in line mode - maybe select dropdown too for some mode?
 
 Moving actives
 
-Actives should spin
+Actives should spin and be bigger?
+
+Fix page load
+
+
