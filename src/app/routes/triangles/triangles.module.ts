@@ -9,6 +9,7 @@ import { NumberModule } from '../../reusable/number/number.module'
 import { DropdownModule } from 'primeng/dropdown'
 import { FormsModule } from '@angular/forms'
 import { SpinnerModule } from 'primeng/primeng'
+import { BaseModule } from '../../base/base.module'
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SpinnerModule } from 'primeng/primeng'
     NumberModule,
     DropdownModule,
     FormsModule,
-    SpinnerModule
+    SpinnerModule,
+    BaseModule
   ]
 })
 
