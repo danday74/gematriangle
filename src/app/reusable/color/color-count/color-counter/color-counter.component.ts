@@ -12,7 +12,7 @@ export class ColorCounterComponent {
   @Input() count: any
   @Input() value: Decimal
 
-  numberClick(num: number) {
+  numberClick(num: number | Decimal) {
     console.log('numberClick', num)
   }
 }
