@@ -15,3 +15,7 @@ Actives should spin and be bigger?
 Fix page load
 
 Select counters with values that are a multiple of X with offset Y
+
+One third points (like midpoints)? these are Hexagon points?
+
+
