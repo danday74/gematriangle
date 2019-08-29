@@ -33,6 +33,7 @@
 
     <hr class="sep2">
 
+    <!-- Ever present buttons -->
     <div class="btn-toolbar" role="toolbar">
       <div class="btn-group mr-2 mb-2" role="group">
         <button class="btn btn-outline-dark btn-sm" title="Clear Selected" (click)="onClearSelectedClick()">
@@ -44,6 +45,12 @@
           <i class="fa" [ngClass]="alignCenter ? 'fa-align-center' : 'fa-align-left'" aria-hidden="true"></i>
         </button>
       </div>
+      <ng-container *ngIf="counterValuesOption !== 'none'">
+        <div class="btn-group mr-2 mb-2" role="group">
+          <button class="btn btn-outline-dark btn-sm image-icon odd" title="Select Counters with Odd Values" (click)="onSelectOdd()"></button>
+          <button class="btn btn-outline-dark btn-sm image-icon even" title="Select Counters with Even Values" (click)="onSelectEven()"></button>
+        </div>
+      </ng-container>
     </div>
 
     <ng-container *ngIf="mode === 'line'">

@@ -128,4 +128,12 @@ export class TriangleToolboxComponent implements OnInit {
     this.trianglesService.onChangeMode(mode)
     this.storageService.setItem('triangle-mode', mode)
   }
+
+  onSelectEven() {
+    console.log('even')
+  }
+
+  onSelectOdd() {
+    console.log('odd')
+  }
 }

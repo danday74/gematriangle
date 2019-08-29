@@ -69,6 +69,28 @@ button.fill-mode {
   }
 }
 
+button.odd {
+  background-image: url('/assets/icons/odd.png');
+  background-repeat: no-repeat;
+  background-size: 15px;
+  background-position: 7px 7px;
+
+  &:hover, &.active {
+    background-image: url('/assets/icons/odd-hover.png');
+  }
+}
+
+button.even {
+  background-image: url('/assets/icons/even.png');
+  background-repeat: no-repeat;
+  background-size: 15px;
+  background-position: 6px 7px;
+
+  &:hover, &.active {
+    background-image: url('/assets/icons/even-hover.png');
+  }
+}
+
 .mode {
   position: relative;
   top: 4px;
