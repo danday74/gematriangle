@@ -126,7 +126,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
         this.setCounterActivation(counter, !counter.active)
         break
       case 'fill':
-        console.log('TODO fill')
+        console.log('fill')
         break
     }
   }
@@ -145,9 +145,6 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     const appGreenValue = this.getValueSum(appGreen)
     const appOrangeValue = this.getValueSum(appOrange)
     const appBlueValue = this.getValueSum(appBlue)
-
-    console.log(appBlue)
-    console.log(appBlueValue)
 
     const colors = {
       appRed: {
