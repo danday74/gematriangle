@@ -1,22 +1,31 @@
-<div class="color-count">
-  <div class="row">
-    <div class="col">
-      <app-color-counter color="appRed" [count]="colors.appRed.count" [value]="colors.appRed.value"></app-color-counter>
-    </div>
-    <div class="col">
-      <app-color-counter color="appYellow" [count]="colors.appYellow.count" [value]="colors.appYellow.value"></app-color-counter>
-    </div>
-    <div class="col">
-      <app-color-counter color="appPink" [count]="colors.appPink.count" [value]="colors.appPink.value"></app-color-counter>
-    </div>
-    <div class="col">
-      <app-color-counter color="appGreen" [count]="colors.appGreen.count" [value]="colors.appGreen.value"></app-color-counter>
-    </div>
-    <div class="col">
-      <app-color-counter color="appOrange" [count]="colors.appOrange.count" [value]="colors.appOrange.value"></app-color-counter>
-    </div>
-    <div class="col">
-      <app-color-counter color="appBlue" [count]="colors.appBlue.count" [value]="colors.appBlue.value"></app-color-counter>
+<ng-container *ngIf="activeColors.length">
+  <div class="color-count">
+    <div class="row">
+
+      <ng-container *ngIf="activeColors.length % 2 === 1">
+        <div *ngIf="activeColors.length <= 1" class="col"></div>
+        <div *ngIf="activeColors.length <= 3" class="col"></div>
+        <ng-container *ngFor="let activeColor of activeColors">
+          <div class="col">
+            <app-color-counter [color]="activeColor" [count]="colors[activeColor].count" [value]="colors[activeColor].value"></app-color-counter>
+          </div>
+        </ng-container>
+        <div *ngIf="activeColors.length <= 3" class="col"></div>
+        <div *ngIf="activeColors.length <= 1" class="col"></div>
+      </ng-container>
+
+      <ng-container *ngIf="activeColors.length % 2 === 0">
+        <div *ngIf="activeColors.length <= 2" class="col"></div>
+        <div *ngIf="activeColors.length <= 4" class="col"></div>
+        <ng-container *ngFor="let activeColor of activeColors">
+          <div class="col">
+            <app-color-counter [color]="activeColor" [count]="colors[activeColor].count" [value]="colors[activeColor].value"></app-color-counter>
+          </div>
+        </ng-container>
+        <div *ngIf="activeColors.length <= 4" class="col"></div>
+        <div *ngIf="activeColors.length <= 2" class="col"></div>
+      </ng-container>
+
     </div>
   </div>
-</div>
+</ng-container>

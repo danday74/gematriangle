@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { ColorService } from '../color.service'
 import { DestroyerComponent } from '../../../utils/destroyer.component'
 import { takeUntil } from 'rxjs/operators'
+import { forOwn } from 'lodash'
 
 @Component({
   selector: 'app-color-count',
@@ -10,6 +11,8 @@ import { takeUntil } from 'rxjs/operators'
 })
 
 export class ColorCountComponent extends DestroyerComponent implements OnInit {
+
+  activeColors = []
 
   colors = {
     appRed: {
@@ -47,6 +50,10 @@ export class ColorCountComponent extends DestroyerComponent implements OnInit {
       takeUntil(this.unsubscribe$)
     ).subscribe(colors => {
       this.colors = colors
+      this.activeColors = []
+      forOwn(this.colors, (v, k) => {
+        if (v.count) this.activeColors.push(k)
+      })
     })
   }
 }

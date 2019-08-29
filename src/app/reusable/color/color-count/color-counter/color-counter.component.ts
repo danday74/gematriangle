@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core'
+import Decimal from 'decimal.js'
 
 @Component({
   selector: 'app-color-counter',
@@ -8,8 +9,8 @@ import { Component, Input } from '@angular/core'
 
 export class ColorCounterComponent {
   @Input() color: string
-  @Input() count: number
-  @Input() value: number
+  @Input() count: any
+  @Input() value: Decimal
 
   numberClick(num: number) {
     console.log('numberClick', num)
