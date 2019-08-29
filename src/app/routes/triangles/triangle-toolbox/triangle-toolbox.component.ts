@@ -27,6 +27,7 @@ export class TriangleToolboxComponent implements OnInit {
 
   counterValuesOptions = [
     {label: 'No values selected', value: TriangleCounterValues.None},
+    {label: 'Count', value: TriangleCounterValues.Count},
     {label: 'Genesis 1:1 (std)', value: TriangleCounterValues.Genesis1v1Standard},
     {label: 'Genesis 1:1 (ord)', value: TriangleCounterValues.Genesis1v1Ordinal},
     {label: 'Pascal\'s triangle', value: TriangleCounterValues.Pascal},

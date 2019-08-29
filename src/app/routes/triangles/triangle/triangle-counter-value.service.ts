@@ -4,6 +4,7 @@ import { bignumber, factorial } from 'mathjs'
 import { Counter } from './counter'
 import { cloneDeep, memoize } from 'lodash'
 import { pi } from '../../../../data/pi-1m'
+import Decimal from 'decimal.js'
 
 @Injectable({providedIn: 'root'})
 export class TriangleCounterValueService {
@@ -14,10 +15,12 @@ export class TriangleCounterValueService {
     this.getPiDecimalsValue = memoize(this.getPiDecimalsValue)
   }
 
-  getCounterValue(counter: Counter, mode: TriangleCounterValues) {
+  getCounterValue(counter: Counter, mode: TriangleCounterValues): Decimal {
     switch (mode) {
       case TriangleCounterValues.None:
         return null
+      case TriangleCounterValues.Count:
+        return bignumber(counter.count)
       case TriangleCounterValues.Genesis1v1Standard:
         return this.getGenesis1v1StandardValue(counter.count)
       case TriangleCounterValues.Genesis1v1Ordinal:
@@ -34,13 +37,13 @@ export class TriangleCounterValueService {
   private getGenesis1v1StandardValue(count) {
     count--
     const values = [2, 200, 1, 300, 10, 400, 2, 200, 1, 1, 30, 5, 10, 40, 1, 400, 5, 300, 40, 10, 40, 6, 1, 400, 5, 1, 200, 90]
-    return count < values.length ? values[count] : null
+    return count < values.length ? bignumber(values[count]) : null
   }
 
   private getGenesis1v1OrdinalValue(count) {
     count--
     const values = [2, 20, 1, 21, 10, 22, 2, 20, 1, 1, 12, 5, 10, 13, 1, 22, 5, 21, 13, 10, 13, 6, 1, 22, 5, 1, 20, 18]
-    return count < values.length ? values[count] : null
+    return count < values.length ? bignumber(values[count]) : null
   }
 
   private getPascalValue(pos) {
@@ -61,6 +64,6 @@ export class TriangleCounterValueService {
   private getPiDecimalsValue(count) {
     const pie = parseInt(pi[count], 10)
     if (pie == null) throw Error('Cannot get PI position ' + count)
-    return pie
+    return bignumber(pie)
   }
 }

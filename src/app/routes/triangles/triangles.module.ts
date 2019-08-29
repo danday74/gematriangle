@@ -10,6 +10,7 @@ import { DropdownModule } from 'primeng/dropdown'
 import { FormsModule } from '@angular/forms'
 import { SpinnerModule } from 'primeng/primeng'
 import { BaseModule } from '../../base/base.module'
+import { ColorModule } from '../../reusable/color/color.module'
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { BaseModule } from '../../base/base.module'
     DropdownModule,
     FormsModule,
     SpinnerModule,
-    BaseModule
+    BaseModule,
+    ColorModule
   ]
 })
 

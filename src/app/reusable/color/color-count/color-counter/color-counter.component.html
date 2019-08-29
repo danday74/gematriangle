@@ -1,0 +1,20 @@
+<div class="color-counter">
+  <div class="color-strip" [ngClass]="color + 'Bg'"></div>
+  <div>
+    <div class="row">
+      <ng-container *ngIf="value == null">
+        <div class="col-12">
+          <div class="number" (click)="numberClick(count)">{{ count }}</div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="value != null">
+        <div class="col-6">
+          <div class="number" (click)="numberClick(count)">{{ count }}</div>
+        </div>
+        <div class="col-6">
+          <div class="number" (click)="numberClick(value)">{{ value }}</div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
