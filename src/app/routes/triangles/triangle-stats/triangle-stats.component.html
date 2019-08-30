@@ -4,13 +4,13 @@
       <tr>
         <td>Perimeter</td>
         <td>
-          <app-number source="perimeter" [num]="perimeter" [rowCount]="rowCount"></app-number>
+          <app-number [source]="'T' + rowCount + ' perimeter'" [num]="perimeter"></app-number>
         </td>
       </tr>
       <tr>
         <td>Counters</td>
         <td>
-          <app-number source="counters" [num]="counters" [rowCount]="rowCount"></app-number>
+          <app-number [source]="'T' + rowCount + ' counters'" [num]="counters"></app-number>
         </td>
       </tr>
     </table>

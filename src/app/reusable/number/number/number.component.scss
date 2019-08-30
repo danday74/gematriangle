@@ -1,4 +1,14 @@
-.badge {
-  position: relative;
-  top: 1px;
+@import '../../../colors.scss';
+
+.textGood, .textBad {
+  font-size: 12px;
+  text-align: center;
+}
+
+.textGood {
+  color: $appYellow;
+}
+
+.textBad {
+  opacity: 0.15;
 }

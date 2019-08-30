@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 import Decimal from 'decimal.js'
 
 @Component({
@@ -7,12 +7,15 @@ import Decimal from 'decimal.js'
   styleUrls: ['./color-counter.component.scss']
 })
 
-export class ColorCounterComponent {
+export class ColorCounterComponent implements OnInit {
+
   @Input() color: string
   @Input() count: any
   @Input() value: Decimal
 
-  numberClick(num: number | Decimal) {
-    console.log('numberClick', num)
+  colorText: string
+
+  ngOnInit() {
+    this.colorText = this.color.replace('app', '').toLowerCase()
   }
 }

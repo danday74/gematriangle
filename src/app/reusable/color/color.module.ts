@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { ColorCountComponent } from './color-count/color-count.component'
 import { ColorCounterComponent } from './color-count/color-counter/color-counter.component'
+import { NumberModule } from '../number/number.module'
 
 @NgModule({
   declarations: [
@@ -9,7 +10,8 @@ import { ColorCounterComponent } from './color-count/color-counter/color-counter
     ColorCounterComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NumberModule
   ],
   exports: [
     ColorCountComponent

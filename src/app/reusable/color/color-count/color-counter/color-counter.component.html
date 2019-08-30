@@ -4,15 +4,21 @@
     <div class="row">
       <ng-container *ngIf="value == null">
         <div class="col-12">
-          <div class="number" (click)="numberClick(count)">{{ count }}</div>
+          <div class="number">
+            <app-number [source]="colorText + ' count'" [num]="count"></app-number>
+          </div>
         </div>
       </ng-container>
       <ng-container *ngIf="value != null">
         <div class="col-6">
-          <div class="number" (click)="numberClick(count)">{{ count }}</div>
+          <div class="number">
+            <app-number [source]="colorText + ' count'" [num]="count"></app-number>
+          </div>
         </div>
         <div class="col-6">
-          <div class="number" (click)="numberClick(value)">{{ value }}</div>
+          <div class="number">
+            <app-number [source]="colorText + ' value'" [num]="value"></app-number>
+          </div>
         </div>
       </ng-container>
     </div>
