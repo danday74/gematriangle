@@ -13,27 +13,29 @@ import { triangle } from '../../../utils/triangle'
 
 export class NumberComponent implements OnInit, OnChanges {
 
-  @Input() num: number | Decimal
+  @Input() n: number | Decimal
   @Input() source: string
+
+  num: Decimal
 
   props: {
     37: Decimal,
     73: Decimal,
     T: Decimal
     flipped: Decimal
-    special: any,
   }
 
   constructor(private toastr: ToastrService) {}
 
   ngOnInit() {
-    this.num = bignumber(this.num)
+    this.num = bignumber(this.n)
     this.checkNumber(this.num)
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.num && !changes.num.firstChange) {
-      this.checkNumber(bignumber(changes.num.currentValue))
+    if (changes.n && !changes.n.firstChange) {
+      this.num = bignumber(changes.n.currentValue)
+      this.checkNumber(this.num)
     }
   }
 
@@ -42,13 +44,19 @@ export class NumberComponent implements OnInit, OnChanges {
       37: num.mod(37).eq(0) ? num.dividedBy(37) : null,
       73: num.mod(73).eq(0) ? num.dividedBy(73) : null,
       T: triangle.isTerm(num),
-      flipped: num.plus(this.reverseNumber(num)),
-      special: numberData[num.toString()] || null
+      flipped: num.plus(this.reverseNumber(num))
     }
-    if (this.props.special) {
-      const title = `${this.props.special.number} for ${this.source}`
-      const msg = this.props.special.reason
-      this.toastr.info(msg, title)
+    const special = numberData[num.toFixed()]
+    this.alert(special, this.source)
+    const flippedSpecial = numberData[this.props.flipped.toFixed()]
+    this.alert(flippedSpecial, this.source + ' flipped')
+  }
+
+  private alert(special, source) {
+    if (special) {
+      const title = `<strong>${special.number}</strong> for <strong>${source}</strong>`
+      const msg = special.reason
+      this.toastr.info(title + '<br>' + msg)
     }
   }
 

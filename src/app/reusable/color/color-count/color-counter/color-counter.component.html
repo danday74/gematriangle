@@ -5,19 +5,19 @@
       <ng-container *ngIf="value == null">
         <div class="col-12">
           <div class="number">
-            <app-number [source]="colorText + ' count'" [num]="count"></app-number>
+            <app-number [source]="colorText + ' count'" [n]="count"></app-number>
           </div>
         </div>
       </ng-container>
       <ng-container *ngIf="value != null">
         <div class="col-6">
           <div class="number">
-            <app-number [source]="colorText + ' count'" [num]="count"></app-number>
+            <app-number [source]="colorText + ' count'" [n]="count"></app-number>
           </div>
         </div>
         <div class="col-6">
           <div class="number">
-            <app-number [source]="colorText + ' value'" [num]="value"></app-number>
+            <app-number [source]="colorText + ' value'" [n]="value"></app-number>
           </div>
         </div>
       </ng-container>
