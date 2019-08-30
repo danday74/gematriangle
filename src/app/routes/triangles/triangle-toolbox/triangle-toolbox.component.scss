@@ -79,7 +79,7 @@ button.odd {
   background-size: 15px;
   background-position: 7px 7px;
 
-  &:hover, &.active {
+  &:hover {
     background-image: url('/assets/icons/odd-hover.png');
   }
 }
@@ -90,7 +90,7 @@ button.even {
   background-size: 15px;
   background-position: 6px 7px;
 
-  &:hover, &.active {
+  &:hover {
     background-image: url('/assets/icons/even-hover.png');
   }
 }
