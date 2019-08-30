@@ -53,6 +53,12 @@ export class NumberComponent implements OnInit, OnChanges {
   }
 
   private reverseNumber(num: Decimal) {
-    return num.toString().split('').reverse().join('')
+    return num.toFixed().split('').reverse().join('')
+  }
+
+  onClick(num: Decimal) {
+    if (num) {
+      console.log('onClick', num.toFixed())
+    }
   }
 }

@@ -81,6 +81,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     if (changes.rowCount && !changes.rowCount.firstChange) {
       if (changes.rowCount.currentValue > changes.rowCount.previousValue) {
         for (let i = changes.rowCount.previousValue + 1; i <= changes.rowCount.currentValue; i++) this.addRow(i)
+        this.colorsChange()
       }
       if (changes.rowCount.currentValue < changes.rowCount.previousValue) {
         for (let i = changes.rowCount.previousValue - 1; i >= changes.rowCount.currentValue; i--) this.removeRow()
@@ -119,7 +120,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     counter.spin = false
     switch (this.mode) {
       case 'paint':
-        counter.color = counter.color === this.color ? null : this.color
+        counter.color = counter.color === this.color ? 'appGrey' : this.color
         this.colorsChange()
         break
       case 'line':
@@ -133,56 +134,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
 
   private colorsChange() {
     const allCounters = flatten(this.rows)
-    const appRed = filter(allCounters, {color: 'appRed'})
-    const appYellow = filter(allCounters, {color: 'appYellow'})
-    const appPink = filter(allCounters, {color: 'appPink'})
-    const appGreen = filter(allCounters, {color: 'appGreen'})
-    const appOrange = filter(allCounters, {color: 'appOrange'})
-    const appBlue = filter(allCounters, {color: 'appBlue'})
-    const appRedValue = this.getValueSum(appRed)
-    const appYellowValue = this.getValueSum(appYellow)
-    const appPinkValue = this.getValueSum(appPink)
-    const appGreenValue = this.getValueSum(appGreen)
-    const appOrangeValue = this.getValueSum(appOrange)
-    const appBlueValue = this.getValueSum(appBlue)
-
-    const colors = {
-      appRed: {
-        count: appRed.length,
-        value: appRedValue
-      },
-      appYellow: {
-        count: appYellow.length,
-        value: appYellowValue
-      },
-      appPink: {
-        count: appPink.length,
-        value: appPinkValue
-      },
-      appGreen: {
-        count: appGreen.length,
-        value: appGreenValue
-      },
-      appOrange: {
-        count: appOrange.length,
-        value: appOrangeValue
-      },
-      appBlue: {
-        count: appBlue.length,
-        value: appBlueValue
-      }
-    }
-    this.colorService.onColorsChange(colors)
-  }
-
-  private getValueSum(counters: Array<Counter>) {
-    let sum = bignumber(0)
-    let allNull = true
-    counters.forEach(counter => {
-      if (counter.value != null) allNull = false
-      sum = sum.plus(counter.value || bignumber(0))
-    })
-    return allNull ? null : sum
+    this.colorService.onColorsChange(allCounters)
   }
 
   private setCounterActivation(counter: Counter, activate: boolean) {
@@ -198,7 +150,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     const counters: Array<Counter> = []
     const term = triangle.term(row - 1)
     for (let i = 1; i <= row; i++) {
-      const counter: Counter = {active: false, color: null, count: term + i, value: bignumber(0), pos: {row, col: i}, spin: false}
+      const counter: Counter = {active: false, color: 'appGrey', count: term + i, value: bignumber(0), pos: {row, col: i}, spin: false}
       counter.value = this.triangleCounterValueService.getCounterValue(counter, this.counterValues)
       counters.push(counter)
     }
