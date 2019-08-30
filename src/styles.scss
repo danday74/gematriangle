@@ -10,6 +10,10 @@ body {
   min-width: 1000px;
 }
 
+html > body {
+  color: #999;
+}
+
 .toolbox {
   right: 12px;
 }
