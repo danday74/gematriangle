@@ -33,3 +33,7 @@ Comment box
 good way to sync active counters - remove class and add on 2 secs
 
 hide numbers when spinning? or stop numbers spinning?
+
+change colors on counter value text when highlighted with various colors - e.g. red = white, pink = black
+
+
