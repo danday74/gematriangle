@@ -1,5 +1,17 @@
-.triangles-wrapper {
-  margin: 6px 0 71px;
+:host-context(.triangle-big.triangle-align-center) .triangles-wrapper {
+  margin: 2px 0 84px;
+}
+
+:host-context(.triangle-big.triangle-align-left) .triangles-wrapper {
+  margin: -7px 0 77px;
+}
+
+:host-context(.triangle-small.triangle-align-center) .triangles-wrapper {
+  margin: 1px 0 71px;
+}
+
+:host-context(.triangle-small.triangle-align-left) .triangles-wrapper {
+  margin: -1px 0 71px;
 }
 
 .triangle-outer-wrapper {

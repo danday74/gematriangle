@@ -58,6 +58,7 @@ export class TriangleToolboxComponent implements OnInit {
     const storageShowValues = this.storageService.getItem('triangle-show-values')
     this.alignCenter = storageAlignCenter != null ? storageAlignCenter : true
     this.showValues = storageShowValues != null ? storageShowValues : false
+    this.setCssClassForAlignCenter()
     this.setCssClassForShowValues()
     this.color = this.storageService.getItem('triangle-counter-color') || 'appRed'
     this.counterValuesOption = this.storageService.getItem('triangle-counter-values') || TriangleCounterValues.None
@@ -87,6 +88,7 @@ export class TriangleToolboxComponent implements OnInit {
     this.alignCenter = !this.alignCenter
     this.trianglesService.onToggleAlign(this.alignCenter)
     this.storageService.setItem('triangle-align-center', this.alignCenter)
+    this.setCssClassForAlignCenter()
   }
 
   activateCounters(option) {
@@ -158,5 +160,12 @@ export class TriangleToolboxComponent implements OnInit {
     html.removeClass('triangle-big').removeClass('triangle-small')
     if (this.showValues) html.addClass('triangle-big')
     if (!this.showValues) html.addClass('triangle-small')
+  }
+
+  private setCssClassForAlignCenter() {
+    const html = $('html')
+    html.removeClass('triangle-align-center').removeClass('triangle-align-left')
+    if (this.alignCenter) html.addClass('triangle-align-center')
+    if (!this.alignCenter) html.addClass('triangle-align-left')
   }
 }
