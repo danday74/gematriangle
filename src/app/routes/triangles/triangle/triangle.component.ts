@@ -10,6 +10,7 @@ import { TriangleCounterValues } from './triangle-counter-values.enum'
 import { TriangleToolboxMessage } from '../triangle-toolbox/triangle-toolbox-message.enum'
 import { ColorService } from '../../../reusable/color/color.service'
 import { bignumber } from 'mathjs'
+import { StorageService } from '../../../services/storage.service'
 
 @Component({
   selector: 'app-triangle',
@@ -21,7 +22,8 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
 
   @Input() rowCount = 1
 
-  alignCenter = true
+  alignCenter: boolean
+  showValues: boolean
   color: string
   mode: string
   counterValues: TriangleCounterValues
@@ -31,12 +33,18 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   rows: Array<Array<Counter>> = []
 
   constructor(private trianglesService: TrianglesService, private triangleCounterValueService: TriangleCounterValueService,
-              private colorService: ColorService) {
+              private colorService: ColorService, private storageService: StorageService) {
     super()
     this.colorsChange = debounce(this.colorsChange, 300, {leading: false, trailing: true})
   }
 
   ngOnInit() {
+
+    const storageAlignCenter = this.storageService.getItem('triangle-align-center')
+    const storageShowValues = this.storageService.getItem('triangle-show-values')
+    this.alignCenter = storageAlignCenter != null ? storageAlignCenter : true
+    this.showValues = storageShowValues != null ? storageShowValues : false
+
     this.spinInterval = setInterval(() => {
       this.countersWaitingToSpin.forEach(counter => {
         counter.spin = true
@@ -67,6 +75,9 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
           break
         case TriangleToolboxMessage.ToggleAlign:
           this.alignCenter = message.value
+          break
+        case TriangleToolboxMessage.ToggleShowValues:
+          this.showValues = message.value
           break
       }
     })

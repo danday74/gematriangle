@@ -1,5 +1,5 @@
 <ng-container *ngFor="let row of rows; index as i">
-  <div class="triangle-row" [ngClass]="alignCenter ? 'triangle-align-center' : 'triangle-align-left'" [style.width.px]="(i + 1) * 12 + 18">
+  <div class="triangle-row" [ngClass]="alignCenter ? 'triangle-align-center' : 'triangle-align-left'" [style.width.px]="(i + 1) * (showValues ? 22 : 12) + 18">
     <ng-container *ngFor="let counter of row">
       <div class="counter" (click)="onCounterClick(counter)"
            [class.appActiveBg]="counter.active" [class.spin]="counter.spin" [ngClass]="counter.color + 'Bg'"

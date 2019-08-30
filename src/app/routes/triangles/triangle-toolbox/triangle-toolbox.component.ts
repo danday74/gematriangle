@@ -16,7 +16,7 @@ import * as $ from 'jquery'
 export class TriangleToolboxComponent implements OnInit {
 
   @Input() rowCount: number
-  alignCenter = true
+  alignCenter: boolean
   showValues: boolean
   color: string
   mode: string
@@ -54,7 +54,10 @@ export class TriangleToolboxComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.showValues = this.storageService.getItem('triangle-show-values') || false
+    const storageAlignCenter = this.storageService.getItem('triangle-align-center')
+    const storageShowValues = this.storageService.getItem('triangle-show-values')
+    this.alignCenter = storageAlignCenter != null ? storageAlignCenter : true
+    this.showValues = storageShowValues != null ? storageShowValues : false
     this.setCssClassForShowValues()
     this.color = this.storageService.getItem('triangle-counter-color') || 'appRed'
     this.counterValuesOption = this.storageService.getItem('triangle-counter-values') || TriangleCounterValues.None
@@ -83,6 +86,7 @@ export class TriangleToolboxComponent implements OnInit {
   onToggleAlign() {
     this.alignCenter = !this.alignCenter
     this.trianglesService.onToggleAlign(this.alignCenter)
+    this.storageService.setItem('triangle-align-center', this.alignCenter)
   }
 
   activateCounters(option) {
@@ -143,6 +147,7 @@ export class TriangleToolboxComponent implements OnInit {
 
   onToggleShowValues() {
     this.showValues = !this.showValues
+    this.trianglesService.onToggleShowValues(this.showValues)
     this.storageService.setItem('triangle-show-values', this.showValues)
     this.setCssClassForShowValues()
   }

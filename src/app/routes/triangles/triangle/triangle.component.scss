@@ -1,15 +1,43 @@
 @import '../../../colors.scss';
 
+:host-context(.triangle-small) {
+  .counter {
+    width: 10px;
+    height: 10px;
+  }
+
+  .triangle-row.triangle-align-center {
+    margin: -14px auto;
+  }
+
+  .triangle-row.triangle-align-left {
+    margin-top: -12px;
+  }
+}
+
+:host-context(.triangle-big) {
+  .counter {
+    width: 20px;
+    height: 20px;
+  }
+
+  .triangle-row.triangle-align-center {
+    margin: -7px auto;
+  }
+
+  .triangle-row.triangle-align-left {
+    margin-top: -4px;
+  }
+}
+
 .counter {
   display: inline-block;
   border-radius: 90px;
   pointer-events: auto;
   cursor: pointer;
-  width: 10px;
-  height: 10px;
 
   &.spin {
-    animation: spin 2s linear infinite;  /* duration must be same as spinInterval */
+    animation: spin 2s linear infinite; /* duration must be same as spinInterval */
   }
 }
 
@@ -19,7 +47,6 @@
   padding-right: 9px;
 
   &.triangle-align-center {
-    margin: -14px auto;
     text-align: center;
 
     .counter {
@@ -27,9 +54,9 @@
       margin-right: 1px;
     }
   }
+
   &.triangle-align-left {
     text-align: left;
-    margin-top: -12px;
 
     .counter {
       margin-left: 1px;

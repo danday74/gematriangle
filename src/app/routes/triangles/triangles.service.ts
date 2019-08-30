@@ -40,4 +40,8 @@ export class TrianglesService {
   onToggleAlign(alignCenter: boolean) {
     this.onTriangleToolboxMessage(TriangleToolboxMessage.ToggleAlign, alignCenter)
   }
+
+  onToggleShowValues(showValues: boolean) {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.ToggleShowValues, showValues)
+  }
 }

@@ -5,5 +5,6 @@ export enum TriangleToolboxMessage {
   ChangeRowCount = 'change-row-count',
   ClearActive = 'clear-active',
   ClearSelected = 'clear-selected',
-  ToggleAlign = 'toggle-align'
+  ToggleAlign = 'toggle-align',
+  ToggleShowValues = 'toggle-show-values'
 }
