@@ -34,6 +34,10 @@ good way to sync active counters - remove class and add on 2 secs
 
 hide numbers when spinning? or stop numbers spinning?
 
-change colors on counter value text when highlighted with various colors - e.g. red = white, pink = black
-
 multiple values selector - e.g. gen1v1 + pi + pascal OR gen1v1 * ordinal * pi - etc
+
+activate all counters with val X
+
+SUM individual digits option - once or repeat until one digit
+
+

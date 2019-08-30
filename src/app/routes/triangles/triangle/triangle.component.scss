@@ -50,8 +50,16 @@
   text-align: center;
 }
 
-.appActiveBg .counter-value {
-  color: #FFF;
+.appActiveBg, .appRedBg, .appGreenBg, .appOrangeBg, .appBlueBg {
+  .counter-value {
+    color: #FFF;
+  }
+}
+
+.appGreyBg, .appPinkBg {
+  .counter-value {
+    color: #000;
+  }
 }
 
 .triangle-row {
