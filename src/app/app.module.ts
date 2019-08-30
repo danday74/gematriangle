@@ -22,7 +22,8 @@ import { dataInitialiser } from './initialisers/data-initialiser'
       preventDuplicates: true,
       resetTimeoutOnDuplicate: true,
       tapToDismiss: true,
-      extendedTimeOut: 5000,
+      timeOut: 3000,
+      extendedTimeOut: 3000,
       enableHtml: true,
       progressAnimation: 'increasing'
     }),

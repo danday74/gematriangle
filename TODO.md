@@ -21,3 +21,11 @@ One third points (like midpoints)? these are Hexagon points?
 Triangle list - button takes you to it - click through to specific triangle
 
 Size button - large size shows values on counters
+
+Fullscreen and opposite - noun project fullscreen
+
+Save
+
+Numbers calculator
+
+Comment box

@@ -5,6 +5,7 @@ import { star } from 'src/app/utils/star'
 import { debounce } from 'lodash'
 import { StorageService } from '../../../services/storage.service'
 import { TriangleCounterValues } from '../triangle/triangle-counter-values.enum'
+import * as $ from 'jquery'
 
 @Component({
   selector: 'app-triangle-toolbox',
@@ -16,6 +17,7 @@ export class TriangleToolboxComponent implements OnInit {
 
   @Input() rowCount: number
   alignCenter = true
+  showValues: boolean
   color: string
   mode: string
   star = star
@@ -52,6 +54,8 @@ export class TriangleToolboxComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.showValues = this.storageService.getItem('triangle-show-values') || false
+    this.setCssClassForShowValues()
     this.color = this.storageService.getItem('triangle-counter-color') || 'appRed'
     this.counterValuesOption = this.storageService.getItem('triangle-counter-values') || TriangleCounterValues.None
     this.mode = this.storageService.getItem('triangle-mode') || 'paint'
@@ -137,7 +141,16 @@ export class TriangleToolboxComponent implements OnInit {
     console.log('odd')
   }
 
-  onSave() {
-    console.log('save')
+  onToggleShowValues() {
+    this.showValues = !this.showValues
+    this.storageService.setItem('triangle-show-values', this.showValues)
+    this.setCssClassForShowValues()
+  }
+
+  private setCssClassForShowValues() {
+    const html = $('html')
+    html.removeClass('triangle-big').removeClass('triangle-small')
+    if (this.showValues) html.addClass('triangle-big')
+    if (!this.showValues) html.addClass('triangle-small')
   }
 }
