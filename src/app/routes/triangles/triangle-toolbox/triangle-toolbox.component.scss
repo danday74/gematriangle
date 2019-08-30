@@ -112,7 +112,18 @@ button.even {
 }
 
 .select-counter-values {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.paint-mode, .fill-mode {
+  .select-counter-values {
+    margin-bottom: 5px;
+  }
+
+  .value-related-buttons {
+    margin-top: 10px;
+    margin-bottom: -3px;
+  }
 }
 
 .activate-counters {

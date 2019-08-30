@@ -123,6 +123,7 @@ export class TriangleToolboxComponent implements OnInit {
     const counterValues = evt.value || evt
     this.trianglesService.onChangeCounterValues(counterValues)
     this.storageService.setItem('triangle-counter-values', counterValues)
+    if (counterValues === TriangleCounterValues.None && this.showValues) this.onToggleShowValues()
   }
 
   onChangeColorClick(color) {
