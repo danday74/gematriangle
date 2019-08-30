@@ -27,6 +27,10 @@ export class TriangleStatsComponent implements OnInit, OnChanges {
     }
   }
 
+  onClick(rowCount) {
+    console.log('rowCount', rowCount)
+  }
+
   private setPerimeter(rowCount) {
     this.perimeter = triangle.perimeter(rowCount)
   }

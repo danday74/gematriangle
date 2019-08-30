@@ -1,13 +1,37 @@
-table {
-  table-layout: fixed;
-  width: 100%;
+.triangle-statsbox {
+  background-color: #454545;
+  color: #FFF;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top: none;
+}
 
-  td:nth-child(1) {
-    width: 50%;
-  }
+.title {
+  font-size: 20px;
+  padding: 2px 15px;
+  background-color: #333;
+  color: #FFF;
+  text-align: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
 
-  td:nth-child(2) {
-    width: 50%;
-    text-align: right;
-  }
+.heading {
+  background-color: #222;
+  color: #CCC;
+  margin-left: -15px;
+  margin-right: -15px;
+  text-indent: 15px;
+  padding-top: 1px;
+  padding-bottom: 2px;
+  border-top: 1px solid #888;
+  border-bottom: 1px solid #888;
+}
+
+.number {
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 7px;
 }
