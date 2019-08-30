@@ -103,8 +103,8 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
 
   private clearSelected() {
     const allCounters = flatten(this.rows)
-    const counters = filter(allCounters, counter => counter.color != null)
-    counters.forEach(counter => counter.color = null)
+    const counters = filter(allCounters, counter => counter.color !== 'appGrey')
+    counters.forEach(counter => counter.color = 'appGrey')
     this.colorsChange()
   }
 

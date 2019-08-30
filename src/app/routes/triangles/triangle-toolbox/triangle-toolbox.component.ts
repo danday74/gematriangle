@@ -136,4 +136,8 @@ export class TriangleToolboxComponent implements OnInit {
   onSelectOdd() {
     console.log('odd')
   }
+
+  onSave() {
+    console.log('save')
+  }
 }
