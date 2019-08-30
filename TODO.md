@@ -29,3 +29,7 @@ Save
 Numbers calculator
 
 Comment box
+
+good way to sync active counters - remove class and add on 2 secs
+
+hide numbers when spinning? or stop numbers spinning?
