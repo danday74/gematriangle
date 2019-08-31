@@ -102,9 +102,6 @@
     <!-- Color buttons -->
     <div class="btn-toolbar" role="toolbar">
       <div class="btn-group mr-2 mb-2" role="group">
-        <button class="btn btn-dark btn-sm color" [class.active]="color==='appGrey'" (click)="onChangeColorClick('appGrey')">
-          <i class="fa fa-circle appGrey" aria-hidden="true"></i>
-        </button>
         <button class="btn btn-dark btn-sm color" [class.active]="color==='appRed'" (click)="onChangeColorClick('appRed')">
           <i class="fa fa-circle appRed" aria-hidden="true"></i>
         </button>
@@ -119,6 +116,9 @@
         </button>
         <button class="btn btn-dark btn-sm color" [class.active]="color==='appBlue'" (click)="onChangeColorClick('appBlue')">
           <i class="fa fa-circle appBlue" aria-hidden="true"></i>
+        </button>
+        <button class="btn btn-dark btn-sm color" [class.active]="color==='appGrey'" (click)="onChangeColorClick('appGrey')">
+          <i class="fa fa-circle appGrey" aria-hidden="true"></i>
         </button>
       </div>
     </div>
