@@ -45,3 +45,5 @@ Alerts min number
 Alerts stop repeating same one when triangle resized or something! also no repeat for 1 min for low priority alerts
 
 Fix 5 pointed star to use Star of David
+
+If draw lines clicked twice - e.g. nothing to do then erase (still need erase button)

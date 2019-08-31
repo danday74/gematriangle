@@ -49,6 +49,11 @@ button.btn-sm.image-icon {
   height: 31px;
 }
 
+button.btn-lg.image-icon {
+  width: 51px;
+  height: 48px;
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
