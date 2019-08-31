@@ -4,7 +4,8 @@ export enum TriangleToolboxMessage {
   ChangeMode = 'change-mode',
   ChangeRowCount = 'change-row-count',
   ClearActive = 'clear-active',
-  ClearSelected = 'clear-selected',
+  ClearAll = 'clear-all',
+  ClearColor = 'clear-color',
   ToggleAlign = 'toggle-align',
   ToggleShowValues = 'toggle-show-values'
 }

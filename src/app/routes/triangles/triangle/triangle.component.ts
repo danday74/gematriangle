@@ -70,8 +70,11 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
         case TriangleToolboxMessage.ClearActive:
           this.clearActive()
           break
-        case TriangleToolboxMessage.ClearSelected:
-          this.clearSelected()
+        case TriangleToolboxMessage.ClearAll:
+          this.clearAll()
+          break
+        case TriangleToolboxMessage.ClearColor:
+          this.clearColor(message.value)
           break
         case TriangleToolboxMessage.ToggleAlign:
           this.alignCenter = message.value
@@ -112,9 +115,16 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     counters.forEach(counter => counter.active = false)
   }
 
-  private clearSelected() {
+  private clearAll() {
     const allCounters = flatten(this.rows)
     const counters = filter(allCounters, counter => counter.color !== 'appGrey')
+    counters.forEach(counter => counter.color = 'appGrey')
+    this.colorsChange()
+  }
+
+  private clearColor(color) {
+    const allCounters = flatten(this.rows)
+    const counters = filter(allCounters, counter => counter.color === color)
     counters.forEach(counter => counter.color = 'appGrey')
     this.colorsChange()
   }

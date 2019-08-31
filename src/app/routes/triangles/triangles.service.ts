@@ -33,8 +33,12 @@ export class TrianglesService {
     this.onTriangleToolboxMessage(TriangleToolboxMessage.ClearActive, null)
   }
 
-  onClearSelected() {
-    this.onTriangleToolboxMessage(TriangleToolboxMessage.ClearSelected, null)
+  onClearAll() {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.ClearAll, null)
+  }
+
+  onClearColor(color) {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.ClearColor, color)
   }
 
   onToggleAlign(alignCenter: boolean) {
