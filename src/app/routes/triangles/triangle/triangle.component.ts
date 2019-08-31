@@ -44,11 +44,9 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   ngOnInit() {
 
     this.posAdjusts = {
-      reach1Short: [{row: 1, col: 1}, {row: 0, col: 1}, {row: 1, col: 0}],
-      reach2Short: [{row: 1, col: -1}, {row: 2, col: 1}, {row: 1, col: 2}]
+      reach1: [{row: 1, col: 1}, {row: 0, col: 1}, {row: 1, col: 0}],
+      reach2: [{row: 1, col: -1}, {row: 2, col: 1}, {row: 1, col: 2}]
     }
-    this.posAdjusts.reach1Long = this.posAdjusts.reach1Short.map(({row, col}) => ({row: row * -1, col: col * -1}))
-    this.posAdjusts.reach2Long = this.posAdjusts.reach2Short.map(({row, col}) => ({row: row * -1, col: col * -1}))
 
     const storageAlignCenter = this.storageService.getItem('triangle-align-center')
     const storageShortLines = this.storageService.getItem('triangle-short-lines')
@@ -104,10 +102,10 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
           this.clearColor()
           break
         case TriangleToolboxMessage.DrawLines:
-          this.drawLines()
+          this.drawLines(this.color)
           break
         case TriangleToolboxMessage.EraseLines:
-          console.log('eraseLines')
+          this.drawLines('appGrey')
           break
         case TriangleToolboxMessage.SelectEven:
           this.selectMultiples(2, 0)
@@ -151,12 +149,10 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     super.ngOnDestroy()
   }
 
-  private drawLines() {
+  private drawLines(color) {
     const allCounters = flatten(this.rows)
     const counters = filter(allCounters, {active: true})
-    const reach1PosAdjusts = this.shortLines ? this.posAdjusts.reach1Short : [...this.posAdjusts.reach1Short, ...this.posAdjusts.reach1Long]
-    const reach2PosAdjusts = this.shortLines ? this.posAdjusts.reach2Short : [...this.posAdjusts.reach2Short, ...this.posAdjusts.reach2Long]
-    const posAdjusts = [...reach1PosAdjusts, ...reach2PosAdjusts]
+    const posAdjusts = [...this.posAdjusts.reach1, ...this.posAdjusts.reach2]
 
     counters.forEach(counter => {
       posAdjusts.forEach(posAdjust => {
@@ -165,9 +161,10 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
         let finished = false
         let row = counter.pos.row
         let col = counter.pos.col
+        let multiplier = 1
         while (!finished) {
-          row += posAdjust.row
-          col += posAdjust.col
+          row += posAdjust.row * multiplier
+          col += posAdjust.col * multiplier
           const nextCounter: Counter = this.getCounter(row, col)
           if (nextCounter) {
             countersInLine.push(nextCounter)
@@ -176,14 +173,16 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
               if (this.shortLines) finished = true
             }
           } else {
-            finished = true
+            if (this.shortLines) finished = true
+            if (!this.shortLines && multiplier === -1) finished = true
+            if (!this.shortLines && multiplier === 1) {
+              row = counter.pos.row
+              col = counter.pos.col
+              multiplier = -1
+            }
           }
         }
-        if (found) {
-          countersInLine.forEach((counterInLine: Counter) => {
-            counterInLine.color = this.color
-          })
-        }
+        if (found) countersInLine.forEach((counterInLine: Counter) => counterInLine.color = color)
       })
     })
     this.colorsChange()
