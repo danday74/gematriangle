@@ -22,6 +22,8 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
 
   @Input() rowCount = 1
 
+  posAdjusts: any
+
   alignCenter: boolean
   shortLines: boolean
   showValues: boolean
@@ -40,6 +42,13 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   }
 
   ngOnInit() {
+
+    this.posAdjusts = {
+      reach1Short: [{row: 1, col: 1}, {row: 0, col: 1}, {row: 1, col: 0}],
+      reach2Short: [{row: 1, col: -1}, {row: 2, col: 1}, {row: 1, col: 2}]
+    }
+    this.posAdjusts.reach1Long = this.posAdjusts.reach1Short.map(({row, col}) => ({row: row * -1, col: col * -1}))
+    this.posAdjusts.reach2Long = this.posAdjusts.reach2Short.map(({row, col}) => ({row: row * -1, col: col * -1}))
 
     const storageAlignCenter = this.storageService.getItem('triangle-align-center')
     const storageShortLines = this.storageService.getItem('triangle-short-lines')
@@ -145,9 +154,10 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   private drawLines() {
     const allCounters = flatten(this.rows)
     const counters = filter(allCounters, {active: true})
-    const shortStandardPosAdjusts = [{row: 1, col: 1}, {row: 0, col: 1}, {row: 1, col: 0}]
-    const longStandardPosAdjusts = [...shortStandardPosAdjusts, {row: -1, col: -1}, {row: 0, col: -1}, {row: -1, col: 0}]
-    const posAdjusts = this.shortLines ? shortStandardPosAdjusts : longStandardPosAdjusts
+    const reach1PosAdjusts = this.shortLines ? this.posAdjusts.reach1Short : [...this.posAdjusts.reach1Short, ...this.posAdjusts.reach1Long]
+    const reach2PosAdjusts = this.shortLines ? this.posAdjusts.reach2Short : [...this.posAdjusts.reach2Short, ...this.posAdjusts.reach2Long]
+    const posAdjusts = [...reach1PosAdjusts, ...reach2PosAdjusts]
+
     counters.forEach(counter => {
       posAdjusts.forEach(posAdjust => {
         const countersInLine = [counter]
