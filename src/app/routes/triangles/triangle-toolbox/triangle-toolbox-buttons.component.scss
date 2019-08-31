@@ -28,6 +28,16 @@ button.fill-mode {
   }
 }
 
+$rulerSize: 15px;
+
+button.ruler {
+  background: url('/assets/icons/ruler.png') no-repeat center / $rulerSize, $bootswatchBtnDarkGradient;
+
+  &:hover, &.active {
+    background: url('/assets/icons/ruler.png') no-repeat center / $rulerSize, $bootswatchBtnDarkGradientHover;
+  }
+}
+
 $oddEvenSize: 14px;
 
 button.odd {

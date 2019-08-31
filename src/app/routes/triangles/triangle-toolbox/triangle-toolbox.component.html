@@ -28,7 +28,13 @@
         <button class="btn btn-dark btn-sm image-icon fill-mode" title="Fill Mode" [class.active]="mode==='fill'"
                 (click)="onChangeModeClick('fill')"></button>
       </div>
-      <span class="mode">{{ mode | titlecase }}</span>
+      <span class="mode">
+        <span>{{ mode | titlecase }}</span>
+        <ng-container *ngIf="mode === 'line'">
+          <span *ngIf="shortLines"> (short)</span>
+          <span *ngIf="!shortLines"> (long)</span>
+        </ng-container>
+      </span>
     </div>
 
     <hr class="sep2">
@@ -72,6 +78,7 @@
           <button class="btn btn-dark btn-sm" title="Erase Lines" (click)="onEraseLinesClick()">
             <i class="fa fa-eraser" aria-hidden="true"></i>
           </button>
+          <button class="btn btn-dark btn-sm image-icon ruler" title="Toggle Line Length" (click)="onToggleLineLengthClick()"></button>
         </div>
       </div>
     </ng-container>

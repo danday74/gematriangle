@@ -40,4 +40,6 @@ activate all counters with val X
 
 SUM individual digits option - once or repeat until one digit
 
+Alerts min number
 
+Alerts stop repeating same one when triangle resized or something! also no repeat for 1 min for low priority alerts

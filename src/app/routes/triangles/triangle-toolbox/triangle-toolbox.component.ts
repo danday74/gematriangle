@@ -17,6 +17,7 @@ export class TriangleToolboxComponent implements OnInit {
 
   @Input() rowCount: number
   alignCenter: boolean
+  shortLines: boolean
   showValues: boolean
   color: string
   mode: string
@@ -60,6 +61,9 @@ export class TriangleToolboxComponent implements OnInit {
     this.showValues = storageShowValues != null ? storageShowValues : false
     this.setCssClassForAlignCenter()
     this.setCssClassForShowValues()
+    const storageShortLines = this.storageService.getItem('triangle-short-lines')
+    this.shortLines = storageShortLines != null ? storageShortLines : true
+
     this.color = this.storageService.getItem('triangle-counter-color') || 'appRed'
     this.counterValuesOption = this.storageService.getItem('triangle-counter-values') || TriangleCounterValues.None
     this.mode = this.storageService.getItem('triangle-mode') || 'paint'
@@ -74,6 +78,12 @@ export class TriangleToolboxComponent implements OnInit {
 
   onEraseLinesClick() {
     // this.trianglesService.onToolboxEraseLines()
+  }
+
+  onToggleLineLengthClick() {
+    this.shortLines = !this.shortLines
+    // this.trianglesService.onToggleLineLength(this.shortLines)
+    this.storageService.setItem('triangle-short-lines', this.shortLines)
   }
 
   onClearActiveClick() {
