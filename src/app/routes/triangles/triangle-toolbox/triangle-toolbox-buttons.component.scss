@@ -1,0 +1,47 @@
+@import '../../../colors.scss';
+
+button.paint-mode.active {
+  background: $bootswatchBtnDarkGradientHover;
+}
+
+button.color.active {
+  background: $bootswatchBtnDarkGradientHover;
+}
+
+$lineModeSize: 14px;
+
+button.line-mode {
+  background: url('/assets/icons/line-mode.png') no-repeat (7px center) / $lineModeSize, $bootswatchBtnDarkGradient;
+
+  &:hover, &.active {
+    background: url('/assets/icons/line-mode.png') no-repeat (7px center) / $lineModeSize, $bootswatchBtnDarkGradientHover;
+  }
+}
+
+$fillModeSize: 15px;
+
+button.fill-mode {
+  background: url('/assets/icons/fill-mode.png') no-repeat center / $fillModeSize, $bootswatchBtnDarkGradient;
+
+  &:hover, &.active {
+    background: url('/assets/icons/fill-mode.png') no-repeat center / $fillModeSize, $bootswatchBtnDarkGradientHover;
+  }
+}
+
+$oddEvenSize: 14px;
+
+button.odd {
+  background: url('/assets/icons/odd.png') no-repeat center / $oddEvenSize, $bootswatchBtnDarkGradient;
+
+  &:hover {
+    background: url('/assets/icons/odd.png') no-repeat center / $oddEvenSize, $bootswatchBtnDarkGradientHover;
+  }
+}
+
+button.even {
+  background: url('/assets/icons/even.png') no-repeat center / $oddEvenSize, $bootswatchBtnDarkGradient;
+
+  &:hover {
+    background: url('/assets/icons/even.png') no-repeat center / $oddEvenSize, $bootswatchBtnDarkGradientHover;
+  }
+}

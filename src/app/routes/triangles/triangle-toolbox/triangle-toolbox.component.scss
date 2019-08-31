@@ -1,10 +1,9 @@
 .triangle-toolbox {
-  background-color: #f9f9f9;
+  background-color: #444;
 }
 
 .tea-wrapper {
   margin-top: 5px;
-  // text-align: center;
 }
 
 .tea {
@@ -13,6 +12,7 @@
   font-weight: bold;
   position: relative;
   top: -8px;
+  color: #FFF;
 }
 
 .spinner-wrapper {
@@ -30,7 +30,7 @@ $activeColorBorderRadius: 5px;
   height: $activeColorHeight + unquote("px");
   display: inline-block;
   margin-left: 10px;
-  border: 1px solid #000;
+  border: 1px solid #FFF;
   border-radius: $activeColorBorderRadius;
 }
 
@@ -51,54 +51,11 @@ $activeColorBorderRadius: 5px;
   border-bottom-right-radius: $activeColorBorderRadius;
 }
 
-button.line-mode {
-  background-image: url('/assets/icons/line-mode.png');
-  background-repeat: no-repeat;
-  background-size: 14px;
-  background-position: center;
-
-  &:hover, &.active {
-    background-image: url('/assets/icons/line-mode-hover.png');
-  }
-}
-
-button.fill-mode {
-  background-image: url('/assets/icons/fill-mode.png');
-  background-repeat: no-repeat;
-  background-size: 15px;
-  background-position: 6px 7px;
-
-  &:hover, &.active {
-    background-image: url('/assets/icons/fill-mode-hover.png');
-  }
-}
-
-button.odd {
-  background-image: url('/assets/icons/odd.png');
-  background-repeat: no-repeat;
-  background-size: 15px;
-  background-position: 7px 7px;
-
-  &:hover {
-    background-image: url('/assets/icons/odd-hover.png');
-  }
-}
-
-button.even {
-  background-image: url('/assets/icons/even.png');
-  background-repeat: no-repeat;
-  background-size: 15px;
-  background-position: 6px 7px;
-
-  &:hover {
-    background-image: url('/assets/icons/even-hover.png');
-  }
-}
-
 .mode {
   position: relative;
   top: 4px;
   left: 1px;
+  color: #FFF;
 }
 
 .sep1 {

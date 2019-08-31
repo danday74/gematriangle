@@ -10,7 +10,7 @@ import * as $ from 'jquery'
 @Component({
   selector: 'app-triangle-toolbox',
   templateUrl: './triangle-toolbox.component.html',
-  styleUrls: ['./triangle-toolbox.component.scss']
+  styleUrls: ['./triangle-toolbox.component.scss', './triangle-toolbox-buttons.component.scss']
 })
 
 export class TriangleToolboxComponent implements OnInit {
