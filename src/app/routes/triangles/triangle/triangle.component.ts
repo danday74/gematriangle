@@ -47,7 +47,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
 
     this.spinInterval = setInterval(() => {
       this.countersWaitingToSpin.forEach(counter => {
-        counter.spin = true
+        if (counter.active) counter.spin = true
       })
       this.countersWaitingToSpin = []
     }, 2000) // interval must be same as .spin duration
@@ -127,7 +127,10 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   private clearActive() {
     const allCounters = flatten(this.rows)
     const counters = filter(allCounters, {active: true})
-    counters.forEach(counter => counter.active = false)
+    counters.forEach(counter => {
+      counter.active = false
+      counter.spin = false
+    })
   }
 
   private clearAll() {
