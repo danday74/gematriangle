@@ -68,6 +68,15 @@ $activeColorBorderRadius: 5px;
   margin-bottom: 10px;
 }
 
+.cross-on-top {
+  position: absolute;
+  top: 7px;
+  left: 8px;
+  color: #000;
+  opacity: 0.5;
+  font-size: 15px;
+}
+
 .select-counter-values {
   margin-bottom: 10px;
 }

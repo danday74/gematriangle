@@ -38,10 +38,12 @@
       <div class="btn-group mr-2 mb-2" role="group">
         <button class="btn btn-dark btn-sm" title="Clear All Counters" (click)="onClearAllClick()">
           <i class="fa fa-circle appGrey" aria-hidden="true"></i>
+          <i class="fa fa-times cross-on-top" aria-hidden="true"></i>
         </button>
         <ng-container *ngIf="color !== 'appGrey'">
           <button class="btn btn-dark btn-sm" [title]="'Clear ' + color.replace('app', '') + ' Counters'" (click)="onClearColorClick()">
             <i class="fa fa-circle" [ngClass]="color" aria-hidden="true"></i>
+            <i class="fa fa-times cross-on-top" aria-hidden="true"></i>
           </button>
         </ng-container>
       </div>
