@@ -74,7 +74,13 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
           this.clearAll()
           break
         case TriangleToolboxMessage.ClearColor:
-          this.clearColor(message.value)
+          this.clearColor()
+          break
+        case TriangleToolboxMessage.SelectEven:
+          this.selectMultiples(2, 0)
+          break
+        case TriangleToolboxMessage.SelectOdd:
+          this.selectMultiples(2, 1)
           break
         case TriangleToolboxMessage.ToggleAlign:
           this.alignCenter = message.value
@@ -109,6 +115,15 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     super.ngOnDestroy()
   }
 
+  private selectMultiples(multiple: number, offset: number) {
+    const allCounters = flatten(this.rows)
+    const counters = filter(allCounters, (counter: Counter) => {
+      if (counter.value == null) return false
+      return counter.value.minus(offset).mod(multiple).equals(0)
+    })
+    counters.forEach(counter => counter.color = this.color)
+  }
+
   private clearActive() {
     const allCounters = flatten(this.rows)
     const counters = filter(allCounters, {active: true})
@@ -122,9 +137,9 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     this.colorsChange()
   }
 
-  private clearColor(color) {
+  private clearColor() {
     const allCounters = flatten(this.rows)
-    const counters = filter(allCounters, counter => counter.color === color)
+    const counters = filter(allCounters, counter => counter.color === this.color)
     counters.forEach(counter => counter.color = 'appGrey')
     this.colorsChange()
   }

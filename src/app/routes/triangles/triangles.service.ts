@@ -37,8 +37,8 @@ export class TrianglesService {
     this.onTriangleToolboxMessage(TriangleToolboxMessage.ClearAll, null)
   }
 
-  onClearColor(color) {
-    this.onTriangleToolboxMessage(TriangleToolboxMessage.ClearColor, color)
+  onClearColor() {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.ClearColor, null)
   }
 
   onToggleAlign(alignCenter: boolean) {
@@ -47,5 +47,13 @@ export class TrianglesService {
 
   onToggleShowValues(showValues: boolean) {
     this.onTriangleToolboxMessage(TriangleToolboxMessage.ToggleShowValues, showValues)
+  }
+
+  onSelectEven() {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.SelectEven, null)
+  }
+
+  onSelectOdd() {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.SelectOdd, null)
   }
 }

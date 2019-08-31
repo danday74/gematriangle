@@ -85,7 +85,7 @@ export class TriangleToolboxComponent implements OnInit {
   }
 
   onClearColorClick() {
-    this.trianglesService.onClearColor(this.color)
+    this.trianglesService.onClearColor()
   }
 
   onToggleAlign() {
@@ -144,12 +144,12 @@ export class TriangleToolboxComponent implements OnInit {
     this.storageService.setItem('triangle-mode', mode)
   }
 
-  onSelectEven() {
-    console.log('even')
+  onSelectEvenClick() {
+    this.trianglesService.onSelectEven()
   }
 
-  onSelectOdd() {
-    console.log('odd')
+  onSelectOddClick() {
+    this.trianglesService.onSelectOdd()
   }
 
   onToggleShowValues() {
