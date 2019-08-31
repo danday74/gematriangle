@@ -184,7 +184,15 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   }
 
   private activatePerimeter() {
-    console.log('activatePerimeter')
+    const allCounters = flatten(this.rows)
+    const counters = filter(allCounters, (counter: Counter) => {
+      return counter.pos.col === 1 || counter.pos.row === this.rowCount || counter.pos.col === counter.pos.row
+    })
+    const activeCounters = filter(counters, {active: true})
+    const activate = counters.length !== activeCounters.length
+    counters.forEach((counter: Counter) => {
+      this.setCounterActivation(counter, activate)
+    })
   }
 
   private selectMultiples(multiple: number, offset: number) {
@@ -200,8 +208,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     const allCounters = flatten(this.rows)
     const counters = filter(allCounters, {active: true})
     counters.forEach(counter => {
-      counter.active = false
-      counter.spin = false
+      this.setCounterActivation(counter, false)
     })
   }
 
@@ -262,6 +269,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
       this.countersWaitingToSpin.push(counter)
     } else {
       counter.active = false
+      counter.spin = false
     }
   }
 
