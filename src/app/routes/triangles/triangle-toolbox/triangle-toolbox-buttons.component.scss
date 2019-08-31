@@ -90,14 +90,6 @@ button.triangle-center {
   }
 }
 
-button.triangle-perimeter {
-  background: url('/assets/icons/triangle.png') no-repeat center / $triangleSize, $bootswatchBtnDarkGradient;
-
-  &:hover {
-    background: url('/assets/icons/triangle.png') no-repeat center / $triangleSize, $bootswatchBtnDarkGradientHover;
-  }
-}
-
 $starOfDavidSize: 15px;
 
 button.triangle-star-of-david {
