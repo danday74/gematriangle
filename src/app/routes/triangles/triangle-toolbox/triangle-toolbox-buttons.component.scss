@@ -55,3 +55,55 @@ button.even {
     background: url('/assets/icons/even.png') no-repeat center / $oddEvenSize, $bootswatchBtnDarkGradientHover;
   }
 }
+
+$triangleSize: 16px;
+
+button.triangle-corners {
+  background: url('/assets/icons/triangle.png') no-repeat center / $triangleSize, $bootswatchBtnDarkGradient;
+
+  &:hover {
+    background: url('/assets/icons/triangle.png') no-repeat center / $triangleSize, $bootswatchBtnDarkGradientHover;
+  }
+}
+
+button.triangle-midpoints {
+  background: url('/assets/icons/triangle.png') no-repeat center / $triangleSize, $bootswatchBtnDarkGradient;
+
+  &:hover {
+    background: url('/assets/icons/triangle.png') no-repeat center / $triangleSize, $bootswatchBtnDarkGradientHover;
+  }
+}
+
+button.triangle-midpoints-plus {
+  background: url('/assets/icons/triangle.png') no-repeat center / $triangleSize, $bootswatchBtnDarkGradient;
+
+  &:hover {
+    background: url('/assets/icons/triangle.png') no-repeat center / $triangleSize, $bootswatchBtnDarkGradientHover;
+  }
+}
+
+button.triangle-center {
+  background: url('/assets/icons/triangle.png') no-repeat center / $triangleSize, $bootswatchBtnDarkGradient;
+
+  &:hover {
+    background: url('/assets/icons/triangle.png') no-repeat center / $triangleSize, $bootswatchBtnDarkGradientHover;
+  }
+}
+
+button.triangle-perimeter {
+  background: url('/assets/icons/triangle.png') no-repeat center / $triangleSize, $bootswatchBtnDarkGradient;
+
+  &:hover {
+    background: url('/assets/icons/triangle.png') no-repeat center / $triangleSize, $bootswatchBtnDarkGradientHover;
+  }
+}
+
+$starOfDavidSize: 15px;
+
+button.triangle-star-of-david {
+  background: url('/assets/icons/star-of-david.png') no-repeat center / $starOfDavidSize, $bootswatchBtnDarkGradient;
+
+  &:hover {
+    background: url('/assets/icons/star-of-david.png') no-repeat center / $starOfDavidSize, $bootswatchBtnDarkGradientHover;
+  }
+}

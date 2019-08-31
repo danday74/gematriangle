@@ -43,3 +43,5 @@ SUM individual digits option - once or repeat until one digit
 Alerts min number
 
 Alerts stop repeating same one when triangle resized or something! also no repeat for 1 min for low priority alerts
+
+Fix 5 pointed star to use Star of David

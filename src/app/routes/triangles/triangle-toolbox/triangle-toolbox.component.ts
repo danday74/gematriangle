@@ -182,4 +182,29 @@ export class TriangleToolboxComponent implements OnInit {
     if (this.alignCenter) html.addClass('triangle-align-center')
     if (!this.alignCenter) html.addClass('triangle-align-left')
   }
+
+  onActivateStarOfDavidClick() {
+    this.trianglesService.onActivateStarOfDavid()
+  }
+
+  onActivateTriangleCornersClick() {
+    this.trianglesService.onActivateTriangleCorners()
+  }
+
+
+  onActivateTriangleMidpointsClick() {
+    this.trianglesService.onActivateTriangleMidpoints()
+  }
+
+  onActivateTriangleMidpointsPlusClick() {
+    this.trianglesService.onActivateTriangleMidpointsPlus()
+  }
+
+  onActivateTriangleCenterClick() {
+    this.trianglesService.onActivateTriangleCenter()
+  }
+
+  onActivateTrianglePerimeterClick() {
+    this.trianglesService.onActivateTrianglePerimeter()
+  }
 }

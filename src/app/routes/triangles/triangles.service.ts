@@ -13,6 +13,30 @@ export class TrianglesService {
     this.triangleToolboxMessageSource.next({name, value})
   }
 
+  onActivateStarOfDavid() {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.ActivateStarOfDavid, null)
+  }
+
+  onActivateTriangleCorners() {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.ActivateTriangleCorners, null)
+  }
+
+  onActivateTriangleMidpoints() {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.ActivateTriangleMidpoints, null)
+  }
+
+  onActivateTriangleMidpointsPlus() {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.ActivateTriangleMidpointsPlus, null)
+  }
+
+  onActivateTriangleCenter() {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.ActivateTriangleCenter, null)
+  }
+
+  onActivateTrianglePerimeter() {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.ActivateTrianglePerimeter, null)
+  }
+
   onChangeColor(color: string) {
     this.onTriangleToolboxMessage(TriangleToolboxMessage.ChangeColor, color)
   }

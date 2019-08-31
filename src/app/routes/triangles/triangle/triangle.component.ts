@@ -59,6 +59,25 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
       takeUntil(this.unsubscribe$)
     ).subscribe((message) => {
       switch (message.name) {
+        case TriangleToolboxMessage.ActivateStarOfDavid:
+          console.log('ActivateStarOfDavid')
+          break
+        case TriangleToolboxMessage.ActivateTriangleCorners:
+          console.log('ActivateTriangleCorners')
+          break
+        case TriangleToolboxMessage.ActivateTriangleMidpoints:
+          console.log('ActivateTriangleMidpoints')
+          break
+        case TriangleToolboxMessage.ActivateTriangleMidpointsPlus:
+          console.log('ActivateTriangleMidpointsPlus')
+          break
+        case TriangleToolboxMessage.ActivateTriangleCenter:
+          console.log('ActivateTriangleCenter')
+          break
+        case TriangleToolboxMessage.ActivateTrianglePerimeter:
+          console.log('ActivateTrianglePerimeter')
+          break
+
         case TriangleToolboxMessage.ChangeColor:
           this.color = message.value
           break
@@ -80,18 +99,10 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
           this.clearColor()
           break
         case TriangleToolboxMessage.DrawLines:
-          if (this.shortLines) {
-            this.drawShortLines()
-          } else {
-            this.drawLongLines()
-          }
+          this.drawLines()
           break
         case TriangleToolboxMessage.EraseLines:
-          if (this.shortLines) {
-            console.log('eraseShortLines')
-          } else {
-            console.log('eraseLongLines')
-          }
+          console.log('eraseLines')
           break
         case TriangleToolboxMessage.SelectEven:
           this.selectMultiples(2, 0)
@@ -135,12 +146,41 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     super.ngOnDestroy()
   }
 
-  private drawShortLines() {
-    console.log('drawShortLines')
-  }
-
-  private drawLongLines() {
-    console.log('drawLongLines')
+  private drawLines() {
+    const allCounters = flatten(this.rows)
+    const counters = filter(allCounters, {active: true})
+    const shortStandardPosAdjusts = [{row: 1, col: 1}, {row: 0, col: 1}, {row: 1, col: 0}]
+    const longStandardPosAdjusts = [...shortStandardPosAdjusts, {row: -1, col: -1}, {row: 0, col: -1}, {row: -1, col: 0}]
+    const posAdjusts = this.shortLines ? shortStandardPosAdjusts : longStandardPosAdjusts
+    counters.forEach(counter => {
+      posAdjusts.forEach(posAdjust => {
+        const countersInLine = [counter]
+        let found = false
+        let finished = false
+        let row = counter.pos.row
+        let col = counter.pos.col
+        while (!finished) {
+          row += posAdjust.row
+          col += posAdjust.col
+          const nextCounter: Counter = this.getCounter(row, col)
+          if (nextCounter) {
+            countersInLine.push(nextCounter)
+            if (nextCounter.active) {
+              found = true
+              if (this.shortLines) finished = true
+            }
+          } else {
+            finished = true
+          }
+        }
+        if (found) {
+          countersInLine.forEach((counterInLine: Counter) => {
+            counterInLine.color = this.color
+          })
+        }
+      })
+    })
+    this.colorsChange()
   }
 
   private selectMultiples(multiple: number, offset: number) {
@@ -196,6 +236,14 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
       case 'fill':
         console.log('fill')
         break
+    }
+  }
+
+  private getCounter(row, col) {
+    try {
+      return this.rows[row - 1][col - 1]
+    } catch (err) {
+      return null
     }
   }
 
