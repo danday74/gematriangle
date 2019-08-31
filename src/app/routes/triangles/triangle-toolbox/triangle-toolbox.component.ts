@@ -80,8 +80,12 @@ export class TriangleToolboxComponent implements OnInit {
     this.trianglesService.onClearActive()
   }
 
-  onClearSelectedClick() {
+  onClearAllClick() {
     this.trianglesService.onClearSelected()
+  }
+
+  onClearAllColorClick() {
+    console.log('onClearAllColorClick')
   }
 
   onToggleAlign() {
