@@ -4,7 +4,6 @@ export enum TriangleToolboxMessage {
   ActivateTriangleMidpoints = 'activate-triangle-midpoints',
   ActivateTriangleMidpointsPlus = 'activate-triangle-midpoints-plus',
   ActivateTriangleCenter = 'activate-triangle-center',
-  ActivateTrianglePerimeter = 'activate-triangle-perimeter',
   ChangeColor = 'change-color',
   ChangeCounterValues = 'change-counter-values',
   ChangeMode = 'change-mode',

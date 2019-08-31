@@ -74,10 +74,6 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
         case TriangleToolboxMessage.ActivateTriangleCenter:
           console.log('ActivateTriangleCenter')
           break
-        case TriangleToolboxMessage.ActivateTrianglePerimeter:
-          this.activatePerimeter()
-          break
-
         case TriangleToolboxMessage.ChangeColor:
           this.color = message.value
           break
@@ -181,18 +177,6 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
       })
     })
     this.colorsChange()
-  }
-
-  private activatePerimeter() {
-    const allCounters = flatten(this.rows)
-    const counters = filter(allCounters, (counter: Counter) => {
-      return counter.pos.col === 1 || counter.pos.row === this.rowCount || counter.pos.col === counter.pos.row
-    })
-    const activeCounters = filter(counters, {active: true})
-    const activate = counters.length !== activeCounters.length
-    counters.forEach((counter: Counter) => {
-      this.setCounterActivation(counter, activate)
-    })
   }
 
   private selectMultiples(multiple: number, offset: number) {

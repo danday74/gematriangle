@@ -203,8 +203,4 @@ export class TriangleToolboxComponent implements OnInit {
   onActivateTriangleCenterClick() {
     this.trianglesService.onActivateTriangleCenter()
   }
-
-  onActivateTrianglePerimeterClick() {
-    this.trianglesService.onActivateTrianglePerimeter()
-  }
 }

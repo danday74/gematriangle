@@ -33,10 +33,6 @@ export class TrianglesService {
     this.onTriangleToolboxMessage(TriangleToolboxMessage.ActivateTriangleCenter, null)
   }
 
-  onActivateTrianglePerimeter() {
-    this.onTriangleToolboxMessage(TriangleToolboxMessage.ActivateTrianglePerimeter, null)
-  }
-
   onChangeColor(color: string) {
     this.onTriangleToolboxMessage(TriangleToolboxMessage.ChangeColor, color)
   }
