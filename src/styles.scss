@@ -61,3 +61,8 @@ button.btn-sm.image-icon {
 .clickable {
   cursor: pointer;
 }
+
+.fa-spin-slow {
+  -webkit-animation: fa-spin 8s infinite linear;
+  animation: fa-spin 8s infinite linear;
+}

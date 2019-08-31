@@ -4,6 +4,7 @@ $bootswatchBtnDarkGradient: linear-gradient(#595959, #333 50%, #292929);
 $bootswatchBtnDarkGradientHover: linear-gradient(#4f4f4f, #292929 50%, #1f1f1f);
 
 $appActive: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+$appActiveWebkit: -webkit-linear-gradient(#000, #FFF);
 
 $appBlack: #000;
 $appGrey: #DDD;
@@ -18,6 +19,9 @@ $appBlue: darken(#4184A3, 5%);
 
 .appActive {
   color: $appBlack;
+  background: $appActiveWebkit;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .appActiveBg {

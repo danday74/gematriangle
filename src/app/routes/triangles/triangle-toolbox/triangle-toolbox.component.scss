@@ -68,13 +68,21 @@ $activeColorBorderRadius: 5px;
   margin-bottom: 10px;
 }
 
-.cross-on-top {
+.cross-on-top, .cross-on-top-inverse {
   position: absolute;
   top: 7px;
   left: 8px;
+  font-size: 15px;
+}
+
+.cross-on-top {
   color: #000;
   opacity: 0.4;
-  font-size: 15px;
+}
+
+.cross-on-top-inverse {
+  color: #222;
+  opacity: 1;
 }
 
 .select-counter-values {
