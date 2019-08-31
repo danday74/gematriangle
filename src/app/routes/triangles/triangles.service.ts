@@ -41,8 +41,20 @@ export class TrianglesService {
     this.onTriangleToolboxMessage(TriangleToolboxMessage.ClearColor, null)
   }
 
+  onDrawLines() {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.DrawLines, null)
+  }
+
+  onEraseLines() {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.EraseLines, null)
+  }
+
   onToggleAlign(alignCenter: boolean) {
     this.onTriangleToolboxMessage(TriangleToolboxMessage.ToggleAlign, alignCenter)
+  }
+
+  onToggleLineLength(shortLines) {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.ToggleLineLength, shortLines)
   }
 
   onToggleShowValues(showValues: boolean) {

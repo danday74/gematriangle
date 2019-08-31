@@ -73,16 +73,16 @@ export class TriangleToolboxComponent implements OnInit {
   }
 
   onDrawLinesClick() {
-    // this.trianglesService.onToolboxDrawLines()
+    this.trianglesService.onDrawLines()
   }
 
   onEraseLinesClick() {
-    // this.trianglesService.onToolboxEraseLines()
+    this.trianglesService.onEraseLines()
   }
 
   onToggleLineLengthClick() {
     this.shortLines = !this.shortLines
-    // this.trianglesService.onToggleLineLength(this.shortLines)
+    this.trianglesService.onToggleLineLength(this.shortLines)
     this.storageService.setItem('triangle-short-lines', this.shortLines)
   }
 

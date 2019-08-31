@@ -23,6 +23,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   @Input() rowCount = 1
 
   alignCenter: boolean
+  shortLines: boolean
   showValues: boolean
   color: string
   mode: string
@@ -41,9 +42,11 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   ngOnInit() {
 
     const storageAlignCenter = this.storageService.getItem('triangle-align-center')
+    const storageShortLines = this.storageService.getItem('triangle-short-lines')
     const storageShowValues = this.storageService.getItem('triangle-show-values')
     this.alignCenter = storageAlignCenter != null ? storageAlignCenter : true
     this.showValues = storageShowValues != null ? storageShowValues : false
+    this.shortLines = storageShortLines != null ? storageShortLines : true
 
     this.spinInterval = setInterval(() => {
       this.countersWaitingToSpin.forEach(counter => {
@@ -76,6 +79,20 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
         case TriangleToolboxMessage.ClearColor:
           this.clearColor()
           break
+        case TriangleToolboxMessage.DrawLines:
+          if (this.shortLines) {
+            this.drawShortLines()
+          } else {
+            this.drawLongLines()
+          }
+          break
+        case TriangleToolboxMessage.EraseLines:
+          if (this.shortLines) {
+            console.log('eraseShortLines')
+          } else {
+            console.log('eraseLongLines')
+          }
+          break
         case TriangleToolboxMessage.SelectEven:
           this.selectMultiples(2, 0)
           break
@@ -84,6 +101,9 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
           break
         case TriangleToolboxMessage.ToggleAlign:
           this.alignCenter = message.value
+          break
+        case TriangleToolboxMessage.ToggleLineLength:
+          this.shortLines = message.value
           break
         case TriangleToolboxMessage.ToggleShowValues:
           this.showValues = message.value
@@ -113,6 +133,14 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   ngOnDestroy() {
     clearInterval(this.spinInterval)
     super.ngOnDestroy()
+  }
+
+  private drawShortLines() {
+    console.log('drawShortLines')
+  }
+
+  private drawLongLines() {
+    console.log('drawLongLines')
   }
 
   private selectMultiples(multiple: number, offset: number) {
