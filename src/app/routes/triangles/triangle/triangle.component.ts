@@ -75,7 +75,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
           console.log('ActivateTriangleCenter')
           break
         case TriangleToolboxMessage.ActivateTrianglePerimeter:
-          console.log('ActivateTrianglePerimeter')
+          this.activatePerimeter()
           break
 
         case TriangleToolboxMessage.ChangeColor:
@@ -181,6 +181,10 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
       })
     })
     this.colorsChange()
+  }
+
+  private activatePerimeter() {
+    console.log('activatePerimeter')
   }
 
   private selectMultiples(multiple: number, offset: number) {
