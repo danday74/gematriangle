@@ -138,6 +138,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   }
 
   // not sure if this is useful - remove if not
+  // if used then dont forget to make toggle work
   activatePerimeter() {
     console.log('activatePerimeter')
     const allCounters = flatten(this.rows)
@@ -145,7 +146,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
       return counter.pos.col === 1 || counter.pos.row === this.rowCount || counter.pos.col === counter.pos.row
     })
     counters.forEach((counter: Counter) => {
-      counter.active = true
+      this.setCounterActivation(counter, true)
     })
   }
 
