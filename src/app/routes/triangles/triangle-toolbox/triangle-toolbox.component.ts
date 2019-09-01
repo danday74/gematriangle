@@ -22,7 +22,6 @@ export class TriangleToolboxComponent implements OnInit {
   showValues: boolean
   color: string
   mode: string
-  star = star
 
   get starOfDavid() {
     const n = triangle.housesStarOfDavid(this.rowCount)
@@ -39,16 +38,6 @@ export class TriangleToolboxComponent implements OnInit {
     {label: 'PI decimals', value: TriangleCounterValues.PiDecimals}
   ]
 
-  activateCountersOptions = [
-    {label: 'Select to activate', value: null},
-    {label: 'Activate corners', value: 'corners'},
-    {label: 'Activate midpoints', value: 'midpoints'},
-    {label: 'Activate midpoints +', value: 'midpoints-plus'},
-    {label: 'Activate center', value: 'center'},
-    {label: 'Activate star of David', value: 'star'}
-  ]
-
-  activateCountersOption: any
   counterValuesOption: any
 
   constructor(private trianglesService: TrianglesService, private storageService: StorageService) {
@@ -105,31 +94,6 @@ export class TriangleToolboxComponent implements OnInit {
     this.trianglesService.onToggleAlign(this.alignCenter)
     this.storageService.setItem('triangle-align-center', this.alignCenter)
     this.setCssClassForAlignCenter()
-  }
-
-  activateCounters(option) {
-    if (option.value) {
-      switch (option.value) {
-        case 'corners':
-          // this.trianglesService.onToolboxActivateCorners()
-          break
-        case 'midpoints':
-          // this.trianglesService.onToolboxActivateMidpoints()
-          break
-        case 'midpoints-plus':
-          // this.trianglesService.onToolboxActivateMidpointsPlus()
-          break
-        case 'center':
-          // this.trianglesService.onToolboxActivateCenter()
-          break
-        case 'star':
-          // this.trianglesService.onToolboxActivateStar()
-          break
-      }
-    }
-    setTimeout(() => {
-      this.activateCountersOption = null
-    })
   }
 
   onChangeRowCount(rowCount) {

@@ -157,15 +157,6 @@
         </div>
       </div>
     </ng-container>
-
-    <!-- Activate dropdown -->
-    <ng-container *ngIf="mode === 'line'">
-      <hr class="sep2">
-      <div class="activate-counters">
-        <p-dropdown [options]="activateCountersOptions" [(ngModel)]="activateCountersOption" (onChange)="activateCounters($event)"
-                    [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'"></p-dropdown>
-      </div>
-    </ng-container>
   </div>
 
   <!-- Star of David -->
