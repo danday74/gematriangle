@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark bg-custom fixed-top">
-  <ul class="navbar-nav">
+  <ul class="navbar-nav mr-auto">
     <li class="nav-item" routerLinkActive="active">
       <a class="nav-link" routerLink="/constants">Constants</a>
     </li>
@@ -7,15 +7,29 @@
       <a class="nav-link" routerLink="/triangles">Triangles</a>
     </li>
   </ul>
+  <ul class="navbar-nav">
+    <ng-container *ngIf="isFullscreen !== true">
+      <li>
+        <img class="fullscreen" src="/assets/icons/fullscreen.png" (click)="fullscreen()">
+      </li>
+    </ng-container>
+  </ul>
 </nav>
 
 <nav class="navbar navbar-expand navbar-dark bg-dark bg-custom">
-  <ul class="navbar-nav">
+  <ul class="navbar-nav mr-auto">
     <li class="nav-item" routerLinkActive="active">
       <a class="nav-link" routerLink="/constants">Constants</a>
     </li>
     <li class="nav-item" routerLinkActive="active">
       <a class="nav-link" routerLink="/triangles">Triangles</a>
     </li>
+  </ul>
+  <ul class="navbar-nav">
+    <ng-container *ngIf="isFullscreen !== true">
+      <li>
+        <img class="fullscreen" src="/assets/icons/fullscreen.png">
+      </li>
+    </ng-container>
   </ul>
 </nav>
