@@ -217,11 +217,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
 
   private activateCorners() {
     const positions = [{row: 1, col: 1}, {row: this.rowCount, col: 1}, {row: this.rowCount, col: this.rowCount}]
-    const counters = this.getCounters(positions)
-    const notActivated = find(counters, (counter: Counter) => counter.active !== true)
-    counters.forEach((counter: Counter) => {
-      this.setCounterActivation(counter, notActivated)
-    })
+    this.completeActivation(positions)
   }
 
   private activateMidpoints(plus = false) {
@@ -237,25 +233,37 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
         {row: middle1, col: 1}, {row: middle1, col: middle1}, {row: this.rowCount, col: middle1},
         {row: middle2, col: 1}, {row: middle2, col: middle2}, {row: this.rowCount, col: middle2}
       ]
-      if (plus) {
-        positions = [
-          {row: middle2, col: 2}, {row: middle2, col: middle2 - 1}, {row: this.rowCount - 1, col: middle2 - 1}
-        ]
-      }
+      if (plus) positions = [{row: middle2, col: 2}, {row: middle2, col: middle2 - 1}, {row: this.rowCount - 1, col: middle2 - 1}]
     }
+    this.completeActivation(positions)
+  }
+
+  private activateCenter() {
+    const row = Math.floor(((this.rowCount + 2) / 3) - 1) * 2 + 1
+    const topCenter = {row, col: (this.rows[row - 1].length + 1) / 2}
+    let positions = [topCenter]
+    const step = ((this.rowCount + 2) % 3) + 1
+    if (step > 1) positions = [...positions, {row: topCenter.row + 1, col: topCenter.col}, {row: topCenter.row + 1, col: topCenter.col + 1}]
+    if (step > 2) {
+      positions = [
+        ...positions,
+        {row: topCenter.row + 2, col: topCenter.col},
+        {row: topCenter.row + 2, col: topCenter.col + 1},
+        {row: topCenter.row + 2, col: topCenter.col + 2}]
+    }
+    this.completeActivation(positions)
+  }
+
+  private activateStarOfDavid() {
+    console.log('activateStarOfDavid')
+  }
+
+  private completeActivation(positions) {
     const counters = this.getCounters(positions)
     const notActivated = find(counters, (counter: Counter) => counter.active !== true)
     counters.forEach((counter: Counter) => {
       this.setCounterActivation(counter, notActivated)
     })
-  }
-
-  private activateCenter() {
-    console.log('activateCenter')
-  }
-
-  private activateStarOfDavid() {
-    console.log('activateStarOfDavid')
   }
 
   private selectMultiples(multiple: number, offset: number) {
