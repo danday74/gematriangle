@@ -9,5 +9,13 @@ export const routes: Routes = [
     path: 'triangles',
     loadChildren: () => import('./routes/triangles/triangles.module').then(mod => mod.TrianglesModule)
   },
+  {
+    path: 'triangles/:id',
+    loadChildren: () => import('./routes/triangles/triangles.module').then(mod => mod.TrianglesModule)
+  },
+  {
+    path: 'triangles-list',
+    loadChildren: () => import('./routes/triangles-list/triangles-list.module').then(mod => mod.TrianglesListModule)
+  },
   {path: '**', redirectTo: 'triangles'}
 ]
