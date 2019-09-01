@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core'
-import { debounce, filter, flatten, range } from 'lodash'
+import { debounce, filter, find, flatten, range } from 'lodash'
 import { takeUntil } from 'rxjs/operators'
 import { TrianglesService } from '../triangles.service'
 import { DestroyerComponent } from '../../../utils/destroyer.component'
@@ -217,7 +217,8 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
       if (counter.value == null) return false
       return counter.value.minus(offset).mod(multiple).equals(0)
     })
-    counters.forEach(counter => counter.color = this.color)
+    const notColored = find(counters, (counter: Counter) => counter.color !== this.color)
+    counters.forEach(counter => counter.color = notColored ? this.color : 'appGrey')
   }
 
   private clearActive() {
