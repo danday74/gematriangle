@@ -103,8 +103,10 @@
                   (click)="onActivateTriangleMidpointsPlusClick()"></button>
           <button class="btn btn-dark btn-sm image-icon triangle-center" title="Activate Triangle Center"
                   (click)="onActivateTriangleCenterClick()"></button>
-          <button class="btn btn-dark btn-sm image-icon triangle-star-of-david" title="Activate Star of David"
-                  (click)="onActivateStarOfDavidClick()"></button>
+          <ng-container *ngIf="starOfDavid">
+            <button class="btn btn-dark btn-sm image-icon triangle-star-of-david" title="Activate Star of David"
+                    (click)="onActivateStarOfDavidClick()"></button>
+          </ng-container>
         </div>
       </div>
     </ng-container>
