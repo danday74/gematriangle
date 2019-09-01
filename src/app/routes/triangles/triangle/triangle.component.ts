@@ -141,19 +141,6 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     })
   }
 
-  // not sure if this is useful - remove if not
-  // if used then dont forget to make toggle work
-  activatePerimeter() {
-    console.log('activatePerimeter')
-    const allCounters = flatten(this.rows)
-    const counters = filter(allCounters, (counter: Counter) => {
-      return counter.pos.col === 1 || counter.pos.row === this.rowCount || counter.pos.col === counter.pos.row
-    })
-    counters.forEach((counter: Counter) => {
-      this.setCounterActivation(counter, true)
-    })
-  }
-
   ngOnChanges(changes: SimpleChanges) {
     if (changes.rowCount && !changes.rowCount.firstChange) {
       if (changes.rowCount.currentValue > changes.rowCount.previousValue) {
@@ -213,6 +200,19 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
       })
     })
     this.colorsChange()
+  }
+
+  // not sure if this is useful - remove if not
+  // if used then dont forget to make toggle work
+  activatePerimeter() {
+    console.log('activatePerimeter')
+    const allCounters = flatten(this.rows)
+    const counters = filter(allCounters, (counter: Counter) => {
+      return counter.pos.col === 1 || counter.pos.row === this.rowCount || counter.pos.col === counter.pos.row
+    })
+    counters.forEach((counter: Counter) => {
+      this.setCounterActivation(counter, true)
+    })
   }
 
   private selectMultiples(multiple: number, offset: number) {
