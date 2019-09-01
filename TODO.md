@@ -1,7 +1,6 @@
 MAJOR TODOs
 ===========
 
-Star of David to 6 points
 Icons for triangle buttons
 Code triangle buttons and Star of David
 Fullscreen button
