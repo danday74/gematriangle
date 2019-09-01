@@ -70,19 +70,19 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     ).subscribe((message) => {
       switch (message.name) {
         case TriangleToolboxMessage.ActivateStarOfDavid:
-          console.log('ActivateStarOfDavid')
+          this.activateStarOfDavid()
           break
         case TriangleToolboxMessage.ActivateTriangleCorners:
           this.activateCorners()
           break
         case TriangleToolboxMessage.ActivateTriangleMidpoints:
-          console.log('ActivateTriangleMidpoints')
+          this.activateMidpoints()
           break
         case TriangleToolboxMessage.ActivateTriangleMidpointsPlus:
-          console.log('ActivateTriangleMidpointsPlus')
+          this.activateMidpoints(true)
           break
         case TriangleToolboxMessage.ActivateTriangleCenter:
-          console.log('ActivateTriangleCenter')
+          this.activateCenter()
           break
         case TriangleToolboxMessage.ChangeColor:
           this.color = message.value
@@ -224,6 +224,18 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     counters.forEach((counter: Counter) => {
       this.setCounterActivation(counter, notActivated)
     })
+  }
+
+  private activateMidpoints(plus = false) {
+    console.log('activateMidpoints', plus)
+  }
+
+  private activateCenter() {
+    console.log('activateCenter')
+  }
+
+  private activateStarOfDavid() {
+    console.log('activateStarOfDavid')
   }
 
   private selectMultiples(multiple: number, offset: number) {
