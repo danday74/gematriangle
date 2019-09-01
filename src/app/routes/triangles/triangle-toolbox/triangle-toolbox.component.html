@@ -37,14 +37,16 @@
       </span>
     </div>
 
-    <ng-container *ngIf="lineDirection === 'left-right'">
-      <img class="hexagon-dots" src="/assets/icons/hexagon-dots-reach1.png">
-    </ng-container>
-    <ng-container *ngIf="lineDirection === 'up-down'">
-      <img class="hexagon-dots" src="/assets/icons/hexagon-dots-reach2.png">
-    </ng-container>
-    <ng-container *ngIf="lineDirection === 'all'">
-      <img class="hexagon-dots" src="/assets/icons/hexagon-dots-all.png">
+    <ng-container *ngIf="mode === 'line'">
+      <ng-container *ngIf="lineDirection === 'left-right'">
+        <img class="hexagon-dots" src="/assets/icons/hexagon-dots-reach1.png">
+      </ng-container>
+      <ng-container *ngIf="lineDirection === 'up-down'">
+        <img class="hexagon-dots" src="/assets/icons/hexagon-dots-reach2.png">
+      </ng-container>
+      <ng-container *ngIf="lineDirection === 'all'">
+        <img class="hexagon-dots" src="/assets/icons/hexagon-dots-all.png">
+      </ng-container>
     </ng-container>
 
     <hr class="sep2">
