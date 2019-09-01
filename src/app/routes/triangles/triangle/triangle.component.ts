@@ -158,7 +158,11 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   private drawLines(color) {
     const allCounters = flatten(this.rows)
     const counters = filter(allCounters, {active: true})
-    const posAdjusts = [...this.posAdjusts.reach1, ...this.posAdjusts.reach2]
+    let posAdjusts
+
+    if (this.lineDirection === 'left-right') posAdjusts = this.posAdjusts.reach1
+    else if (this.lineDirection === 'up-down') posAdjusts = this.posAdjusts.reach2
+    else posAdjusts = [...this.posAdjusts.reach1, ...this.posAdjusts.reach2]
 
     counters.forEach(counter => {
       posAdjusts.forEach(posAdjust => {
