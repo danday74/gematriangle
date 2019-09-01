@@ -4,11 +4,12 @@
 
 .tea-wrapper {
   margin-top: 5px;
+  margin-bottom: 1px;
 }
 
 .tea {
   margin-right: 5px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   position: relative;
   top: -8px;
@@ -17,7 +18,7 @@
 
 .spinner-wrapper {
   position: relative;
-  top: -11px;
+  top: -10px;
 }
 
 $activeColorWidth: 60;
