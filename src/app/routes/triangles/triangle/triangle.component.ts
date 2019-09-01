@@ -265,7 +265,41 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   }
 
   private starOfDavid() {
-    console.log('starOfDavid')
+    const middle = (this.rowCount + 1) / 2
+    const gap = (this.rowCount - 1) / 6
+    const bottomCenter = {row: this.rowCount, col: middle}
+    const topCenter = {row: bottomCenter.row - gap * 4, col: bottomCenter.col - gap * 2}
+    const positions = [bottomCenter, topCenter]
+
+    if (this.mode === 'line') {
+      for (let i = 1; i <= 3; i++) {
+        positions.push({row: bottomCenter.row - i * gap, col: bottomCenter.col})
+        positions.push({row: bottomCenter.row - i * gap, col: bottomCenter.col - i * gap})
+        positions.push({row: topCenter.row + i * gap, col: topCenter.col})
+        positions.push({row: topCenter.row + i * gap, col: topCenter.col + i * gap})
+      }
+    } else {
+      for (let i = 1; i <= 3 * gap - 1; i++) {
+        if (i < gap || i >= gap * 2) {
+          positions.push({row: bottomCenter.row - i, col: bottomCenter.col})
+          positions.push({row: bottomCenter.row - i, col: bottomCenter.col - i})
+          positions.push({row: topCenter.row + i, col: topCenter.col})
+          positions.push({row: topCenter.row + i, col: topCenter.col + i})
+        }
+      }
+      const horizontalTop = {row: middle, col: 1}
+      const horizontalBottom = {row: middle + gap * 2, col: gap + 1}
+      positions.push(horizontalTop)
+      positions.push(horizontalBottom)
+      for (let i = 1; i <= 3 * gap; i++) {
+        if (i <= gap || i >= gap * 2) {
+          positions.push({row: horizontalTop.row, col: horizontalTop.col + i})
+          positions.push({row: horizontalBottom.row, col: horizontalBottom.col + i})
+        }
+      }
+    }
+    const counters = this.getCounters(positions)
+    this.complete(counters)
   }
 
   private complete(counters) {
