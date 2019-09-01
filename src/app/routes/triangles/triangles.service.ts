@@ -92,4 +92,8 @@ export class TrianglesService {
   onSelectOdd() {
     this.onTriangleToolboxMessage(TriangleToolboxMessage.SelectOdd, null)
   }
+
+  onSelectOther() {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.SelectOther, null)
+  }
 }

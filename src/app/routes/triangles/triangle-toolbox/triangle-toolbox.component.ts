@@ -128,6 +128,11 @@ export class TriangleToolboxComponent implements OnInit {
     this.trianglesService.onSelectOdd()
   }
 
+  onSelectOtherClick() {
+    // TODO: modal stuff here
+    this.trianglesService.onSelectOther()
+  }
+
   onToggleShowValues() {
     this.showValues = !this.showValues
     this.trianglesService.onToggleShowValues(this.showValues)

@@ -119,6 +119,10 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
         case TriangleToolboxMessage.SelectOdd:
           this.selectMultiples(2, 1)
           break
+        case TriangleToolboxMessage.SelectOther:
+          console.log('SelectOther', message.value)
+          // this.selectMultiples(2, 1)
+          break
         case TriangleToolboxMessage.ToggleAlign:
           this.alignCenter = message.value
           break

@@ -56,6 +56,16 @@ button.even {
   }
 }
 
+$threeSize: 16px;
+
+button.three {
+  background: url('/assets/icons/three.png') no-repeat (center 8px) / $threeSize, $bootswatchBtnDarkGradient;
+
+  &:hover {
+    background: url('/assets/icons/three.png') no-repeat (center 7px) / $threeSize, $bootswatchBtnDarkGradientHover;
+  }
+}
+
 $triangleSize: 16px;
 
 button.triangle-corners {
