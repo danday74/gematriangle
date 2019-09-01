@@ -166,9 +166,11 @@
 
   <!-- Star of David -->
   <ng-container *ngIf="starOfDavid">
-    <div class="star">
-      <i class="fa fa-star fa-5x" aria-hidden="true" [title]="'T' + rowCount + ' houses a star of David (S' + starOfDavid.n + ') perfectly'"></i>
-      <div class="term" [title]="'T' + rowCount + ' houses a star of David (S' + starOfDavid.n + ') perfectly'">{{ starOfDavid.term }}</div>
+    <div class="shapes">
+      <div class="star">
+        <img src="/assets/images/israel-star.png" class="israel-star" [title]="'T' + rowCount + ' houses a star of David (ST' + starOfDavid.n + ') perfectly'">
+        <div class="term" [title]="'T' + rowCount + ' houses a star of David (S' + starOfDavid.n + ') perfectly'">{{ starOfDavid.term }}</div>
+      </div>
     </div>
   </ng-container>
 </div>

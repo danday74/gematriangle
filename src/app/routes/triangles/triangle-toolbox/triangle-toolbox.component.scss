@@ -113,17 +113,18 @@ $activeColorBorderRadius: 5px;
   margin-bottom: 8px;
 }
 
-.star {
-  margin-top: 15px;
+.shapes {
+  padding-top: 20px;
   text-align: center;
-  color: #FADA5F;
-  text-shadow: 5px 5px 8px #999;
+
+  .israel-star {
+    width: 101px;
+  }
 
   .term {
-    margin-top: -48px;
+    margin-top: -59px;
     font-weight: bold;
     font-size: 13px;
     color: #444;
-    text-shadow: none;
   }
 }
