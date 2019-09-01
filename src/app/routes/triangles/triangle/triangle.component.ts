@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core'
-import { debounce, filter, find, flatten, range } from 'lodash'
+import { compact, debounce, filter, find, flatten, range } from 'lodash'
 import { takeUntil } from 'rxjs/operators'
 import { TrianglesService } from '../triangles.service'
 import { DestroyerComponent } from '../../../utils/destroyer.component'
@@ -370,13 +370,55 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
         this.setCounterActivation(counter, !counter.active)
         break
       case 'fill':
-        console.log('fill')
+        this.fill(counter)
         break
+    }
+  }
+
+  private fill(counter) {
+    const replaceColor = counter.color
+    const replaceWithColor = this.color
+
+    if (replaceColor !== replaceWithColor) {
+      let finished = false
+      let aliveCountersNow = []
+      let aliveCountersNext = [counter]
+      const deadCounters = [counter]
+
+      counter.color = replaceWithColor
+      while (!finished) {
+        aliveCountersNow = aliveCountersNext
+        aliveCountersNext = []
+        aliveCountersNow.forEach(aliveCounter => {
+          const adjacentPositions = [
+            {row: aliveCounter.pos.row - 1, col: aliveCounter.pos.col - 1}, {row: aliveCounter.pos.row - 1, col: aliveCounter.pos.col},
+            {row: aliveCounter.pos.row, col: aliveCounter.pos.col - 1}, {row: aliveCounter.pos.row, col: aliveCounter.pos.col + 1},
+            {row: aliveCounter.pos.row + 1, col: aliveCounter.pos.col}, {row: aliveCounter.pos.row + 1, col: aliveCounter.pos.col + 1}
+          ]
+          const adjacentCounters = this.getCountersSafe(adjacentPositions)
+          adjacentCounters.forEach((adjacentCounter: Counter) => {
+            if (!deadCounters.includes(adjacentCounter)) {
+              deadCounters.push(adjacentCounter)
+              if (adjacentCounter.color === replaceColor) {
+                aliveCountersNext.push(adjacentCounter)
+                adjacentCounter.color = replaceWithColor
+              }
+            }
+          })
+        })
+        if (!aliveCountersNext.length) finished = true
+      }
+      this.colorsChange()
     }
   }
 
   private getCounters(positions) {
     return positions.map(pos => this.getCounter(pos.row, pos.col))
+  }
+
+  private getCountersSafe(positions) {
+    const counters = this.getCounters(positions)
+    return compact(counters)
   }
 
   private getCounter(row, col) {
