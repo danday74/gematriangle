@@ -185,4 +185,16 @@ export class TriangleToolboxComponent implements OnInit {
     this.storageService.setItem('triangle-line-direction', direction)
     this.trianglesService.onCycleLineDirections(direction)
   }
+
+  onActivateTriangleSideLeft() {
+    this.trianglesService.onActivateTriangleSide('left')
+  }
+
+  onActivateTriangleSideBase() {
+    this.trianglesService.onActivateTriangleSide('base')
+  }
+
+  onActivateTriangleSideRight() {
+    this.trianglesService.onActivateTriangleSide('right')
+  }
 }

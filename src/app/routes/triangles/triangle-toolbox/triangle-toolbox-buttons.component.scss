@@ -100,6 +100,30 @@ button.triangle-center {
   }
 }
 
+button.triangle-side-left {
+  background: url('/assets/icons/triangle-side-left.png') no-repeat center / $triangleSize, $bootswatchBtnDarkGradient;
+
+  &:hover {
+    background: url('/assets/icons/triangle-side-left.png') no-repeat center / $triangleSize, $bootswatchBtnDarkGradientHover;
+  }
+}
+
+button.triangle-side-base {
+  background: url('/assets/icons/triangle-side-base.png') no-repeat center / $triangleSize, $bootswatchBtnDarkGradient;
+
+  &:hover {
+    background: url('/assets/icons/triangle-side-base.png') no-repeat center / $triangleSize, $bootswatchBtnDarkGradientHover;
+  }
+}
+
+button.triangle-side-right {
+  background: url('/assets/icons/triangle-side-right.png') no-repeat center / $triangleSize, $bootswatchBtnDarkGradient;
+
+  &:hover {
+    background: url('/assets/icons/triangle-side-right.png') no-repeat center / $triangleSize, $bootswatchBtnDarkGradientHover;
+  }
+}
+
 $starOfDavidSize: 16px;
 
 button.triangle-star-of-david {

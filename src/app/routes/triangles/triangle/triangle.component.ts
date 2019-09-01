@@ -84,6 +84,9 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
         case TriangleToolboxMessage.ActivateTriangleCenter:
           this.activateCenter()
           break
+        case TriangleToolboxMessage.ActivateTriangleSide:
+          this.activateSide(message.value)
+          break
         case TriangleToolboxMessage.ChangeColor:
           this.color = message.value
           break
@@ -202,22 +205,10 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     this.colorsChange()
   }
 
-  // not sure if this is useful - remove if not
-  // if used then dont forget to make toggle work
-  activatePerimeter() {
-    console.log('activatePerimeter')
-    const allCounters = flatten(this.rows)
-    const counters = filter(allCounters, (counter: Counter) => {
-      return counter.pos.col === 1 || counter.pos.row === this.rowCount || counter.pos.col === counter.pos.row
-    })
-    counters.forEach((counter: Counter) => {
-      this.setCounterActivation(counter, true)
-    })
-  }
-
   private activateCorners() {
     const positions = [{row: 1, col: 1}, {row: this.rowCount, col: 1}, {row: this.rowCount, col: this.rowCount}]
-    this.completeActivation(positions)
+    const counters = this.getCounters(positions)
+    this.completeActivation(counters)
   }
 
   private activateMidpoints(plus = false) {
@@ -235,7 +226,8 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
       ]
       if (plus) positions = [{row: middle2, col: 2}, {row: middle2, col: middle2 - 1}, {row: this.rowCount - 1, col: middle2 - 1}]
     }
-    this.completeActivation(positions)
+    const counters = this.getCounters(positions)
+    this.completeActivation(counters)
   }
 
   private activateCenter() {
@@ -251,15 +243,30 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
         {row: topCenter.row + 2, col: topCenter.col + 1},
         {row: topCenter.row + 2, col: topCenter.col + 2}]
     }
-    this.completeActivation(positions)
+    const counters = this.getCounters(positions)
+    this.completeActivation(counters)
+  }
+
+  private activateSide(side) {
+    const allCounters = flatten(this.rows)
+    const counters = filter(allCounters, (counter: Counter) => {
+      switch (side) {
+        case 'left':
+          return counter.pos.col === 1
+        case 'right':
+          return counter.pos.row === counter.pos.col
+        case 'base':
+          return counter.pos.row === this.rowCount
+      }
+    })
+    this.completeActivation(counters)
   }
 
   private activateStarOfDavid() {
     console.log('activateStarOfDavid')
   }
 
-  private completeActivation(positions) {
-    const counters = this.getCounters(positions)
+  private completeActivation(counters) {
     const notActivated = find(counters, (counter: Counter) => counter.active !== true)
     counters.forEach((counter: Counter) => {
       this.setCounterActivation(counter, notActivated)
