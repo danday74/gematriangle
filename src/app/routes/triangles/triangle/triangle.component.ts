@@ -73,7 +73,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
           console.log('ActivateStarOfDavid')
           break
         case TriangleToolboxMessage.ActivateTriangleCorners:
-          console.log('ActivateTriangleCorners')
+          this.activateCorners()
           break
         case TriangleToolboxMessage.ActivateTriangleMidpoints:
           console.log('ActivateTriangleMidpoints')
@@ -215,6 +215,17 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     })
   }
 
+  private activateCorners() {
+    const counters = []
+    counters.push(this.getCounter(1, 1))
+    counters.push(this.getCounter(this.rowCount, 1))
+    counters.push(this.getCounter(this.rowCount, this.rowCount))
+    const notActivated = find(counters, (counter: Counter) => counter.active !== true)
+    counters.forEach((counter: Counter) => {
+      this.setCounterActivation(counter, notActivated)
+    })
+  }
+
   private selectMultiples(multiple: number, offset: number) {
     const allCounters = flatten(this.rows)
     const counters = filter(allCounters, (counter: Counter) => {
@@ -222,13 +233,13 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
       return counter.value.minus(offset).mod(multiple).equals(0)
     })
     const notColored = find(counters, (counter: Counter) => counter.color !== this.color)
-    counters.forEach(counter => counter.color = notColored ? this.color : 'appGrey')
+    counters.forEach((counter: Counter) => counter.color = notColored ? this.color : 'appGrey')
   }
 
   private clearActive() {
     const allCounters = flatten(this.rows)
     const counters = filter(allCounters, {active: true})
-    counters.forEach(counter => {
+    counters.forEach((counter: Counter) => {
       this.setCounterActivation(counter, false)
     })
   }
