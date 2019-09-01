@@ -24,6 +24,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
 
   posAdjusts: any
 
+  lineDirection: string
   alignCenter: boolean
   shortLines: boolean
   showValues: boolean
@@ -54,6 +55,8 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     this.alignCenter = storageAlignCenter != null ? storageAlignCenter : true
     this.showValues = storageShowValues != null ? storageShowValues : false
     this.shortLines = storageShortLines != null ? storageShortLines : true
+
+    this.lineDirection = this.storageService.getItem('triangle-line-direction') || 'left-right'
 
     this.spinInterval = setInterval(() => {
       this.countersWaitingToSpin.forEach(counter => {
@@ -100,6 +103,9 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
           break
         case TriangleToolboxMessage.ClearColor:
           this.clearColor()
+          break
+        case TriangleToolboxMessage.CycleLineDirections:
+          this.lineDirection = message.value
           break
         case TriangleToolboxMessage.DrawLines:
           this.drawLines(this.color)

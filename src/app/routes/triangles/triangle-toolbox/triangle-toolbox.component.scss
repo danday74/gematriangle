@@ -90,6 +90,23 @@ $activeColorBorderRadius: 5px;
   opacity: 1;
 }
 
+.hexagon-dots {
+  position: absolute;
+  margin-top: 5px;
+  right: 17px;
+  height: 47px;
+  animation: fader 2s 5s forwards;
+}
+
+@keyframes fader {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
 .select-counter-values {
   margin-bottom: 10px;
 }

@@ -61,6 +61,10 @@ export class TrianglesService {
     this.onTriangleToolboxMessage(TriangleToolboxMessage.ClearColor, null)
   }
 
+  onCycleLineDirections(direction) {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.CycleLineDirections, direction)
+  }
+
   onDrawLines() {
     this.onTriangleToolboxMessage(TriangleToolboxMessage.DrawLines, null)
   }

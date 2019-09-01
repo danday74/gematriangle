@@ -8,6 +8,7 @@ export enum TriangleToolboxMessage {
   ChangeCounterValues = 'change-counter-values',
   ChangeMode = 'change-mode',
   ChangeRowCount = 'change-row-count',
+  CycleLineDirections = 'cycle-line-directions',
   DrawLines = 'draw-lines',
   EraseLines = 'erase-lines',
   ClearActive = 'clear-active',

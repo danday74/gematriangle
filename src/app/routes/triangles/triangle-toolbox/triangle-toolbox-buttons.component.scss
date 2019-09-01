@@ -99,3 +99,21 @@ button.triangle-star-of-david {
     background: url('/assets/icons/star-of-david.png') no-repeat center / $starOfDavidSize, $bootswatchBtnDarkGradientHover;
   }
 }
+
+$sixArrowsSize: 28px;
+
+button.six-arrows-left-right {
+  background: url('/assets/icons/six-arrows-left-right.png') no-repeat center / $sixArrowsSize, $bootswatchBtnDarkGradient;
+
+  &:hover {
+    background: url('/assets/icons/six-arrows-left-right.png') no-repeat center / $sixArrowsSize, $bootswatchBtnDarkGradientHover;
+  }
+}
+
+button.six-arrows-up-down {
+  background: url('/assets/icons/six-arrows-up-down.png') no-repeat center / $sixArrowsSize, $bootswatchBtnDarkGradient;
+
+  &:hover {
+    background: url('/assets/icons/six-arrows-up-down.png') no-repeat center / $sixArrowsSize, $bootswatchBtnDarkGradientHover;
+  }
+}
