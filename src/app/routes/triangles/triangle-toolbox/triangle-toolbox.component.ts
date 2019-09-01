@@ -154,25 +154,25 @@ export class TriangleToolboxComponent implements OnInit {
     if (!this.alignCenter) html.addClass('triangle-align-left')
   }
 
-  onActivateStarOfDavidClick() {
-    this.trianglesService.onActivateStarOfDavid()
+  onStarOfDavidClick() {
+    this.trianglesService.onStarOfDavid()
   }
 
-  onActivateTriangleCornersClick() {
-    this.trianglesService.onActivateTriangleCorners()
+  onTriangleCornersClick() {
+    this.trianglesService.onTriangleCorners()
   }
 
 
-  onActivateTriangleMidpointsClick() {
-    this.trianglesService.onActivateTriangleMidpoints()
+  onTriangleMidpointsClick() {
+    this.trianglesService.onTriangleMidpoints()
   }
 
-  onActivateTriangleMidpointsPlusClick() {
-    this.trianglesService.onActivateTriangleMidpointsPlus()
+  onTriangleMidpointsPlusClick() {
+    this.trianglesService.onTriangleMidpointsPlus()
   }
 
-  onActivateTriangleCenterClick() {
-    this.trianglesService.onActivateTriangleCenter()
+  onTriangleCenterClick() {
+    this.trianglesService.onTriangleCenter()
   }
 
   onCycleLineDirectionsClick() {
@@ -186,19 +186,19 @@ export class TriangleToolboxComponent implements OnInit {
     this.trianglesService.onCycleLineDirections(direction)
   }
 
-  onActivateTrianglePerimeter() {
-    this.trianglesService.onActivateTriangleSide('all')
+  onTrianglePerimeter() {
+    this.trianglesService.onTriangleSide('all')
   }
 
-  onActivateTriangleSideLeft() {
-    this.trianglesService.onActivateTriangleSide('left')
+  onTriangleSideLeft() {
+    this.trianglesService.onTriangleSide('left')
   }
 
-  onActivateTriangleSideBase() {
-    this.trianglesService.onActivateTriangleSide('base')
+  onTriangleSideBase() {
+    this.trianglesService.onTriangleSide('base')
   }
 
-  onActivateTriangleSideRight() {
-    this.trianglesService.onActivateTriangleSide('right')
+  onTriangleSideRight() {
+    this.trianglesService.onTriangleSide('right')
   }
 }

@@ -13,28 +13,28 @@ export class TrianglesService {
     this.triangleToolboxMessageSource.next({name, value})
   }
 
-  onActivateStarOfDavid() {
-    this.onTriangleToolboxMessage(TriangleToolboxMessage.ActivateStarOfDavid, null)
+  onStarOfDavid() {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.StarOfDavid, null)
   }
 
-  onActivateTriangleCorners() {
-    this.onTriangleToolboxMessage(TriangleToolboxMessage.ActivateTriangleCorners, null)
+  onTriangleCorners() {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.TriangleCorners, null)
   }
 
-  onActivateTriangleMidpoints() {
-    this.onTriangleToolboxMessage(TriangleToolboxMessage.ActivateTriangleMidpoints, null)
+  onTriangleMidpoints() {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.TriangleMidpoints, null)
   }
 
-  onActivateTriangleMidpointsPlus() {
-    this.onTriangleToolboxMessage(TriangleToolboxMessage.ActivateTriangleMidpointsPlus, null)
+  onTriangleMidpointsPlus() {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.TriangleMidpointsPlus, null)
   }
 
-  onActivateTriangleCenter() {
-    this.onTriangleToolboxMessage(TriangleToolboxMessage.ActivateTriangleCenter, null)
+  onTriangleCenter() {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.TriangleCenter, null)
   }
 
-  onActivateTriangleSide(side: string) {
-    this.onTriangleToolboxMessage(TriangleToolboxMessage.ActivateTriangleSide, side)
+  onTriangleSide(side: string) {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.TriangleSide, side)
   }
 
   onChangeColor(color: string) {

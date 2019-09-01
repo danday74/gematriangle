@@ -69,23 +69,23 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
       takeUntil(this.unsubscribe$)
     ).subscribe((message) => {
       switch (message.name) {
-        case TriangleToolboxMessage.ActivateStarOfDavid:
-          this.activateStarOfDavid()
+        case TriangleToolboxMessage.StarOfDavid:
+          this.starOfDavid()
           break
-        case TriangleToolboxMessage.ActivateTriangleCorners:
-          this.activateCorners()
+        case TriangleToolboxMessage.TriangleCorners:
+          this.corners()
           break
-        case TriangleToolboxMessage.ActivateTriangleMidpoints:
-          this.activateMidpoints()
+        case TriangleToolboxMessage.TriangleMidpoints:
+          this.midpoints()
           break
-        case TriangleToolboxMessage.ActivateTriangleMidpointsPlus:
-          this.activateMidpoints(true)
+        case TriangleToolboxMessage.TriangleMidpointsPlus:
+          this.midpoints(true)
           break
-        case TriangleToolboxMessage.ActivateTriangleCenter:
-          this.activateCenter()
+        case TriangleToolboxMessage.TriangleCenter:
+          this.center()
           break
-        case TriangleToolboxMessage.ActivateTriangleSide:
-          this.activateSide(message.value)
+        case TriangleToolboxMessage.TriangleSide:
+          this.side(message.value)
           break
         case TriangleToolboxMessage.ChangeColor:
           this.color = message.value
@@ -205,13 +205,13 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     this.colorsChange()
   }
 
-  private activateCorners() {
+  private corners() {
     const positions = [{row: 1, col: 1}, {row: this.rowCount, col: 1}, {row: this.rowCount, col: this.rowCount}]
     const counters = this.getCounters(positions)
-    this.completeActivation(counters)
+    this.complete(counters)
   }
 
-  private activateMidpoints(plus = false) {
+  private midpoints(plus = false) {
     let positions = []
     const isOdd = this.rowCount % 2 === 1
     if (isOdd) {
@@ -227,10 +227,10 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
       if (plus) positions = [{row: middle2, col: 2}, {row: middle2, col: middle2 - 1}, {row: this.rowCount - 1, col: middle2 - 1}]
     }
     const counters = this.getCounters(positions)
-    this.completeActivation(counters)
+    this.complete(counters)
   }
 
-  private activateCenter() {
+  private center() {
     const row = Math.floor(((this.rowCount + 2) / 3) - 1) * 2 + 1
     const topCenter = {row, col: (this.rows[row - 1].length + 1) / 2}
     let positions = [topCenter]
@@ -244,10 +244,10 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
         {row: topCenter.row + 2, col: topCenter.col + 2}]
     }
     const counters = this.getCounters(positions)
-    this.completeActivation(counters)
+    this.complete(counters)
   }
 
-  private activateSide(side) {
+  private side(side) {
     const allCounters = flatten(this.rows)
     const counters = filter(allCounters, (counter: Counter) => {
       switch (side) {
@@ -261,11 +261,16 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
           return counter.pos.col === 1 || counter.pos.row === counter.pos.col || counter.pos.row === this.rowCount
       }
     })
-    this.completeActivation(counters)
+    this.complete(counters)
   }
 
-  private activateStarOfDavid() {
-    console.log('activateStarOfDavid')
+  private starOfDavid() {
+    console.log('starOfDavid')
+  }
+
+  private complete(counters) {
+    if (this.mode === 'line') this.completeActivation(counters)
+    else if (this.mode === 'paint') this.completePainting(counters)
   }
 
   private completeActivation(counters) {
@@ -275,14 +280,19 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     })
   }
 
+  private completePainting(counters) {
+    const notPainted = find(counters, (counter: Counter) => counter.color !== this.color)
+    counters.forEach((counter: Counter) => counter.color = notPainted ? this.color : 'appGrey')
+    this.colorsChange()
+  }
+
   private selectMultiples(multiple: number, offset: number) {
     const allCounters = flatten(this.rows)
     const counters = filter(allCounters, (counter: Counter) => {
       if (counter.value == null) return false
       return counter.value.minus(offset).mod(multiple).equals(0)
     })
-    const notColored = find(counters, (counter: Counter) => counter.color !== this.color)
-    counters.forEach((counter: Counter) => counter.color = notColored ? this.color : 'appGrey')
+    this.completePainting(counters)
   }
 
   private clearActive() {
