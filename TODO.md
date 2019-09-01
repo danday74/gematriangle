@@ -1,9 +1,8 @@
 MAJOR TODOs
 ===========
 
-Icons for triangle buttons
-Code triangle buttons and Star of David
 Fullscreen button
+Code triangle buttons and Star of David
 Code three button with modal
 
 
