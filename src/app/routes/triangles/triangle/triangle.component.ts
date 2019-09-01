@@ -304,7 +304,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
 
   private complete(counters) {
     if (this.mode === 'line') this.completeActivation(counters)
-    else if (this.mode === 'paint') this.completePainting(counters)
+    else this.completePainting(counters)
   }
 
   private completeActivation(counters) {
