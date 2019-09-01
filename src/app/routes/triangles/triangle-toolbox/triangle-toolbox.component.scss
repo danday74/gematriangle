@@ -1,5 +1,6 @@
 .triangle-toolbox {
   background-color: #444;
+  padding-bottom: 7px;
 }
 
 .tea-wrapper {
@@ -109,18 +110,7 @@ $activeColorBorderRadius: 5px;
 }
 
 .select-counter-values {
-  margin-bottom: 10px;
-}
-
-.paint-mode, .fill-mode {
-  .select-counter-values {
-    margin-bottom: 5px;
-  }
-
-  .value-related-buttons {
-    margin-top: 10px;
-    margin-bottom: -3px;
-  }
+  margin-bottom: 8px;
 }
 
 .star {
