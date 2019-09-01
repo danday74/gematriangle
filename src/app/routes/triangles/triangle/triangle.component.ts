@@ -257,6 +257,8 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
           return counter.pos.row === counter.pos.col
         case 'base':
           return counter.pos.row === this.rowCount
+        case 'all':
+          return counter.pos.col === 1 || counter.pos.row === counter.pos.col || counter.pos.row === this.rowCount
       }
     })
     this.completeActivation(counters)

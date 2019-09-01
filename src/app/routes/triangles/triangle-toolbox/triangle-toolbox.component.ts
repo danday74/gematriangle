@@ -186,6 +186,10 @@ export class TriangleToolboxComponent implements OnInit {
     this.trianglesService.onCycleLineDirections(direction)
   }
 
+  onActivateTrianglePerimeter() {
+    this.trianglesService.onActivateTriangleSide('all')
+  }
+
   onActivateTriangleSideLeft() {
     this.trianglesService.onActivateTriangleSide('left')
   }
