@@ -3,7 +3,7 @@ MAJOR TODOs
 
 Code triangle buttons and Star of David
 Code three button with modal
-
+fill mode
 
 
 Check PI is accurate

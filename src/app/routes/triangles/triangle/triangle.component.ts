@@ -216,10 +216,8 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   }
 
   private activateCorners() {
-    const counters = []
-    counters.push(this.getCounter(1, 1))
-    counters.push(this.getCounter(this.rowCount, 1))
-    counters.push(this.getCounter(this.rowCount, this.rowCount))
+    const positions = [{row: 1, col: 1}, {row: this.rowCount, col: 1}, {row: this.rowCount, col: this.rowCount}]
+    const counters = this.getCounters(positions)
     const notActivated = find(counters, (counter: Counter) => counter.active !== true)
     counters.forEach((counter: Counter) => {
       this.setCounterActivation(counter, notActivated)
@@ -227,7 +225,29 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   }
 
   private activateMidpoints(plus = false) {
-    console.log('activateMidpoints', plus)
+    let positions = []
+    const isOdd = this.rowCount % 2 === 1
+    if (isOdd) {
+      const middle = (this.rowCount + 1) / 2
+      positions = [{row: middle, col: 1}, {row: middle, col: middle}, {row: this.rowCount, col: middle}]
+    } else {
+      const middle1 = this.rowCount / 2
+      const middle2 = middle1 + 1
+      positions = [
+        {row: middle1, col: 1}, {row: middle1, col: middle1}, {row: this.rowCount, col: middle1},
+        {row: middle2, col: 1}, {row: middle2, col: middle2}, {row: this.rowCount, col: middle2}
+      ]
+      if (plus) {
+        positions = [
+          {row: middle2, col: 2}, {row: middle2, col: middle2 - 1}, {row: this.rowCount - 1, col: middle2 - 1}
+        ]
+      }
+    }
+    const counters = this.getCounters(positions)
+    const notActivated = find(counters, (counter: Counter) => counter.active !== true)
+    counters.forEach((counter: Counter) => {
+      this.setCounterActivation(counter, notActivated)
+    })
   }
 
   private activateCenter() {
@@ -292,6 +312,10 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
         console.log('fill')
         break
     }
+  }
+
+  private getCounters(positions) {
+    return positions.map(pos => this.getCounter(pos.row, pos.col))
   }
 
   private getCounter(row, col) {
