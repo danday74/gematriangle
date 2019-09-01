@@ -137,6 +137,18 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     })
   }
 
+  // not sure if this is useful - remove if not
+  activatePerimeter() {
+    console.log('activatePerimeter')
+    const allCounters = flatten(this.rows)
+    const counters = filter(allCounters, (counter: Counter) => {
+      return counter.pos.col === 1 || counter.pos.row === this.rowCount || counter.pos.col === counter.pos.row
+    })
+    counters.forEach((counter: Counter) => {
+      counter.active = true
+    })
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes.rowCount && !changes.rowCount.firstChange) {
       if (changes.rowCount.currentValue > changes.rowCount.previousValue) {
