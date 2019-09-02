@@ -1,4 +1,5 @@
 import { Component, HostListener } from '@angular/core'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +10,8 @@ import { Component, HostListener } from '@angular/core'
 export class NavbarComponent {
 
   isFullscreen: boolean
+
+  constructor(public router: Router) {}
 
   @HostListener('window:resize')
   onResize() {

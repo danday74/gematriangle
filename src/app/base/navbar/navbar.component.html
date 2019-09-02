@@ -7,10 +7,15 @@
       <a class="nav-link" routerLink="/triangles">Triangles</a>
     </li>
   </ul>
-  <ul class="navbar-nav">
+  <ul class="navbar-nav navbar-right">
+    <li *ngIf="router.url === '/triangles' || router.url.startsWith('/triangles/')">
+      <a class="list" [routerLink]="['/triangles-list']">
+        <img class="navbar-icon" src="/assets/icons/list.png">
+      </a>
+    </li>
     <ng-container *ngIf="isFullscreen !== true">
       <li>
-        <img class="fullscreen" src="/assets/icons/fullscreen.png" (click)="fullscreen()">
+        <img class="navbar-icon" src="/assets/icons/fullscreen.png" (click)="fullscreen()">
       </li>
     </ng-container>
   </ul>
@@ -25,10 +30,15 @@
       <a class="nav-link" routerLink="/triangles">Triangles</a>
     </li>
   </ul>
-  <ul class="navbar-nav">
+  <ul class="navbar-nav navbar-right">
+    <li>
+      <a class="list" [routerLink]="['/triangles-list']">
+        <img class="navbar-icon" src="/assets/icons/list.png">
+      </a>
+    </li>
     <ng-container *ngIf="isFullscreen !== true">
       <li>
-        <img class="fullscreen" src="/assets/icons/fullscreen.png">
+        <img class="navbar-icon" src="/assets/icons/fullscreen.png">
       </li>
     </ng-container>
   </ul>

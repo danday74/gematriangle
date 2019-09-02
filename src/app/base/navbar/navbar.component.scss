@@ -2,8 +2,14 @@
   background: #444 !important;
 }
 
-.fullscreen {
+.navbar-icon {
   width: 32px;
-  margin-right: 9px;
   cursor: pointer;
+}
+
+.navbar-right {
+  li {
+    margin-right: 8px;
+    margin-left: 15px;
+  }
 }
