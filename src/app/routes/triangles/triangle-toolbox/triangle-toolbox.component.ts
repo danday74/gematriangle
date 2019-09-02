@@ -128,21 +128,22 @@ export class TriangleToolboxComponent extends DestroyerComponent implements OnIn
     this.storageService.setItem('triangle-mode', mode)
   }
 
-  onSelectEvenClick() {
-    this.trianglesService.onSelectEven()
+  onEvenClick() {
+    this.trianglesService.onMultiple(2, 0)
   }
 
-  onSelectOddClick() {
-    this.trianglesService.onSelectOdd()
+  onOddClick() {
+    this.trianglesService.onMultiple(2, 1)
   }
 
-  onSelectOtherClick() {
+  onMultipleClick() {
     const otherValuesModal = this.modalService.open(OtherValuesModalComponent, {backdrop: 'static', keyboard: false, centered: true})
 
+    otherValuesModal.componentInstance.action = this.mode === 'line' ? 'Activate' : 'Paint'
     otherValuesModal.componentInstance.done.pipe(
       takeUntil(this.unsubscribe$)
     ).subscribe(({done, multiple, offset}) => {
-      if (done) this.trianglesService.onSelectOther(multiple, offset)
+      if (done) this.trianglesService.onMultiple(multiple, offset)
       otherValuesModal.close()
     })
   }

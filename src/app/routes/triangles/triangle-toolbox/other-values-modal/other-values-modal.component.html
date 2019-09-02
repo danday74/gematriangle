@@ -1,19 +1,22 @@
 <!--suppress AngularUndefinedBinding -->
-<app-reusable-modal modalTitle="Select Counters with Other Values" imgSrc="/assets/icons/three-grey.png" (cancel)="onCancel()">
+<app-reusable-modal modalTitle="{{ action }} Counters with Other Values" imgSrc="/assets/icons/three-grey.png" (cancel)="onCancel()">
   <div modal-section="body">
     <div class="select-every">
-      <span>Select every</span>
-      <span class="spinner-wrapper">
-        <p-spinner maxlength="4" [size]="5" [min]="1" [max]="1001" [(ngModel)]="multiple"
-                   [inputStyle]="{'padding': '0 5px', 'font-size': '18px'}"></p-spinner>
-      </span>
-      <span>counters</span>
-      <span>&nbsp;</span>
-      <span>with offset</span>
-      <span class="spinner-wrapper">
-        <p-spinner maxlength="4" [size]="5" [min]="0" [max]="1001" [(ngModel)]="offset"
-                   [inputStyle]="{'padding': '0 5px', 'font-size': '18px'}"></p-spinner>
-      </span>
+      <p>
+        <span>{{ action }} every counter whose value is</span>
+      </p>
+      <p>
+        <span>a multiple of</span>
+        <span class="spinner-wrapper">
+          <p-spinner maxlength="4" [size]="5" [min]="1" [max]="1001" [(ngModel)]="multiple"
+                     [inputStyle]="{'padding': '0 5px', 'font-size': '18px'}"></p-spinner>
+        </span>
+        <span>with offset</span>
+        <span class="spinner-wrapper">
+          <p-spinner maxlength="4" [size]="5" [min]="0" [max]="1001" [(ngModel)]="offset"
+                     [inputStyle]="{'padding': '0 5px', 'font-size': '18px'}"></p-spinner>
+        </span>
+      </p>
     </div>
   </div>
   <div modal-section="footer">

@@ -8,6 +8,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 
 export class OtherValuesModalComponent implements OnInit {
   @Output() done = new EventEmitter<{ done: boolean, multiple: number, offset: number }>()
+  action: string
   multiple = 3
   offset = 0
 

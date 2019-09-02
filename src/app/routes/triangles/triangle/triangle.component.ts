@@ -116,10 +116,8 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
         case TriangleToolboxMessage.EraseLines:
           this.drawLines('appGrey')
           break
-        case TriangleToolboxMessage.SelectEven:
-        case TriangleToolboxMessage.SelectOdd:
-        case TriangleToolboxMessage.SelectOther:
-          this.selectMultiples(message.value.multiple, message.value.offset)
+        case TriangleToolboxMessage.Multiple:
+          this.multiples(message.value.multiple, message.value.offset)
           break
         case TriangleToolboxMessage.ToggleAlign:
           this.alignCenter = message.value
@@ -315,13 +313,13 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     this.colorsChange()
   }
 
-  private selectMultiples(multiple: number, offset: number) {
+  private multiples(multiple: number, offset: number) {
     const allCounters = flatten(this.rows)
     const counters = filter(allCounters, (counter: Counter) => {
       if (counter.value == null) return false
       return counter.value.minus(offset).mod(multiple).equals(0)
     })
-    this.completePainting(counters)
+    this.complete(counters)
   }
 
   private clearActive() {

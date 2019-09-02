@@ -166,9 +166,9 @@
             </button>
           </div>
           <div class="btn-group mr-2 mb-2" role="group">
-            <button class="btn btn-dark btn-sm image-icon odd" title="Select Counters with Odd Values" (click)="onSelectOddClick()"></button>
-            <button class="btn btn-dark btn-sm image-icon even" title="Select Counters with Even Values" (click)="onSelectEvenClick()"></button>
-            <button class="btn btn-dark btn-sm image-icon three" title="Select Counters with Other Values" (click)="onSelectOtherClick()"></button>
+            <button class="btn btn-dark btn-sm image-icon odd" [title]="(mode === 'line' ? 'Activate' : 'Paint') + ' Counters with Odd Values'" (click)="onOddClick()"></button>
+            <button class="btn btn-dark btn-sm image-icon even" [title]="(mode === 'line' ? 'Activate' : 'Paint') + ' Counters with Even Values'" (click)="onEvenClick()"></button>
+            <button class="btn btn-dark btn-sm image-icon three" [title]="(mode === 'line' ? 'Activate' : 'Paint') + ' Counters with Other Values'" (click)="onMultipleClick()"></button>
           </div>
         </div>
       </div>

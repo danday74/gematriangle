@@ -15,9 +15,7 @@ export enum TriangleToolboxMessage {
   ClearActive = 'clear-active',
   ClearAll = 'clear-all',
   ClearColor = 'clear-color',
-  SelectEven = 'select-even',
-  SelectOdd = 'select-odd',
-  SelectOther = 'select-other',
+  Multiple = 'multiple',
   ToggleAlign = 'toggle-align',
   ToggleLineLength = 'toggle-line-length',
   ToggleShowValues = 'toggle-show-values'

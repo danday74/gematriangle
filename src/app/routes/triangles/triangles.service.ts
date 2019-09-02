@@ -89,15 +89,7 @@ export class TrianglesService {
     this.onTriangleToolboxMessage(TriangleToolboxMessage.ToggleShowValues, showValues)
   }
 
-  onSelectEven() {
-    this.onTriangleToolboxMessage(TriangleToolboxMessage.SelectEven, {multiple: 2, offset: 0})
-  }
-
-  onSelectOdd() {
-    this.onTriangleToolboxMessage(TriangleToolboxMessage.SelectOdd, {multiple: 2, offset: 1})
-  }
-
-  onSelectOther(multiple, offset) {
-    this.onTriangleToolboxMessage(TriangleToolboxMessage.SelectOther, {multiple, offset})
+  onMultiple(multiple, offset) {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.Multiple, {multiple, offset})
   }
 }
