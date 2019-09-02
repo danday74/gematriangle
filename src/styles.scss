@@ -71,8 +71,11 @@ button.btn-lg.image-icon {
   animation: fa-spin 8s infinite linear;
 }
 
-.table.table-hover tr:hover {
-  background-color: #edf6f9;
+.table.table-hover tbody tr:hover {
+  color: #444 !important;
+  background-color: #edf6f9 !important;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .modal-content {

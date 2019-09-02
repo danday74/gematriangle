@@ -1,8 +1,7 @@
 MAJOR TODOs
 ===========
 
-favicon
-Cursor hover on table rows
+Make it forever
 One third points (like midpoints)? these are Hexagon points?
 Alerts min number
 Alerts stop repeating same one when triangle resized or something! also no repeat for 1 min for low priority alerts?
