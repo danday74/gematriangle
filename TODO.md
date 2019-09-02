@@ -12,10 +12,16 @@ GOTTA BE DONE
 =============
 
 Save
+Re-enable alerting
 
 MAYBES
 ======
 
+Efficiency (allows higher T numbers)
+Print
+Save
+Gallery
+Pick color
 Good way to sync active counters - remove class and add on 2 secs - not spinning in unison and not spinning centrally - see Sierpinski odd even activations - possibly bigger ones are central
 Add more colors - footer increases in size if more than 6 colors? will footer overlap?
 Custom colors?

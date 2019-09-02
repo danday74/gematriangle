@@ -53,11 +53,11 @@ export class NumberComponent implements OnInit, OnChanges {
   }
 
   private alert(special, source) {
-    if (special) {
-      const title = `<strong>${special.number}</strong> for <strong>${source}</strong>`
-      const msg = special.reason
-      this.toastr.info(title + '<br>' + msg)
-    }
+    // if (special) {
+    //   const title = `<strong>${special.number}</strong> for <strong>${source}</strong>`
+    //   const msg = special.reason
+    //   this.toastr.info(title + '<br>' + msg)
+    // }
   }
 
   private reverseNumber(num: Decimal) {
