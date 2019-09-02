@@ -19,4 +19,3 @@ export class ReusableModalComponent implements OnInit {
     this.cancel.emit(true)
   }
 }
-modal.module.ts
