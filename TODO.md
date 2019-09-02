@@ -1,7 +1,6 @@
 MAJOR TODOs
 ===========
 
-Make it forever - https://github.com/mydansboo/guitar/blob/master/package.json
 One third points (like midpoints)? these are Hexagon points?
 Check PI and all data is accurate - add more to Gen1v1 - add John 1v1 (std and ordinal) - constant e - golden ratio
 Tidy number data
