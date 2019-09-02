@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node --max-old-space-size=4096 node_modules/@angular/cli/bin/ng serve -o",
+    "startprod": "node --max-old-space-size=4096 --port=80 node_modules/@angular/cli/bin/ng serve -o",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
