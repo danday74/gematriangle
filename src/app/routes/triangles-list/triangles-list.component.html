@@ -1,11 +1,11 @@
 <div class="triangles-list">
-  <table class="table table-striped table-hover table-sm">
-    <thead class="thead-dark">
+  <table class="table table-striped table-hover table-sm table-dark">
+    <thead>
     <tr>
       <th></th>
       <th class="text-right">Perimeter</th>
       <th class="text-right">Counters</th>
-      <th class="text-right">Star of David</th>
+      <th class="text-right last-col">Star of David</th>
     </tr>
     </thead>
     <tbody>
@@ -14,7 +14,7 @@
         <td class="text-right"><strong>T{{ triangle.T }}</strong></td>
         <td class="text-right">{{ triangle.perimeter }}</td>
         <td class="text-right">{{ triangle.counters }}</td>
-        <td class="text-right">
+        <td class="text-right last-col">
           <ng-container *ngIf="triangle.starOfDavid">
             ST{{ triangle.starOfDavid }} ({{ triangle.starCounters }} counters)
           </ng-container>
