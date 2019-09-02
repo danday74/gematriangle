@@ -117,14 +117,9 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
           this.drawLines('appGrey')
           break
         case TriangleToolboxMessage.SelectEven:
-          this.selectMultiples(2, 0)
-          break
         case TriangleToolboxMessage.SelectOdd:
-          this.selectMultiples(2, 1)
-          break
         case TriangleToolboxMessage.SelectOther:
-          console.log('SelectOther', message.value)
-          // this.selectMultiples(2, 1)
+          this.selectMultiples(message.value.multiple, message.value.offset)
           break
         case TriangleToolboxMessage.ToggleAlign:
           this.alignCenter = message.value

@@ -141,10 +141,10 @@ export class TriangleToolboxComponent extends DestroyerComponent implements OnIn
 
     otherValuesModal.componentInstance.done.pipe(
       takeUntil(this.unsubscribe$)
-    ).subscribe(() => {
+    ).subscribe(({done, multiple, offset}) => {
+      if (done) this.trianglesService.onSelectOther(multiple, offset)
       otherValuesModal.close()
     })
-    this.trianglesService.onSelectOther()
   }
 
   onToggleShowValues() {

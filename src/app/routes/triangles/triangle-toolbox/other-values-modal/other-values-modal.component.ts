@@ -7,18 +7,19 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 })
 
 export class OtherValuesModalComponent implements OnInit {
-
-  @Output() done = new EventEmitter<boolean>()
+  @Output() done = new EventEmitter<{ done: boolean, multiple: number, offset: number }>()
+  multiple = 3
+  offset = 0
 
   constructor() {}
 
   ngOnInit() {}
 
   onCancel() {
-    this.done.emit(false)
+    this.done.emit({done: false, multiple: null, offset: null})
   }
 
   onApply() {
-    this.done.emit(true)
+    this.done.emit({done: true, multiple: this.multiple, offset: this.offset})
   }
 }

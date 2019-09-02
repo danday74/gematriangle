@@ -90,14 +90,14 @@ export class TrianglesService {
   }
 
   onSelectEven() {
-    this.onTriangleToolboxMessage(TriangleToolboxMessage.SelectEven, null)
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.SelectEven, {multiple: 2, offset: 0})
   }
 
   onSelectOdd() {
-    this.onTriangleToolboxMessage(TriangleToolboxMessage.SelectOdd, null)
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.SelectOdd, {multiple: 2, offset: 1})
   }
 
-  onSelectOther() {
-    this.onTriangleToolboxMessage(TriangleToolboxMessage.SelectOther, null)
+  onSelectOther(multiple, offset) {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.SelectOther, {multiple, offset})
   }
 }
