@@ -1,22 +1,35 @@
 MAJOR TODOs
 ===========
 
+Modes should be tabs not buttons
+T90 Pascal Value bug
+ALLOW BIG TRIANGLE WHEN NO VALUES DISPLAYED
+ZOOM ICON FOR BIG TRIANGLE?
+LIST OF ALL BIBLE CHAPTERS, DO THEY HAVE ODD OR EVEN LETTER COUNT?
+GEN 1:1 - use letter values to form other values - e.g. word values, think of values used to make PI from Gen 1:1
+Max row is 251 should be 250
 Check PI and all data is accurate - add more to Gen1v1 - add John 1v1 (std and ordinal) - constant e - golden ratio
+Undo / Redo
 
 GOTTA BE DONE
 =============
 
+In list, highlight current T
+Help - e.g. What does flipped mean, info on list, what does offset mean, what does the spider web thing mean
+Fill mode same as paint mode?
 Save
 Re-enable alerting
 Alerts min number
 Alerts stop repeating same one when triangle resized or something! also no repeat for 1 min for low priority alerts?
 Alerts - tidy number data
 One third points (like midpoints)? these are Hexagon points?
+All data in one folder
 
 MAYBES
 ======
 
 Efficiency (allows higher T numbers)
+Active patterns - e.g. patterns grow as you grow the triangle
 Print
 Save
 Gallery
@@ -36,5 +49,4 @@ hide numbers when spinning? or stop numbers spinning?
 multiple values selector - e.g. gen1v1 + pi + pascal OR gen1v1 * ordinal * pi - etc
 activate all counters with val X
 SUM individual digits option - once or repeat until one digit
-
-
+Fill cursors - and other cursors
