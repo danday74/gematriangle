@@ -16,6 +16,7 @@ Save
 MAYBES
 ======
 
+Good way to sync active counters - remove class and add on 2 secs - not spinning in unison and not spinning centrally - see Sierpinski odd even activations
 Add more colors - footer increases in size if more than 6 colors? will footer overlap?
 Custom colors?
 When triangle size down and then back up, should remember removed rows?
@@ -26,7 +27,6 @@ Highlight dots with special numbers attached?
 Actives should be bigger?
 Numbers calculator
 Comment box
-good way to sync active counters - remove class and add on 2 secs
 hide numbers when spinning? or stop numbers spinning?
 multiple values selector - e.g. gen1v1 + pi + pascal OR gen1v1 * ordinal * pi - etc
 activate all counters with val X
