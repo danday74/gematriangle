@@ -1,9 +1,7 @@
 MAJOR TODOs
 ===========
 
-One third points (like midpoints)? these are Hexagon points?
 Check PI and all data is accurate - add more to Gen1v1 - add John 1v1 (std and ordinal) - constant e - golden ratio
-Tidy number data
 
 GOTTA BE DONE
 =============
@@ -12,6 +10,8 @@ Save
 Re-enable alerting
 Alerts min number
 Alerts stop repeating same one when triangle resized or something! also no repeat for 1 min for low priority alerts?
+Alerts - tidy number data
+One third points (like midpoints)? these are Hexagon points?
 
 MAYBES
 ======
