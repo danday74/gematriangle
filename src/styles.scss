@@ -70,3 +70,7 @@ button.btn-lg.image-icon {
 .fa-spin-slow {
   animation: fa-spin 8s infinite linear;
 }
+
+.table.table-hover tr:hover {
+  background-color: #edf6f9;
+}
