@@ -1,7 +1,7 @@
 MAJOR TODOs
 ===========
 
-Make it forever
+Make it forever - https://github.com/mydansboo/guitar/blob/master/package.json
 One third points (like midpoints)? these are Hexagon points?
 Alerts min number
 Alerts stop repeating same one when triangle resized or something! also no repeat for 1 min for low priority alerts?
