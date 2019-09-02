@@ -1,0 +1,19 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">
+      <ng-container *ngIf="imgSrc">
+        <img class="title-image" [src]="imgSrc">
+      </ng-container>
+      <span>{{ modalTitle }}</span>
+    </h5>
+    <button type="button" class="close" (click)="onCancelClick()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <ng-content select="[modal-section=body]"></ng-content>
+  </div>
+  <div class="modal-footer">
+    <ng-content select="[modal-section=footer]"></ng-content>
+  </div>
+</div>

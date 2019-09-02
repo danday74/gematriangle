@@ -7,6 +7,10 @@ import { StorageService } from '../../../services/storage.service'
 import { TriangleCounterValues } from '../triangle/triangle-counter-values.enum'
 import * as $ from 'jquery'
 import { Location } from '@angular/common'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { OtherValuesModalComponent } from './other-values-modal/other-values-modal.component'
+import { DestroyerComponent } from '../../../utils/destroyer.component'
+import { takeUntil } from 'rxjs/operators'
 
 @Component({
   selector: 'app-triangle-toolbox',
@@ -14,7 +18,7 @@ import { Location } from '@angular/common'
   styleUrls: ['./triangle-toolbox.component.scss', './triangle-toolbox-buttons.component.scss']
 })
 
-export class TriangleToolboxComponent implements OnInit {
+export class TriangleToolboxComponent extends DestroyerComponent implements OnInit {
 
   @Input() rowCount: number
   alignCenter: boolean
@@ -41,7 +45,9 @@ export class TriangleToolboxComponent implements OnInit {
 
   counterValuesOption: any
 
-  constructor(private trianglesService: TrianglesService, private storageService: StorageService, private location: Location) {
+  constructor(private trianglesService: TrianglesService, private storageService: StorageService, private location: Location,
+              private modalService: NgbModal) {
+    super()
     this.onChangeRowCount = debounce(this.onChangeRowCount, 500, {leading: false, trailing: true})
   }
 
@@ -131,7 +137,13 @@ export class TriangleToolboxComponent implements OnInit {
   }
 
   onSelectOtherClick() {
-    // TODO: modal stuff here
+    const otherValuesModal = this.modalService.open(OtherValuesModalComponent, {backdrop: 'static', keyboard: false, centered: true})
+
+    otherValuesModal.componentInstance.done.pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe(() => {
+      otherValuesModal.close()
+    })
     this.trianglesService.onSelectOther()
   }
 

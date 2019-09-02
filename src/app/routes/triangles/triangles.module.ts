@@ -10,24 +10,33 @@ import { DropdownModule } from 'primeng/dropdown'
 import { FormsModule } from '@angular/forms'
 import { SpinnerModule } from 'primeng/primeng'
 import { BaseModule } from '../../base/base.module'
-import { ColorModule } from '../../reusable/color/color.module'
+import { ColorModule } from '../../reusable/color/color.module';
+import { OtherValuesModalComponent } from './triangle-toolbox/other-values-modal/other-values-modal.component'
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap'
+import { ModalModule } from '../../reusable/modal/modal.module'
 
 @NgModule({
   declarations: [
     TrianglesComponent,
     TriangleComponent,
     TriangleToolboxComponent,
-    TriangleStatsComponent
+    TriangleStatsComponent,
+    OtherValuesModalComponent
   ],
   imports: [
     CommonModule,
     TrianglesRoutingModule,
+    NgbModalModule,
     NumberModule,
     DropdownModule,
     FormsModule,
     SpinnerModule,
     BaseModule,
-    ColorModule
+    ColorModule,
+    ModalModule
+  ],
+  entryComponents: [
+    OtherValuesModalComponent
   ]
 })
 
