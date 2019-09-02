@@ -2,7 +2,6 @@ MAJOR TODOs
 ===========
 
 Code three button with modal
-list of triangles
 
 
 
