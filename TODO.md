@@ -1,12 +1,12 @@
 MAJOR TODOs
 ===========
 
+Cursor hover on table rows
 One third points (like midpoints)? these are Hexagon points?
 Alerts min number
 Alerts stop repeating same one when triangle resized or something! also no repeat for 1 min for low priority alerts?
 Check PI and all data is accurate - add more to Gen1v1 - add John 1v1 (std and ordinal) - constant e - golden ratio
 Tidy number data
-Deploy
 
 GOTTA BE DONE
 =============
