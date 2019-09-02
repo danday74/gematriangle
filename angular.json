@@ -79,8 +79,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "gematria:build",
-            "host": "0.0.0.0"
+            "browserTarget": "gematria:build"
           },
           "configurations": {
             "production": {
