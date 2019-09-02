@@ -1,6 +1,7 @@
 MAJOR TODOs
 ===========
 
+favicon
 Cursor hover on table rows
 One third points (like midpoints)? these are Hexagon points?
 Alerts min number
