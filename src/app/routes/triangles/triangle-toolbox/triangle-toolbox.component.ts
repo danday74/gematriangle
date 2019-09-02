@@ -6,6 +6,7 @@ import { debounce } from 'lodash'
 import { StorageService } from '../../../services/storage.service'
 import { TriangleCounterValues } from '../triangle/triangle-counter-values.enum'
 import * as $ from 'jquery'
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-triangle-toolbox',
@@ -40,7 +41,7 @@ export class TriangleToolboxComponent implements OnInit {
 
   counterValuesOption: any
 
-  constructor(private trianglesService: TrianglesService, private storageService: StorageService) {
+  constructor(private trianglesService: TrianglesService, private storageService: StorageService, private location: Location) {
     this.onChangeRowCount = debounce(this.onChangeRowCount, 500, {leading: false, trailing: true})
   }
 
@@ -98,6 +99,7 @@ export class TriangleToolboxComponent implements OnInit {
 
   onChangeRowCount(rowCount) {
     rowCount = rowCount || 1
+    this.location.replaceState('/triangles/' + rowCount)
     if (rowCount !== this.rowCount) this.trianglesService.onChangeRowCount(rowCount)
   }
 
