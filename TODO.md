@@ -16,6 +16,8 @@ Save
 MAYBES
 ======
 
+Add more colors - footer increases in size if more than 6 colors? will footer overlap?
+Custom colors?
 When triangle size down and then back up, should remember removed rows?
 Save triangle on refresh?
 Moving actives?
