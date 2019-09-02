@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ReusableModalComponent } from './reusable-modal/reusable-modal.component';
-
-
+import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { ReusableModalComponent } from './reusable-modal/reusable-modal.component'
 
 @NgModule({
-  declarations: [ReusableModalComponent],
+  declarations: [
+    ReusableModalComponent
+  ],
   exports: [
     ReusableModalComponent
   ],
@@ -13,4 +13,5 @@ import { ReusableModalComponent } from './reusable-modal/reusable-modal.componen
     CommonModule
   ]
 })
-export class ModalModule { }
+
+export class ModalModule {}
