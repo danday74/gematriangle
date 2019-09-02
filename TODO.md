@@ -16,7 +16,7 @@ Save
 MAYBES
 ======
 
-Good way to sync active counters - remove class and add on 2 secs - not spinning in unison and not spinning centrally - see Sierpinski odd even activations
+Good way to sync active counters - remove class and add on 2 secs - not spinning in unison and not spinning centrally - see Sierpinski odd even activations - possibly bigger ones are central
 Add more colors - footer increases in size if more than 6 colors? will footer overlap?
 Custom colors?
 When triangle size down and then back up, should remember removed rows?
