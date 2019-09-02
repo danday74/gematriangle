@@ -26,17 +26,22 @@ export class TrianglesComponent extends DestroyerComponent implements OnInit {
 
     if (routeRowCount) {
       routeRowCount = parseInt(routeRowCount, 10)
-      this.storageService.setItem('row-count', routeRowCount)
+      this.saveRowCount(routeRowCount)
+      this.rowCount = routeRowCount
+    } else {
+      this.rowCount = this.storageService.getItem('row-count') || 37
     }
-
-    this.rowCount = this.storageService.getItem('row-count') || 37
 
     this.trianglesService.triangleToolboxMessage$.pipe(
       takeUntil(this.unsubscribe$),
       filter(message => message.name === TriangleToolboxMessage.ChangeRowCount)
     ).subscribe((message) => {
       this.rowCount = message.value
-      this.storageService.setItem('row-count', this.rowCount)
+      this.saveRowCount(this.rowCount)
     })
+  }
+
+  saveRowCount(rowCount) {
+    this.storageService.setItem('row-count', rowCount > 120 ? 120 : rowCount)
   }
 }
