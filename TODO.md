@@ -1,6 +1,7 @@
 MAJOR TODOs
 ===========
 
+Total value for triangle
 Modes should be tabs not buttons
 T90 Pascal Value bug
 ALLOW BIG TRIANGLE WHEN NO VALUES DISPLAYED
@@ -10,6 +11,7 @@ GEN 1:1 - use letter values to form other values - e.g. word values, think of va
 Max row is 251 should be 250
 Check PI and all data is accurate - add more to Gen1v1 - add John 1v1 (std and ordinal) - constant e - golden ratio
 Undo / Redo
+Google analytics
 
 GOTTA BE DONE
 =============
@@ -28,11 +30,12 @@ All data in one folder
 MAYBES
 ======
 
+Active areas ... e.g. color even dots in active area only?
+Line drawing for RA triangle?
 Efficiency (allows higher T numbers)
 Active patterns - e.g. patterns grow as you grow the triangle
 Print
 Save
-Gallery
 Pick color
 Good way to sync active counters - remove class and add on 2 secs - not spinning in unison and not spinning centrally - see Sierpinski odd even activations - possibly bigger ones are central
 Add more colors - footer increases in size if more than 6 colors? will footer overlap?
@@ -50,3 +53,9 @@ multiple values selector - e.g. gen1v1 + pi + pascal OR gen1v1 * ordinal * pi - 
 activate all counters with val X
 SUM individual digits option - once or repeat until one digit
 Fill cursors - and other cursors
+
+REQUIRES BE
+===========
+
+Link to share a triangle
+Gallery
