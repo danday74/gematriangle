@@ -1,5 +1,9 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core'
 import { triangle } from '../../../utils/triangle'
+import { TrianglesService } from '../triangles.service'
+import { DestroyerComponent } from '../../../utils/destroyer.component'
+import { takeUntil } from 'rxjs/operators'
+import Decimal from 'decimal.js'
 
 @Component({
   selector: 'app-triangle-stats',
@@ -7,17 +11,27 @@ import { triangle } from '../../../utils/triangle'
   styleUrls: ['./triangle-stats.component.scss']
 })
 
-export class TriangleStatsComponent implements OnInit, OnChanges {
+export class TriangleStatsComponent extends DestroyerComponent implements OnInit, OnChanges {
 
   @Input() rowCount: number
   perimeter: number
   counters: number
+  value: Decimal
 
-  constructor() {}
+  constructor(private trianglesService: TrianglesService) {
+    super()
+  }
 
   ngOnInit() {
     this.setPerimeter(this.rowCount)
     this.setCounters(this.rowCount)
+    this.value = null
+
+    this.trianglesService.totalValueUpdated$.pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe(value => {
+      this.value = value
+    })
   }
 
   ngOnChanges(changes: SimpleChanges) {

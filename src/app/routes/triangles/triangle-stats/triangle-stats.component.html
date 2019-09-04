@@ -9,5 +9,11 @@
     <div class="number">
       <app-number [source]="'T' + rowCount + ' counters'" [n]="counters"></app-number>
     </div>
+    <ng-container *ngIf="value != null">
+      <div class="heading">Value</div>
+      <div class="number">
+        <app-number [source]="'T' + rowCount + ' value'" [n]="value"></app-number>
+      </div>
+    </ng-container>
   </div>
 </div>

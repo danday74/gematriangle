@@ -40,6 +40,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
               private colorService: ColorService, private storageService: StorageService) {
     super()
     this.colorsChange = debounce(this.colorsChange, 300, {leading: false, trailing: true})
+    this.updateTotalValue = debounce(this.updateTotalValue, 300, {leading: false, trailing: true})
   }
 
   ngOnInit() {
@@ -153,6 +154,20 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   ngOnDestroy() {
     clearInterval(this.spinInterval)
     super.ngOnDestroy()
+  }
+
+  private updateTotalValue() {
+    let totalValue
+    const allCounters = flatten(this.rows)
+    const counters = allCounters.filter(counter => counter.value != null)
+    if (counters.length === 0) {
+      totalValue = null
+    } else {
+      totalValue = counters.reduce((acc, counter) => {
+        return acc = acc.plus(counter.value)
+      }, bignumber(0))
+    }
+    this.trianglesService.onTotalValueUpdated(totalValue)
   }
 
   private drawLines(color) {
@@ -349,6 +364,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     allCounters.forEach(counter => {
       counter.value = this.triangleCounterValueService.getCounterValue(counter, this.counterValues)
     })
+    this.updateTotalValue()
     this.colorsChange()
   }
 
@@ -446,9 +462,11 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
       counters.push(counter)
     }
     this.rows.push(counters)
+    this.updateTotalValue()
   }
 
   private removeRow() {
     this.rows.pop()
+    this.updateTotalValue()
   }
 }

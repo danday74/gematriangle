@@ -2,12 +2,16 @@ import { Injectable } from '@angular/core'
 import { Subject } from 'rxjs'
 import { TriangleToolboxMessage } from './triangle-toolbox/triangle-toolbox-message.enum'
 import { TriangleCounterValues } from './triangle/triangle-counter-values.enum'
+import Decimal from 'decimal.js'
 
 @Injectable({providedIn: 'root'})
 export class TrianglesService {
 
   private triangleToolboxMessageSource = new Subject<{ name: TriangleToolboxMessage, value: any }>()
   triangleToolboxMessage$ = this.triangleToolboxMessageSource.asObservable()
+
+  private totalValueUpdatedSource = new Subject<Decimal>()
+  totalValueUpdated$ = this.totalValueUpdatedSource.asObservable()
 
   private onTriangleToolboxMessage(name: TriangleToolboxMessage, value: any) {
     this.triangleToolboxMessageSource.next({name, value})
@@ -91,5 +95,9 @@ export class TrianglesService {
 
   onMultiple(multiple, offset) {
     this.onTriangleToolboxMessage(TriangleToolboxMessage.Multiple, {multiple, offset})
+  }
+
+  onTotalValueUpdated(value: Decimal) {
+    this.totalValueUpdatedSource.next(value)
   }
 }
