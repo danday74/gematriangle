@@ -83,8 +83,8 @@
     <ng-container>
       <hr class="sep2">
       <!-- Function buttons -->
-      <div class="btn-toolbar" role="toolbar">
-        <ng-container *ngIf="mode === 'line'">
+      <ng-container *ngIf="mode === 'line'">
+        <div class="btn-toolbar" role="toolbar">
           <div class="btn-group mr-2 mb-2" role="group">
             <button class="btn btn-dark btn-lg" title="Draw Lines" (click)="onDrawLinesClick()">
               <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
@@ -102,21 +102,31 @@
               <i class="fa fa-eraser" aria-hidden="true"></i>
             </button>
           </div>
-        </ng-container>
+        </div>
+        <hr class="sep2">
+      </ng-container>
+
+      <div class="btn-toolbar" role="toolbar">
         <div class="btn-group mr-2 mb-2" role="group">
+          <button class="btn btn-dark btn-sm image-icon triangle-center" [title]="(mode === 'line' ? 'Activate' : 'Paint') + ' Triangle Center'"
+                  (click)="onTriangleCenterClick()"></button>
           <button class="btn btn-dark btn-sm image-icon triangle-corners" [title]="(mode === 'line' ? 'Activate' : 'Paint') + ' Triangle Corners'"
                   (click)="onTriangleCornersClick()"></button>
           <button class="btn btn-dark btn-sm image-icon triangle-midpoints" [title]="(mode === 'line' ? 'Activate' : 'Paint') + ' Triangle Midpoints'"
                   (click)="onTriangleMidpointsClick()"></button>
-          <button class="btn btn-dark btn-sm image-icon triangle-midpoints-plus" [title]="(mode === 'line' ? 'Activate' : 'Paint') + ' Triangle Midpoints Plus'"
-                  (click)="onTriangleMidpointsPlusClick()"></button>
-          <button class="btn btn-dark btn-sm image-icon triangle-center" [title]="(mode === 'line' ? 'Activate' : 'Paint') + ' Triangle Center'"
-                  (click)="onTriangleCenterClick()"></button>
+          <ng-container *ngIf="rowCount % 2 === 0">
+            <button class="btn btn-dark btn-sm image-icon triangle-midpoints-plus"
+                    [title]="(mode === 'line' ? 'Activate' : 'Paint') + ' Triangle Midpoints Plus'"
+                    (click)="onTriangleMidpointsPlusClick()"></button>
+          </ng-container>
           <ng-container *ngIf="starOfDavid">
             <button class="btn btn-dark btn-sm image-icon triangle-star-of-david" [title]="(mode === 'line' ? 'Activate' : 'Paint') + ' Star of David'"
                     (click)="onStarOfDavidClick()"></button>
           </ng-container>
         </div>
+      </div>
+
+      <div class="btn-toolbar" role="toolbar">
         <div class="btn-group mr-2 mb-2" role="group">
           <button class="btn btn-dark btn-sm image-icon triangle-side-all" [title]="(mode === 'line' ? 'Activate' : 'Paint') + ' Triangle Perimeter'"
                   (click)="onTrianglePerimeter()"></button>
