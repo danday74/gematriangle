@@ -12,7 +12,6 @@ Google analytics
 GOTTA BE DONE
 =============
 
-In list, highlight current T
 Help - e.g. What does flipped mean, info on list, what does offset mean, what does the spider web thing mean
 Fill mode same as paint mode?
 Save

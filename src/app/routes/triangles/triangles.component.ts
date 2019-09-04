@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core'
 import { DestroyerComponent } from '../../utils/destroyer.component'
 import { TrianglesService } from './triangles.service'
 import { filter, takeUntil } from 'rxjs/operators'
-import { StorageService } from '../../services/storage.service'
+import { StorageService } from '../../services/storage/storage.service'
 import { TriangleToolboxMessage } from './triangle-toolbox/triangle-toolbox-message.enum'
 import { ActivatedRoute } from '@angular/router'
+import { AppConfigService } from '../../services/app-config/app-config.service'
 
 @Component({
   selector: 'app-triangles',
@@ -16,7 +17,8 @@ export class TrianglesComponent extends DestroyerComponent implements OnInit {
 
   rowCount: number
 
-  constructor(private route: ActivatedRoute, private trianglesService: TrianglesService, private storageService: StorageService) {
+  constructor(private route: ActivatedRoute, private trianglesService: TrianglesService, private storageService: StorageService,
+              private appConfigService: AppConfigService) {
     super()
   }
 
@@ -29,7 +31,7 @@ export class TrianglesComponent extends DestroyerComponent implements OnInit {
       this.saveRowCount(routeRowCount)
       this.rowCount = routeRowCount
     } else {
-      this.rowCount = this.storageService.getItem('row-count') || 37
+      this.rowCount = this.storageService.getItem('row-count') || this.appConfigService.defaults.rowCount
     }
 
     this.trianglesService.triangleToolboxMessage$.pipe(

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { triangle } from '../../utils/triangle'
 import { star } from '../../utils/star'
+import { StorageService } from 'src/app/services/storage/storage.service'
+import { AppConfigService } from '../../services/app-config/app-config.service'
 
 @Component({
   selector: 'app-triangles-list',
@@ -12,11 +14,15 @@ import { star } from '../../utils/star'
 export class TrianglesListComponent implements OnInit {
 
   numTrianglesListed = 250
+  rowCount: number
   triangles = []
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private storageService: StorageService, private appConfigService: AppConfigService) {}
 
   ngOnInit() {
+
+    this.rowCount = this.storageService.getItem('row-count') || this.appConfigService.defaults.rowCount
+
     for (let i = 1; i <= this.numTrianglesListed; i++) {
       const starOfDavid = triangle.housesStarOfDavid(i)
       this.triangles.push({

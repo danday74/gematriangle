@@ -10,7 +10,7 @@ import { TriangleCounterValues } from './triangle-counter-values.enum'
 import { TriangleToolboxMessage } from '../triangle-toolbox/triangle-toolbox-message.enum'
 import { ColorService } from '../../../reusable/color/color.service'
 import { bignumber } from 'mathjs'
-import { StorageService } from '../../../services/storage.service'
+import { StorageService } from '../../../services/storage/storage.service'
 
 @Component({
   selector: 'app-triangle',

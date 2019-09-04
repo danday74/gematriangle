@@ -10,7 +10,7 @@
     </thead>
     <tbody>
     <ng-container *ngFor="let triangle of triangles">
-      <tr (click)="rowClick(triangle.T)">
+      <tr (click)="rowClick(triangle.T)" [class.selected]="triangle.T === rowCount">
         <td class="text-right"><strong>T{{ triangle.T }}</strong></td>
         <td class="text-right">{{ triangle.perimeter }}</td>
         <td class="text-right">{{ triangle.counters }}</td>
