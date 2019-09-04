@@ -85,8 +85,8 @@ export class TrianglesService {
     this.onTriangleToolboxMessage(TriangleToolboxMessage.ToggleLineLength, shortLines)
   }
 
-  onToggleShowValues(showValues: boolean) {
-    this.onTriangleToolboxMessage(TriangleToolboxMessage.ToggleShowValues, showValues)
+  onToggleZoom(zoom: boolean) {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.ToggleZoom, zoom)
   }
 
   onMultiple(multiple, offset) {

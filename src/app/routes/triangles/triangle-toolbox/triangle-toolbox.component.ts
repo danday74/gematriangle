@@ -24,7 +24,7 @@ export class TriangleToolboxComponent extends DestroyerComponent implements OnIn
   alignCenter: boolean
   lineDirection: string
   shortLines: boolean
-  showValues: boolean
+  zoom: boolean
   color: string
   mode: string
 
@@ -53,11 +53,11 @@ export class TriangleToolboxComponent extends DestroyerComponent implements OnIn
 
   ngOnInit() {
     const storageAlignCenter = this.storageService.getItem('triangle-align-center')
-    const storageShowValues = this.storageService.getItem('triangle-show-values')
+    const storageZoom = this.storageService.getItem('triangle-zoom')
     this.alignCenter = storageAlignCenter != null ? storageAlignCenter : true
-    this.showValues = storageShowValues != null ? storageShowValues : false
+    this.zoom = storageZoom != null ? storageZoom : false
     this.setCssClassForAlignCenter()
-    this.setCssClassForShowValues()
+    this.setCssClassForZoom()
     const storageShortLines = this.storageService.getItem('triangle-short-lines')
     this.shortLines = storageShortLines != null ? storageShortLines : true
     this.lineDirection = this.storageService.getItem('triangle-line-direction') || 'left-right'
@@ -147,18 +147,18 @@ export class TriangleToolboxComponent extends DestroyerComponent implements OnIn
     })
   }
 
-  onToggleShowValues() {
-    this.showValues = !this.showValues
-    this.trianglesService.onToggleShowValues(this.showValues)
-    this.storageService.setItem('triangle-show-values', this.showValues)
-    this.setCssClassForShowValues()
+  onToggleZoom() {
+    this.zoom = !this.zoom
+    this.trianglesService.onToggleZoom(this.zoom)
+    this.storageService.setItem('triangle-zoom', this.zoom)
+    this.setCssClassForZoom()
   }
 
-  private setCssClassForShowValues() {
+  private setCssClassForZoom() {
     const html = $('html')
     html.removeClass('triangle-big').removeClass('triangle-small')
-    if (this.showValues) html.addClass('triangle-big')
-    if (!this.showValues) html.addClass('triangle-small')
+    if (this.zoom) html.addClass('triangle-big')
+    if (!this.zoom) html.addClass('triangle-small')
   }
 
   private setCssClassForAlignCenter() {

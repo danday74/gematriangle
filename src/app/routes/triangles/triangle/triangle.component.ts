@@ -27,7 +27,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   lineDirection: string
   alignCenter: boolean
   shortLines: boolean
-  showValues: boolean
+  zoom: boolean
   color: string
   mode: string
   counterValues: TriangleCounterValues
@@ -51,9 +51,9 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
 
     const storageAlignCenter = this.storageService.getItem('triangle-align-center')
     const storageShortLines = this.storageService.getItem('triangle-short-lines')
-    const storageShowValues = this.storageService.getItem('triangle-show-values')
+    const storageZoom = this.storageService.getItem('triangle-zoom')
     this.alignCenter = storageAlignCenter != null ? storageAlignCenter : true
-    this.showValues = storageShowValues != null ? storageShowValues : false
+    this.zoom = storageZoom != null ? storageZoom : false
     this.shortLines = storageShortLines != null ? storageShortLines : true
 
     this.lineDirection = this.storageService.getItem('triangle-line-direction') || 'left-right'
@@ -125,8 +125,8 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
         case TriangleToolboxMessage.ToggleLineLength:
           this.shortLines = message.value
           break
-        case TriangleToolboxMessage.ToggleShowValues:
-          this.showValues = message.value
+        case TriangleToolboxMessage.ToggleZoom:
+          this.zoom = message.value
           break
       }
     })

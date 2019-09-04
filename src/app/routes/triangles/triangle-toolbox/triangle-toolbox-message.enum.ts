@@ -18,5 +18,5 @@ export enum TriangleToolboxMessage {
   Multiple = 'multiple',
   ToggleAlign = 'toggle-align',
   ToggleLineLength = 'toggle-line-length',
-  ToggleShowValues = 'toggle-show-values'
+  ToggleZoom = 'toggle-zoom'
 }
