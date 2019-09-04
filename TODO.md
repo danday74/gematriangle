@@ -1,12 +1,10 @@
 MAJOR TODOs
 ===========
 
-Hide midpoints plus button for odd triangles
 Total value for triangle
 Modes should be tabs not buttons
 LIST OF ALL BIBLE CHAPTERS, DO THEY HAVE ODD OR EVEN LETTER COUNT?
 GEN 1:1 - use letter values to form other values - e.g. word values, think of values used to make PI from Gen 1:1
-Max row is 251 should be 250
 Check PI and all data is accurate - add more to Gen1v1 - add John 1v1 (std and ordinal) - constant e - golden ratio
 Undo / Redo
 Google analytics

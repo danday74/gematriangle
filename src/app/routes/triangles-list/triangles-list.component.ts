@@ -11,7 +11,7 @@ import { star } from '../../utils/star'
 
 export class TrianglesListComponent implements OnInit {
 
-  numTrianglesListed = 251
+  numTrianglesListed = 250
   triangles = []
 
   constructor(private router: Router) {}
