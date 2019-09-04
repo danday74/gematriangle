@@ -113,7 +113,6 @@ export class TriangleToolboxComponent extends DestroyerComponent implements OnIn
     const counterValues = evt.value || evt
     this.trianglesService.onChangeCounterValues(counterValues)
     this.storageService.setItem('triangle-counter-values', counterValues)
-    if (counterValues === TriangleCounterValues.None && this.showValues) this.onToggleShowValues()
   }
 
   onChangeColorClick(color) {
