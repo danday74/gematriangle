@@ -1,6 +1,7 @@
 MAJOR TODOs
 ===========
 
+Hide midpoints plus button for odd triangles
 Total value for triangle
 Modes should be tabs not buttons
 LIST OF ALL BIBLE CHAPTERS, DO THEY HAVE ODD OR EVEN LETTER COUNT?
