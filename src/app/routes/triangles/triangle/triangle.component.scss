@@ -6,12 +6,14 @@
     height: 10px;
   }
 
-  .triangle-row.triangle-align-center {
-    margin: -14px auto;
-  }
-
+  // SMALL LEFT
   .triangle-row.triangle-align-left {
     margin-top: -12px;
+  }
+
+  // SMALL CENTER
+  .triangle-row.triangle-align-center {
+    margin: -14px auto;
   }
 }
 
@@ -21,12 +23,14 @@
     height: 60px;
   }
 
-  .triangle-row.triangle-align-center {
-    margin: -7px auto;
+  // BIG LEFT
+  .triangle-row.triangle-align-left {
+    margin-top: -4px;
   }
 
-  .triangle-row.triangle-align-left {
-    margin-top: 2px;
+  // BIG CENTER
+  .triangle-row.triangle-align-center {
+    margin: -12px auto;
   }
 }
 
@@ -43,9 +47,9 @@
 
 .counter-value {
   color: #000;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-top: 20px;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 21px;
   font-size: 12px;
   text-align: center;
 }

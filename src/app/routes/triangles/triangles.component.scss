@@ -1,19 +1,23 @@
 $adjustForBigFooter: 31;
 
-:host-context(.triangle-big.triangle-align-center) .triangles-wrapper {
-  margin: 2px 0 ((84 + $adjustForBigFooter) + unquote("px"));
+// SMALL LEFT
+:host-context(.triangle-small.triangle-align-left) .triangles-wrapper {
+  margin: -1px 0 ((71 + $adjustForBigFooter) + unquote("px"));
 }
 
-:host-context(.triangle-big.triangle-align-left) .triangles-wrapper {
-  margin: -7px 0 ((77 + $adjustForBigFooter) + unquote("px"));
-}
-
+// SMALL CENTER
 :host-context(.triangle-small.triangle-align-center) .triangles-wrapper {
   margin: 1px 0 ((71 + $adjustForBigFooter) + unquote("px"));
 }
 
-:host-context(.triangle-small.triangle-align-left) .triangles-wrapper {
+// BIG LEFT
+:host-context(.triangle-big.triangle-align-left) .triangles-wrapper {
   margin: -1px 0 ((71 + $adjustForBigFooter) + unquote("px"));
+}
+
+// BIG CENTER
+:host-context(.triangle-big.triangle-align-center) .triangles-wrapper {
+  margin: 7px 0 ((71 + $adjustForBigFooter) + unquote("px"));
 }
 
 .triangle-outer-wrapper {
