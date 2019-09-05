@@ -34,6 +34,16 @@ export class TriangleCounterValueService {
     }
   }
 
+  getTotalValue(counters: Array<Counter>) {
+    let sum = bignumber(0)
+    let allNull = true
+    counters.forEach(counter => {
+      if (counter.value != null) allNull = false
+      sum = sum.plus(counter.value || bignumber(0))
+    })
+    return allNull ? null : sum
+  }
+
   private getGenesis1v1StandardValue(count) {
     count--
     const values = [2, 200, 1, 300, 10, 400, 2, 200, 1, 1, 30, 5, 10, 40, 1, 400, 5, 300, 40, 10, 40, 6, 1, 400, 5, 1, 200, 90]

@@ -157,16 +157,8 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   }
 
   private updateTotalValue() {
-    let totalValue
-    const allCounters = flatten(this.rows)
-    const counters = allCounters.filter(counter => counter.value != null)
-    if (counters.length === 0) {
-      totalValue = null
-    } else {
-      totalValue = counters.reduce((acc, counter) => {
-        return acc.plus(counter.value)
-      }, bignumber(0))
-    }
+    const counters = flatten(this.rows)
+    const totalValue = this.triangleCounterValueService.getTotalValue(counters)
     this.trianglesService.onTotalValueUpdated(totalValue)
   }
 
@@ -175,9 +167,13 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     const counters = filter(allCounters, {active: true})
     let posAdjusts
 
-    if (this.lineDirection === 'left-right') posAdjusts = this.posAdjusts.reach1
-    else if (this.lineDirection === 'up-down') posAdjusts = this.posAdjusts.reach2
-    else posAdjusts = [...this.posAdjusts.reach1, ...this.posAdjusts.reach2]
+    if (this.lineDirection === 'left-right') {
+      posAdjusts = this.posAdjusts.reach1
+    } else if (this.lineDirection === 'up-down') {
+      posAdjusts = this.posAdjusts.reach2
+    } else {
+      posAdjusts = [...this.posAdjusts.reach1, ...this.posAdjusts.reach2]
+    }
 
     counters.forEach(counter => {
       posAdjusts.forEach(posAdjust => {
@@ -311,8 +307,11 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   }
 
   private complete(counters) {
-    if (this.mode === 'line') this.completeActivation(counters)
-    else this.completePainting(counters)
+    if (this.mode === 'line') {
+      this.completeActivation(counters)
+    } else {
+      this.completePainting(counters)
+    }
   }
 
   private completeActivation(counters) {

@@ -3,8 +3,7 @@ import { ColorService } from '../color.service'
 import { DestroyerComponent } from '../../../utils/destroyer.component'
 import { takeUntil } from 'rxjs/operators'
 import { filter, forOwn } from 'lodash'
-import { Counter } from '../../../routes/triangles/triangle/counter'
-import { bignumber } from 'mathjs'
+import { TriangleCounterValueService } from '../../../routes/triangles/triangle/triangle-counter-value.service'
 
 @Component({
   selector: 'app-color-count',
@@ -17,7 +16,7 @@ export class ColorCountComponent extends DestroyerComponent implements OnInit {
   colors: any
   activeColors = []
 
-  constructor(private colorService: ColorService) {
+  constructor(private colorService: ColorService, private triangleCounterValueService: TriangleCounterValueService) {
     super()
   }
 
@@ -39,18 +38,8 @@ export class ColorCountComponent extends DestroyerComponent implements OnInit {
       acc[color] = {}
       const counters = filter(allCounters, {color})
       acc[color].count = counters.length
-      acc[color].value = this.getValueSum(counters)
+      acc[color].value = this.triangleCounterValueService.getTotalValue(counters)
       return acc
     }, {})
-  }
-
-  private getValueSum(counters: Array<Counter>) {
-    let sum = bignumber(0)
-    let allNull = true
-    counters.forEach(counter => {
-      if (counter.value != null) allNull = false
-      sum = sum.plus(counter.value || bignumber(0))
-    })
-    return allNull ? null : sum
   }
 }
