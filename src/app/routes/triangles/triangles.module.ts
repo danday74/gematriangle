@@ -14,6 +14,7 @@ import { ColorModule } from '../../reusable/color/color.module'
 import { OtherValuesModalComponent } from './triangle-toolbox/other-values-modal/other-values-modal.component'
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap'
 import { ModalModule } from '../../reusable/modal/modal.module'
+import { DirectivesModule } from '../../directives/directives.module'
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ModalModule } from '../../reusable/modal/modal.module'
     SpinnerModule,
     BaseModule,
     ColorModule,
-    ModalModule
+    ModalModule,
+    DirectivesModule
   ],
   entryComponents: [
     OtherValuesModalComponent

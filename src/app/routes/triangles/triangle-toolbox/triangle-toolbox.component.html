@@ -184,7 +184,7 @@
             <button class="btn btn-dark btn-sm image-icon even" [title]="(mode === 'line' ? 'Activate' : 'Paint') + ' Counters with Even Values'"
                     (click)="onEvenClick()"></button>
             <button class="btn btn-dark btn-sm image-icon three" [title]="(mode === 'line' ? 'Activate' : 'Paint') + ' Counters with Other Values'"
-                    (click)="onMultipleClick()"></button>
+                    [appGaClickEventTracker]="'multiple'" (click)="onMultipleClick()"></button>
           </div>
         </div>
       </div>

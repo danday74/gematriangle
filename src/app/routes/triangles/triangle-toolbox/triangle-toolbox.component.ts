@@ -11,6 +11,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { OtherValuesModalComponent } from './other-values-modal/other-values-modal.component'
 import { DestroyerComponent } from '../../../utils/destroyer.component'
 import { takeUntil } from 'rxjs/operators'
+import { GoogleAnalyticsService } from '../../../services/google-analytics/google-analytics.service'
 
 @Component({
   selector: 'app-triangle-toolbox',
@@ -46,7 +47,7 @@ export class TriangleToolboxComponent extends DestroyerComponent implements OnIn
   counterValuesOption: any
 
   constructor(private trianglesService: TrianglesService, private storageService: StorageService, private location: Location,
-              private modalService: NgbModal) {
+              private modalService: NgbModal, private googleAnalyticsService: GoogleAnalyticsService) {
     super()
     this.onChangeRowCount = debounce(this.onChangeRowCount, 500, {leading: false, trailing: true})
   }
@@ -105,7 +106,9 @@ export class TriangleToolboxComponent extends DestroyerComponent implements OnIn
 
   onChangeRowCount(rowCount) {
     rowCount = rowCount || 1
-    this.location.replaceState('/triangles/' + rowCount)
+    const url = '/triangles/' + rowCount
+    this.location.replaceState(url)
+    this.googleAnalyticsService.sendPageView(url)
     if (rowCount !== this.rowCount) this.trianglesService.onChangeRowCount(rowCount)
   }
 

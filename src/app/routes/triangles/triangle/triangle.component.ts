@@ -164,7 +164,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
       totalValue = null
     } else {
       totalValue = counters.reduce((acc, counter) => {
-        return acc = acc.plus(counter.value)
+        return acc.plus(counter.value)
       }, bignumber(0))
     }
     this.trianglesService.onTotalValueUpdated(totalValue)

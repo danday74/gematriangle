@@ -7,6 +7,8 @@ import { DestroyerComponent } from './utils/destroyer.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ToastrModule } from 'ngx-toastr'
 import { dataInitialiser } from './initialisers/data-initialiser'
+import { environment } from 'src/environments/environment'
+import * as Debug from 'debug'
 
 @NgModule({
   declarations: [
@@ -41,3 +43,9 @@ import { dataInitialiser } from './initialisers/data-initialiser'
 })
 
 export class AppModule {}
+
+if (environment.debug) {
+  Debug.enable(environment.debug)
+} else {
+  Debug.disable()
+}
