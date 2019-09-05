@@ -6,7 +6,7 @@ module.exports = {
   apps: [{
     name: 'gematriangle',
     script: 'node_modules/@angular/cli/bin/ng',
-    args: 'serve --host 0.0.0.0 --disable-host-check --port 80 --live-reload true',
+    args: 'serve --host 0.0.0.0 --disable-host-check --port 80 --configuration live --live-reload true',
     // cwd: '',
     max_restarts: 5,
     min_uptime: 5000,

@@ -73,6 +73,14 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "live": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.live.ts"
+                }
+              ]
             }
           }
         },
@@ -84,6 +92,9 @@
           "configurations": {
             "production": {
               "browserTarget": "gematria:build:production"
+            },
+            "live": {
+              "browserTarget": "gematria:build:live"
             }
           }
         },
