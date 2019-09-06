@@ -1,6 +1,13 @@
 MAJOR TODOs
 ===========
 
+Links and videos - 1 or 2 main gem videos + video on Psalm 86
+Bug - T250 every 5 and then new button - causes numbers in footer to break
+Analyser/scanner - checks for things in background - e.g. a sequence of numbers - with or without ESD
+How would Fibonacci or Padovan sequence be used?
+Paint every counter whose value is .. a multiple of CT37 (number here) .. with offset AND every counter whose value is ... a multiple of PAD37 (number here) with offset ... AND ... etc
+Supported sequences - S, ST, T, CT, P, PAD, F
+
 Modes should be tabs not buttons
 LIST OF ALL BIBLE CHAPTERS, DO THEY HAVE ODD OR EVEN LETTER COUNT?
 GEN 1:1 - use letter values to form other values - e.g. word values, think of values used to make PI from Gen 1:1
