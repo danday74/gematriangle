@@ -9,7 +9,6 @@ import { TriangleCounterValueService } from './triangle-counter-value.service'
 import { TriangleCounterValues } from './triangle-counter-values.enum'
 import { TriangleToolboxMessage } from '../triangle-toolbox/triangle-toolbox-message.enum'
 import { ColorService } from '../../../reusable/color/color.service'
-import { bignumber } from 'mathjs'
 import { StorageService } from '../../../services/storage/storage.service'
 
 @Component({
@@ -456,7 +455,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     const counters: Array<Counter> = []
     const term = triangle.term(row - 1)
     for (let i = 1; i <= row; i++) {
-      const counter: Counter = {active: false, color: 'appGrey', count: term + i, value: bignumber(0), pos: {row, col: i}, spin: false}
+      const counter: Counter = {active: false, color: 'appGrey', count: term + i, value: null, pos: {row, col: i}, spin: false}
       counter.value = this.triangleCounterValueService.getCounterValue(counter, this.counterValues)
       counters.push(counter)
     }

@@ -2,8 +2,8 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { numberData } from '../../../../data/number.data'
 import { ToastrService } from 'ngx-toastr'
 import { Decimal } from 'decimal.js'
-import { bignumber } from 'mathjs'
 import { triangle } from '../../../utils/triangle'
+import { precision } from 'src/app/utils/mathjs-precision'
 
 @Component({
   selector: 'app-number',
@@ -28,13 +28,13 @@ export class NumberComponent implements OnInit, OnChanges {
   constructor(private toastr: ToastrService) {}
 
   ngOnInit() {
-    this.num = bignumber(this.n)
+    this.num = precision.bignumber(this.n)
     this.checkNumber(this.num)
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.n && !changes.n.firstChange) {
-      this.num = bignumber(changes.n.currentValue)
+      this.num = precision.bignumber(changes.n.currentValue)
       this.checkNumber(this.num)
     }
   }

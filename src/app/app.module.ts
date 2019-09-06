@@ -9,6 +9,7 @@ import { ToastrModule } from 'ngx-toastr'
 import { dataInitialiser } from './initialisers/data-initialiser'
 import { environment } from 'src/environments/environment'
 import * as Debug from 'debug'
+import { miscInitialiser } from './initialisers/misc-initialiser'
 
 @NgModule({
   declarations: [
@@ -35,6 +36,12 @@ import * as Debug from 'debug'
     {
       provide: APP_INITIALIZER,
       useFactory: dataInitialiser,
+      deps: [],
+      multi: true
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: miscInitialiser,
       deps: [],
       multi: true
     }
