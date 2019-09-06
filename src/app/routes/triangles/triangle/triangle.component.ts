@@ -309,7 +309,27 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   }
 
   private centeredTriangle() {
-    const positions = [{row: 1, col: 1}]
+    const anchor = {row: this.rowCount, col: 1}
+    let positions = []
+    const startingPositions = []
+    for (let i = anchor.row; i > 1; i = i - 3) {
+      startingPositions.push({row: i, col: 1})
+      startingPositions.push({row: i, col: i})
+    }
+    startingPositions.push({row: 1, col: 1})
+
+    startingPositions.forEach(startingPosition => {
+      let counter
+      let row = startingPosition.row
+      let col = startingPosition.col
+      do {
+        row += 2
+        col += 1
+        counter = this.getCounter(row, col)
+        if (counter) positions.push(counter.pos)
+      } while (counter)
+    })
+    positions = [...startingPositions, ...positions]
     const counters = this.getCounters(positions)
     this.complete(counters)
   }
