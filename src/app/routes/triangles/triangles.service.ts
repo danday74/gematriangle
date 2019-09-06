@@ -21,6 +21,10 @@ export class TrianglesService {
     this.onTriangleToolboxMessage(TriangleToolboxMessage.StarOfDavid, null)
   }
 
+  onCenteredTriangle() {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.CenteredTriangle, null)
+  }
+
   onTriangleCorners() {
     this.onTriangleToolboxMessage(TriangleToolboxMessage.TriangleCorners, null)
   }

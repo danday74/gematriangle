@@ -72,6 +72,9 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
         case TriangleToolboxMessage.StarOfDavid:
           this.starOfDavid()
           break
+        case TriangleToolboxMessage.CenteredTriangle:
+          this.centeredTriangle()
+          break
         case TriangleToolboxMessage.TriangleCorners:
           this.corners()
           break
@@ -301,6 +304,12 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
         }
       }
     }
+    const counters = this.getCounters(positions)
+    this.complete(counters)
+  }
+
+  private centeredTriangle() {
+    const positions = [{row: 1, col: 1}]
     const counters = this.getCounters(positions)
     this.complete(counters)
   }

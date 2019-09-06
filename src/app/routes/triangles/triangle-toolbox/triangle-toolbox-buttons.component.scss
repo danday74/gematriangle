@@ -142,6 +142,16 @@ button.triangle-star-of-david {
   }
 }
 
+$centeredTriangleSize: 16px;
+
+button.centered-triangle {
+  background: url('/assets/icons/centered-triangle.png') no-repeat center / $centeredTriangleSize, $bootswatchBtnDarkGradient;
+
+  &:hover {
+    background: url('/assets/icons/centered-triangle.png') no-repeat center / $centeredTriangleSize, $bootswatchBtnDarkGradientHover;
+  }
+}
+
 $sixArrowsSize: 28px;
 
 button.six-arrows-left-right {

@@ -218,4 +218,8 @@ export class TriangleToolboxComponent extends DestroyerComponent implements OnIn
   onTriangleSideRight() {
     this.trianglesService.onTriangleSide('right')
   }
+
+  onCenteredTriangleClick() {
+    this.trianglesService.onCenteredTriangle()
+  }
 }

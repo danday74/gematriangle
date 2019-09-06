@@ -1,4 +1,5 @@
 export enum TriangleToolboxMessage {
+  CenteredTriangle = 'centered-triangle',
   StarOfDavid = 'star-of-david',
   TriangleCorners = 'activate-triangle-corners',
   TriangleMidpoints = 'activate-triangle-midpoints',
