@@ -1,6 +1,7 @@
 MAJOR TODOs
 ===========
 
+bug - when in line mode if you click line mode it clears spinners
 triangle colour buttons should color all and points and perim
 toFixed on all display numbers
 show Hebrew letters - for any value group
