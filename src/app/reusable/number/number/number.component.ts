@@ -8,7 +8,7 @@ import { StorageService } from '../../../services/storage/storage.service'
 import { DestroyerComponent } from '../../../utils/destroyer.component'
 import { filter, takeUntil } from 'rxjs/operators'
 import { NavbarMessage } from '../../../base/navbar/navbar-message.enum'
-import { appNumber } from 'src/app/utils/app-number';
+import { appNumber } from 'src/app/utils/app-number'
 
 interface Prop {
   name: string
