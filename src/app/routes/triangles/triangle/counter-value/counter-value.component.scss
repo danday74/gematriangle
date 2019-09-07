@@ -7,13 +7,13 @@
   text-align: center;
 }
 
-.appActiveBg, .appRedBg, .appGreenBg, .appOrangeBg, .appBlueBg {
+:host-context(.appActiveBg, .appRedBg, .appGreenBg, .appOrangeBg, .appBlueBg) {
   .counter-value {
     color: #FFF;
   }
 }
 
-.appGreyBg, .appPinkBg {
+:host-context(.appGreyBg, .appPinkBg) {
   .counter-value {
     color: #000;
   }
