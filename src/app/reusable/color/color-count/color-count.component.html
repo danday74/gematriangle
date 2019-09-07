@@ -2,28 +2,15 @@
   <div class="color-count">
     <div class="row">
 
-      <ng-container *ngIf="activeColors.length % 2 === 1">
-        <div *ngIf="activeColors.length <= 1" class="col"></div>
-        <div *ngIf="activeColors.length <= 3" class="col"></div>
-        <ng-container *ngFor="let activeColor of activeColors">
-          <div class="col">
-            <app-color-counter [color]="activeColor" [count]="colors[activeColor].count" [value]="colors[activeColor].value"></app-color-counter>
-          </div>
-        </ng-container>
-        <div *ngIf="activeColors.length <= 3" class="col"></div>
-        <div *ngIf="activeColors.length <= 1" class="col"></div>
+      <!--suppress JSUnusedGlobalSymbols -->
+      <ng-container *ngFor="let i of colIndentSize | range">
+        <div class="col-1"></div>
       </ng-container>
 
-      <ng-container *ngIf="activeColors.length % 2 === 0">
-        <div *ngIf="activeColors.length <= 2" class="col"></div>
-        <div *ngIf="activeColors.length <= 4" class="col"></div>
-        <ng-container *ngFor="let activeColor of activeColors">
-          <div class="col">
-            <app-color-counter [color]="activeColor" [count]="colors[activeColor].count" [value]="colors[activeColor].value"></app-color-counter>
-          </div>
-        </ng-container>
-        <div *ngIf="activeColors.length <= 4" class="col"></div>
-        <div *ngIf="activeColors.length <= 2" class="col"></div>
+      <ng-container *ngFor="let activeColor of activeColors">
+        <div class="col-{{ colSize }}">
+          <app-color-counter [color]="activeColor" [count]="colors[activeColor].count" [value]="colors[activeColor].value"></app-color-counter>
+        </div>
       </ng-container>
 
     </div>

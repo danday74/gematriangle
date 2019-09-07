@@ -15,6 +15,17 @@ export class ColorCountComponent extends DestroyerComponent implements OnInit {
 
   colors: any
   activeColors = []
+  activeColorsColSizes = [12, 6, 4, 3, 2, 2]
+  activeColorsColIndentSizes = [0, 0, 0, 0, 1, 0]
+
+  get colSize() {
+    return this.activeColorsColSizes[this.activeColors.length - 1]
+  }
+
+  get colIndentSize() {
+    return this.activeColorsColIndentSizes[this.activeColors.length - 1]
+  }
+
 
   constructor(private colorService: ColorService, private triangleCounterValueService: TriangleCounterValueService) {
     super()

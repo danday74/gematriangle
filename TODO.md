@@ -1,9 +1,9 @@
 MAJOR TODOs
 ===========
 
+layers
 Bug - Every nth triangle allows decimals
 Remove constants and replace with Links and videos - 1 or 2 main gem videos + video on Psalm 86
-Bug - T250 every 5 and then new button - causes numbers in footer to break
 Analyser/scanner - checks for things in background - e.g. a sequence of numbers - with or without ESD
 How would Fibonacci or Padovan sequence be used?
 Paint every counter whose value is .. a multiple of CT37 (number here) .. with offset AND every counter whose value is ... a multiple of PAD37 (number here) with offset ... AND ... etc
