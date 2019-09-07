@@ -1,6 +1,7 @@
 MAJOR TODOs
 ===========
 
+show Hebrew letters
 make numbers in list non clickable
 layers
 Remove constants and replace with Links and videos - 1 or 2 main gem videos + video on Psalm 86
