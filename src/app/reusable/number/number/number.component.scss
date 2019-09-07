@@ -7,3 +7,9 @@
   padding-right: 3px;
   color: $appYellow;
 }
+
+:host-context(.table.table-hover tbody tr:hover) {
+  .activeProp {
+    color: #888;
+  }
+}

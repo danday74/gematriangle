@@ -23,6 +23,7 @@ export class NumberComponent implements OnInit, OnChanges {
 
   @Input() n: number | Decimal
   @Input() source: string
+  @Input() excluded = []
 
   num: Decimal
   flipped: Decimal
@@ -50,7 +51,7 @@ export class NumberComponent implements OnInit, OnChanges {
       {name: '73', value: num.mod(73).eq(0) ? num.dividedBy(73) : null, multiple: true, flipped: null},
       {name: 'T', value: triangle.isTerm(num), multiple: false, flipped: null}
     ]
-    this.activeProps = this.props.filter(prop => prop.value != null).map(prop => {
+    this.activeProps = this.props.filter(prop => prop.value != null && !this.excluded.includes(prop.name)).map(prop => {
       prop.flipped = prop.value.plus(this.reverseNumber(prop.value))
       return prop
     })
