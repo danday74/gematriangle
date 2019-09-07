@@ -1,5 +1,5 @@
 <div class="statsbox">
-  <div class="title clickable" (click)="onClick(rowCount)">T{{ rowCount }}</div>
+  <div class="title"><app-number [source]="'T' + rowCount" [n]="rowCount" [prefix]="'T'"></app-number></div>
   <div class="triangle-statsbox">
     <div class="heading">Perimeter</div>
     <div class="number">
@@ -7,7 +7,7 @@
     </div>
     <div class="heading">Counters</div>
     <div class="number">
-      <app-number [source]="'T' + rowCount + ' counters'" [n]="counters"></app-number>
+      <app-number [source]="'T' + rowCount + ' counters'" [n]="counters" [excluded]="['T']"></app-number>
     </div>
     <ng-container *ngIf="value != null">
       <div class="heading">Value</div>

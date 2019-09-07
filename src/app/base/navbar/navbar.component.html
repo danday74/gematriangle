@@ -8,6 +8,12 @@
     </li>
   </ul>
   <ul class="navbar-nav navbar-right">
+    <li>
+      <div class="breakdown-wrapper">
+        <label (click)="toggleBreakdown()">Breakdown</label>
+        <p-checkbox binary="true" [(ngModel)]="breakdown" (onChange)="onBreakdownChange()"></p-checkbox>
+      </div>
+    </li>
     <ng-container *ngIf="router.url === '/triangles' || router.url.startsWith('/triangles/')">
       <li>
         <a class="list" [routerLink]="['/triangles-list']">

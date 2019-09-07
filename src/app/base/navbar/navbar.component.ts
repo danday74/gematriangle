@@ -1,5 +1,7 @@
-import { Component, HostListener } from '@angular/core'
+import { Component, HostListener, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
+import { NavbarService } from './navbar.service'
+import { StorageService } from '../../services/storage/storage.service'
 
 @Component({
   selector: 'app-navbar',
@@ -7,11 +9,17 @@ import { Router } from '@angular/router'
   styleUrls: ['./navbar.component.scss']
 })
 
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
 
+  breakdown: boolean
   isFullscreen: boolean
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, private navbarService: NavbarService, private storageService: StorageService) {}
+
+  ngOnInit() {
+    const storageBreakdown = this.storageService.getItem('breakdown')
+    this.breakdown = storageBreakdown != null ? storageBreakdown : true
+  }
 
   @HostListener('window:resize')
   onResize() {
@@ -35,5 +43,15 @@ export class NavbarComponent {
       // @ts-ignore
       elem.msRequestFullscreen()
     }
+  }
+
+  onBreakdownChange() {
+    this.navbarService.onToggleBreakdown(this.breakdown)
+    this.storageService.setItem('breakdown', this.breakdown)
+  }
+
+  toggleBreakdown() {
+    this.breakdown = !this.breakdown
+    this.onBreakdownChange()
   }
 }

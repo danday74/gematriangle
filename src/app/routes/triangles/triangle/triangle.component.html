@@ -3,7 +3,7 @@
     <ng-container *ngFor="let counter of row">
       <div class="counter" (click)="onCounterClick(counter)"
            [class.appActiveBg]="counter.active" [class.spin]="counter.spin" [ngClass]="counter.color + 'Bg'"
-           [title]="'(' + counter.pos.row + ', ' + counter.pos.col + ') count=' + counter.count + (counter.value == null ? '' : ' value=' + (counter.value ? counter.value.toFixed() : null))">
+           [title]="'(' + counter.pos.row + ', ' + counter.pos.col + ') count=' + counter.count.toFixed() + (counter.value == null ? '' : ' value=' + (counter.value ? counter.value.toFixed() : null))">
         <ng-container *ngIf="zoom">
           <div class="counter-value text-truncate">
             <span>{{ counter.value ? counter.value.toFixed() : null }}</span>

@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core'
-import { triangle } from '../../../utils/triangle'
+import { shapeTriangle } from '../../../utils/shape-triangle'
 import { TrianglesService } from '../triangles.service'
 import { DestroyerComponent } from '../../../utils/destroyer.component'
 import { takeUntil } from 'rxjs/operators'
@@ -46,10 +46,10 @@ export class TriangleStatsComponent extends DestroyerComponent implements OnInit
   }
 
   private setPerimeter(rowCount) {
-    this.perimeter = triangle.perimeter(rowCount)
+    this.perimeter = shapeTriangle.perimeter(rowCount)
   }
 
   private setCounters(rowCount) {
-    this.counters = triangle.term(rowCount)
+    this.counters = shapeTriangle.term(rowCount)
   }
 }

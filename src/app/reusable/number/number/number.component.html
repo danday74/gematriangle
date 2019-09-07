@@ -1,18 +1,21 @@
 <div class="number-wrapper">
-  <div class="number clickable text-truncate" [title]="num.toFixed() + ' flipped=' + flipped.toFixed()" (click)="onClick(num)">{{ num.toFixed() }}</div>
-  <div class="stats">
-    <div class="row no-gutters">
-      <ng-container *ngFor="let prop of activeProps">
-        <div class="col clickable" (click)="onClick(prop.value)">
-          <div class="text-truncate activeProp">
-            <span>{{ prop.name }}</span>
-            <span [title]="prop.value.toFixed() + ' flipped=' + prop.flipped.toFixed()">
+  <div class="number clickable text-truncate" [title]="'number=' + num.toFixed() + ' flipped=' + flipped.toFixed()"
+       (click)="onClick(num)">{{ prefix }}{{ num.toFixed() }}</div>
+  <ng-container *ngIf="this.breakdown">
+    <div class="stats">
+      <div class="row no-gutters">
+        <ng-container *ngFor="let prop of activeProps">
+          <div class="col clickable" (click)="onClick(prop.value)">
+            <div class="text-truncate activeProp">
+              <span>{{ prop.name }}</span>
+              <span [title]="'number=' + prop.value.toFixed() + ' flipped=' + prop.flipped.toFixed()">
               <span *ngIf="prop.multiple">x</span>
               <span>{{ prop.value.toFixed() }}</span>
             </span>
+            </div>
           </div>
-        </div>
-      </ng-container>
+        </ng-container>
+      </div>
     </div>
-  </div>
+  </ng-container>
 </div>

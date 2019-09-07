@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common'
 import { NavbarComponent } from './navbar/navbar.component'
 import { RouterModule } from '@angular/router'
 import { FooterComponent } from './footer/footer.component'
+import { FormsModule } from '@angular/forms'
+import { CheckboxModule } from 'primeng/checkbox'
 
 @NgModule({
   declarations: [
@@ -11,7 +13,9 @@ import { FooterComponent } from './footer/footer.component'
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    CheckboxModule
   ],
   exports: [
     FooterComponent,

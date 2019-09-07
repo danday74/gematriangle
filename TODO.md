@@ -1,7 +1,7 @@
 MAJOR TODOs
 ===========
 
-list - show ct numbers and use numbers component
+make numbers in list non clickable
 layers
 Remove constants and replace with Links and videos - 1 or 2 main gem videos + video on Psalm 86
 Analyser/scanner - checks for things in background - e.g. a sequence of numbers - with or without ESD

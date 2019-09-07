@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { TrianglesService } from '../triangles.service'
-import { triangle } from '../../../utils/triangle'
-import { star } from 'src/app/utils/star'
+import { shapeTriangle } from '../../../utils/shape-triangle'
+import { shapeStar } from 'src/app/utils/shape-star'
 import { debounce } from 'lodash'
 import { StorageService } from '../../../services/storage/storage.service'
 import { TriangleCounterValues } from '../triangle/triangle-counter-values.enum'
@@ -30,8 +30,8 @@ export class TriangleToolboxComponent extends DestroyerComponent implements OnIn
   mode: string
 
   get starOfDavid() {
-    const n = triangle.housesStarOfDavid(this.rowCount)
-    return n ? {n, term: star.term(n)} : null
+    const n = shapeTriangle.housesStarOfDavid(this.rowCount)
+    return n ? {n, term: shapeStar.term(n)} : null
   }
 
   counterValuesOptions = [

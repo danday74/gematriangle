@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { triangle } from '../../utils/triangle'
-import { star } from '../../utils/star'
+import { shapeTriangle } from '../../utils/shape-triangle'
+import { shapeStar } from '../../utils/shape-star'
 import { StorageService } from 'src/app/services/storage/storage.service'
 import { AppConfigService } from '../../services/app-config/app-config.service'
+import { shapeCenteredTriangle } from '../../utils/shape-centered-triangle'
 
 @Component({
   selector: 'app-triangles-list',
@@ -24,13 +25,16 @@ export class TrianglesListComponent implements OnInit {
     this.rowCount = this.storageService.getItem('row-count') || this.appConfigService.defaults.rowCount
 
     for (let i = 1; i <= this.numTrianglesListed; i++) {
-      const starOfDavid = triangle.housesStarOfDavid(i)
+      const starOfDavid = shapeTriangle.housesStarOfDavid(i)
+      const centeredTriangle = shapeTriangle.housesCenteredTriangle(i)
       this.triangles.push({
         T: i,
-        perimeter: triangle.perimeter(i),
-        counters: triangle.term(i),
+        perimeter: shapeTriangle.perimeter(i),
+        counters: shapeTriangle.term(i),
         starOfDavid,
-        starCounters: star.term(starOfDavid)
+        starOfDavidCounters: shapeStar.term(starOfDavid),
+        centeredTriangle,
+        centeredTriangleCounters: shapeCenteredTriangle.term(centeredTriangle)
       })
     }
   }

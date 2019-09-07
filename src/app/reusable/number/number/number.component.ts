@@ -1,10 +1,14 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core'
-import { numberData } from '../../../../data/number.data'
 import { ToastrService } from 'ngx-toastr'
 import { Decimal } from 'decimal.js'
-import { triangle } from '../../../utils/triangle'
+import { shapeTriangle } from '../../../utils/shape-triangle'
 import { precision } from 'src/app/utils/mathjs-precision'
-import { filter } from 'lodash'
+import { NavbarService } from 'src/app/base/navbar/navbar.service'
+import { StorageService } from '../../../services/storage/storage.service'
+import { DestroyerComponent } from '../../../utils/destroyer.component'
+import { filter, takeUntil } from 'rxjs/operators'
+import { NavbarMessage } from '../../../base/navbar/navbar-message.enum'
+import { appNumber } from 'src/app/utils/app-number';
 
 interface Prop {
   name: string
@@ -19,23 +23,37 @@ interface Prop {
   styleUrls: ['./number.component.scss']
 })
 
-export class NumberComponent implements OnInit, OnChanges {
+export class NumberComponent extends DestroyerComponent implements OnInit, OnChanges {
 
   @Input() n: number | Decimal
   @Input() source: string
   @Input() excluded = []
+  @Input() prefix = ''
 
+  breakdown: boolean
   num: Decimal
   flipped: Decimal
 
   activeProps: Array<Prop>
   props: Array<Prop>
 
-  constructor(private toastr: ToastrService) {}
+  constructor(private navbarService: NavbarService, private storageService: StorageService, private toastr: ToastrService) {
+    super()
+  }
 
   ngOnInit() {
+    const storageBreakdown = this.storageService.getItem('breakdown')
+    this.breakdown = storageBreakdown != null ? storageBreakdown : true
     this.num = precision.bignumber(this.n)
     this.checkNumber(this.num)
+
+    this.navbarService.navbarMessage$.pipe(
+      takeUntil(this.unsubscribe$),
+      filter(message => message.name === NavbarMessage.ToggleBreakdown)
+    ).subscribe((message) => {
+      this.breakdown = message.value
+      this.checkNumber(this.num)
+    })
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -46,31 +64,33 @@ export class NumberComponent implements OnInit, OnChanges {
   }
 
   checkNumber(num: Decimal) {
-    this.props = [
-      {name: '37', value: num.mod(37).eq(0) ? num.dividedBy(37) : null, multiple: true, flipped: null},
-      {name: '73', value: num.mod(73).eq(0) ? num.dividedBy(73) : null, multiple: true, flipped: null},
-      {name: 'T', value: triangle.isTerm(num), multiple: false, flipped: null}
-    ]
-    this.activeProps = this.props.filter(prop => prop.value != null && !this.excluded.includes(prop.name)).map(prop => {
-      prop.flipped = prop.value.plus(this.reverseNumber(prop.value))
-      return prop
-    })
+    if (this.breakdown) {
+      this.props = [
+        {name: '37', value: appNumber.isMultiple(this.num, 37), multiple: true, flipped: null},
+        {name: '73', value: appNumber.isMultiple(this.num, 73), multiple: true, flipped: null},
+        {name: 'T', value: shapeTriangle.isTerm(num), multiple: false, flipped: null}
+      ]
+      this.activeProps = this.props.filter(prop => prop.value != null && !this.excluded.includes(prop.name)).map(prop => {
+        prop.flipped = prop.value.plus(this.reverseNumber(prop.value))
+        return prop
+      })
+    }
 
     this.flipped = num.plus(this.reverseNumber(num))
 
-    const special = numberData[this.num.toFixed()]
-    this.alert(special, this.source)
-    const flippedSpecial = numberData[this.flipped.toFixed()]
-    this.alert(flippedSpecial, this.source + ' flipped')
+    // const special = numberData[this.num.toFixed()]
+    // this.alert(special, this.source)
+    // const flippedSpecial = numberData[this.flipped.toFixed()]
+    // this.alert(flippedSpecial, this.source + ' flipped')
   }
 
-  private alert(special, source) {
-    // if (special) {
-    //   const title = `<strong>${special.number}</strong> for <strong>${source}</strong>`
-    //   const msg = special.reason
-    //   this.toastr.info(title + '<br>' + msg)
-    // }
-  }
+  // private alert(special, source) {
+  //   if (special) {
+  //     const title = `<strong>${special.number}</strong> for <strong>${source}</strong>`
+  //     const msg = special.reason
+  //     this.toastr.info(title + '<br>' + msg)
+  //   }
+  // }
 
   private reverseNumber(num: Decimal) {
     return num.toFixed().split('').reverse().join('')

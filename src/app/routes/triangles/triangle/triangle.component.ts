@@ -4,12 +4,13 @@ import { takeUntil } from 'rxjs/operators'
 import { TrianglesService } from '../triangles.service'
 import { DestroyerComponent } from '../../../utils/destroyer.component'
 import { Counter } from './counter'
-import { triangle } from '../../../utils/triangle'
+import { shapeTriangle } from '../../../utils/shape-triangle'
 import { TriangleCounterValueService } from './triangle-counter-value.service'
 import { TriangleCounterValues } from './triangle-counter-values.enum'
 import { TriangleToolboxMessage } from '../triangle-toolbox/triangle-toolbox-message.enum'
 import { ColorService } from '../../../reusable/color/color.service'
 import { StorageService } from '../../../services/storage/storage.service'
+import { precision } from 'src/app/utils/mathjs-precision'
 
 @Component({
   selector: 'app-triangle',
@@ -53,8 +54,8 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     const storageShortLines = this.storageService.getItem('triangle-short-lines')
     const storageZoom = this.storageService.getItem('triangle-zoom')
     this.alignCenter = storageAlignCenter != null ? storageAlignCenter : true
-    this.zoom = storageZoom != null ? storageZoom : false
     this.shortLines = storageShortLines != null ? storageShortLines : true
+    this.zoom = storageZoom != null ? storageZoom : false
 
     this.lineDirection = this.storageService.getItem('triangle-line-direction') || 'left-right'
 
@@ -482,9 +483,15 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
 
   private addRow(row) {
     const counters: Array<Counter> = []
-    const term = triangle.term(row - 1)
     for (let i = 1; i <= row; i++) {
-      const counter: Counter = {active: false, color: 'appGrey', count: term + i, value: null, pos: {row, col: i}, spin: false}
+      const counter: Counter = {
+        active: false,
+        color: 'appGrey',
+        count: shapeTriangle.term(row - 1).plus(i),
+        value: null,
+        pos: {row, col: i},
+        spin: false
+      }
       counter.value = this.triangleCounterValueService.getCounterValue(counter, this.counterValues)
       counters.push(counter)
     }

@@ -2,25 +2,42 @@
   <table class="table table-striped table-hover table-sm table-dark">
     <thead>
     <tr class="d-flex">
-      <th class="col-1"></th>
+      <th class="col-1 text-center">&nbsp;</th>
       <th class="col-4 text-center">Perimeter</th>
       <th class="col-4 text-center">Counters</th>
-      <th class="col-3 text-right last-col">Star of David</th>
+      <th class="col-3 text-center last-col">Shapes</th>
     </tr>
     </thead>
     <tbody>
     <ng-container *ngFor="let triangle of triangles">
       <tr class="d-flex" (click)="rowClick(triangle.T)" [class.selected]="triangle.T === rowCount">
-        <td class="col-1 text-right"><strong>T{{ triangle.T }}</strong></td>
+        <td class="col-1 text-center"><strong><app-number [source]="'triangle list'" [n]="triangle.T" [prefix]="'T'"></app-number></strong></td>
         <td class="col-4 text-center">
           <app-number [source]="'triangle list perimeter'" [n]="triangle.perimeter"></app-number>
         </td>
         <td class="col-4 text-center">
           <app-number [source]="'triangle list counters'" [n]="triangle.counters" [excluded]="['T']"></app-number>
         </td>
-        <td class="col-3 text-right last-col">
+        <td class="col-3 text-center">
           <ng-container *ngIf="triangle.starOfDavid">
-            ST{{ triangle.starOfDavid }} ({{ triangle.starCounters }} counters)
+            <div class="row">
+              <div class="col-6">
+                <app-number [source]="'triangle list star of David'" [n]="triangle.starOfDavid" [prefix]="'ST'"></app-number>
+              </div>
+              <div class="col-6">
+                <app-number [source]="'triangle list star of David counters'" [n]="triangle.starOfDavidCounters"></app-number>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="triangle.centeredTriangle">
+            <div class="row">
+              <div class="col-6">
+                <app-number [source]="'triangle list centered triangle'" [n]="triangle.centeredTriangle" [prefix]="'CT'"></app-number>
+              </div>
+              <div class="col-6">
+                <app-number [source]="'triangle list centered triangle counters'" [n]="triangle.centeredTriangleCounters"></app-number>
+              </div>
+            </div>
           </ng-container>
         </td>
       </tr>
