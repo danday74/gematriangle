@@ -1,6 +1,7 @@
 MAJOR TODOs
 ===========
 
+prime or prime factors
 faded-layer - work on it as normal and when fade it values become 0 but it remains faded in bg
 can faded layer be diff size or shape to main layer - yes would be nice but then how do you center it
 bug - when in line mode if you click line mode it clears spinners
