@@ -1,16 +1,9 @@
 @import '../../../colors.scss';
 
-.textGood, .textBad {
+.activeProp {
   font-size: 12px;
   text-align: center;
   padding-left: 3px;
   padding-right: 3px;
-}
-
-.textGood {
   color: $appYellow;
-}
-
-.textBad {
-  opacity: 0.15;
 }

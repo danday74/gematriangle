@@ -1,25 +1,18 @@
 <div class="number-wrapper">
-  <div class="number clickable text-truncate" [title]="num.toFixed() + ' flipped=' + props.flipped.toFixed()" (click)="onClick(num)">{{ num.toFixed() }}</div>
+  <div class="number clickable text-truncate" [title]="num.toFixed() + ' flipped=' + flipped.toFixed()" (click)="onClick(num)">{{ num.toFixed() }}</div>
   <div class="stats">
     <div class="row no-gutters">
-      <div class="col clickable" (click)="onClick(props[37])">
-        <div class="text-truncate" [ngClass]="props[37] ? 'textGood' : 'textBad'">
-          <span>37</span>
-          <span *ngIf="props[37]" [title]="props[37].toFixed()">x{{ props[37].toFixed() }}</span>
+      <ng-container *ngFor="let prop of activeProps">
+        <div class="col clickable" (click)="onClick(prop.value)">
+          <div class="text-truncate activeProp">
+            <span>{{ prop.name }}</span>
+            <span [title]="prop.value.toFixed() + ' flipped=' + prop.flipped.toFixed()">
+              <span *ngIf="prop.multiple">x</span>
+              <span>{{ prop.value.toFixed() }}</span>
+            </span>
+          </div>
         </div>
-      </div>
-      <div class="col clickable" (click)="onClick(props[73])">
-        <div class="text-truncate" [ngClass]="props[73] ? 'textGood' : 'textBad'">
-          <span>73</span>
-          <span *ngIf="props[73]" [title]="props[73].toFixed()">x{{ props[73].toFixed() }}</span>
-        </div>
-      </div>
-      <div class="col clickable" (click)="onClick(props.T)">
-        <div class="text-truncate" [ngClass]="props.T ? 'textGood' : 'textBad'">
-          <span>T</span>
-          <span *ngIf="props.T" [title]="props.T.toFixed()">{{ props.T.toFixed() }}</span>
-        </div>
-      </div>
+      </ng-container>
     </div>
   </div>
 </div>

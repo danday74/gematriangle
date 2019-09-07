@@ -4,6 +4,14 @@ import { ToastrService } from 'ngx-toastr'
 import { Decimal } from 'decimal.js'
 import { triangle } from '../../../utils/triangle'
 import { precision } from 'src/app/utils/mathjs-precision'
+import { filter } from 'lodash'
+
+interface Prop {
+  name: string
+  value: Decimal
+  multiple: boolean
+  flipped: Decimal
+}
 
 @Component({
   selector: 'app-number',
@@ -17,13 +25,10 @@ export class NumberComponent implements OnInit, OnChanges {
   @Input() source: string
 
   num: Decimal
+  flipped: Decimal
 
-  props: {
-    37: Decimal,
-    73: Decimal,
-    T: Decimal
-    flipped: Decimal
-  }
+  activeProps: Array<Prop>
+  props: Array<Prop>
 
   constructor(private toastr: ToastrService) {}
 
@@ -40,15 +45,21 @@ export class NumberComponent implements OnInit, OnChanges {
   }
 
   checkNumber(num: Decimal) {
-    this.props = {
-      37: num.mod(37).eq(0) ? num.dividedBy(37) : null,
-      73: num.mod(73).eq(0) ? num.dividedBy(73) : null,
-      T: triangle.isTerm(num),
-      flipped: num.plus(this.reverseNumber(num))
-    }
-    const special = numberData[num.toFixed()]
+    this.props = [
+      {name: '37', value: num.mod(37).eq(0) ? num.dividedBy(37) : null, multiple: true, flipped: null},
+      {name: '73', value: num.mod(73).eq(0) ? num.dividedBy(73) : null, multiple: true, flipped: null},
+      {name: 'T', value: triangle.isTerm(num), multiple: false, flipped: null}
+    ]
+    this.activeProps = this.props.filter(prop => prop.value != null).map(prop => {
+      prop.flipped = prop.value.plus(this.reverseNumber(prop.value))
+      return prop
+    })
+
+    this.flipped = num.plus(this.reverseNumber(num))
+
+    const special = numberData[this.num.toFixed()]
     this.alert(special, this.source)
-    const flippedSpecial = numberData[this.props.flipped.toFixed()]
+    const flippedSpecial = numberData[this.flipped.toFixed()]
     this.alert(flippedSpecial, this.source + ' flipped')
   }
 
