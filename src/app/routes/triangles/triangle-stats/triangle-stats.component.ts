@@ -41,10 +41,6 @@ export class TriangleStatsComponent extends DestroyerComponent implements OnInit
     }
   }
 
-  onClick(rowCount) {
-    console.log('rowCount', rowCount)
-  }
-
   private setPerimeter(rowCount) {
     this.perimeter = shapeTriangle.perimeter(rowCount)
   }

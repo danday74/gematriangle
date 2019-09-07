@@ -1,5 +1,4 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core'
-import { ToastrService } from 'ngx-toastr'
 import { Decimal } from 'decimal.js'
 import { shapeTriangle } from '../../../utils/shape-triangle'
 import { precision } from 'src/app/utils/mathjs-precision'
@@ -37,7 +36,7 @@ export class NumberComponent extends DestroyerComponent implements OnInit, OnCha
   activeProps: Array<Prop>
   props: Array<Prop>
 
-  constructor(private navbarService: NavbarService, private storageService: StorageService, private toastr: ToastrService) {
+  constructor(private navbarService: NavbarService, private storageService: StorageService /*, private toastr: ToastrService */) {
     super()
   }
 
