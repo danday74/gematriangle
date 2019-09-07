@@ -1,0 +1,8 @@
+<div class="counter-value text-truncate">
+  <ng-container *ngIf="hebrewLetter === 'off' || hebrewChar == null; else renderHebrewChar">
+    <span>{{ value ? value.toFixed() : null }}</span>
+  </ng-container>
+  <ng-template #renderHebrewChar>
+    <span class="hebrew-char">{{ hebrewChar }}</span>
+  </ng-template>
+</div>

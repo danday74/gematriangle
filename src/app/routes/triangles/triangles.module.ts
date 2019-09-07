@@ -15,6 +15,7 @@ import { OtherValuesModalComponent } from './triangle-toolbox/other-values-modal
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap'
 import { ModalModule } from '../../reusable/modal/modal.module'
 import { DirectivesModule } from '../../directives/directives.module'
+import { CounterValueComponent } from './triangle/counter-value/counter-value.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DirectivesModule } from '../../directives/directives.module'
     TriangleComponent,
     TriangleToolboxComponent,
     TriangleStatsComponent,
-    OtherValuesModalComponent
+    OtherValuesModalComponent,
+    CounterValueComponent
   ],
   imports: [
     CommonModule,

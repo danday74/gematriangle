@@ -45,27 +45,6 @@
   }
 }
 
-.counter-value {
-  color: #000;
-  padding-left: 7px;
-  padding-right: 7px;
-  padding-top: 21px;
-  font-size: 12px;
-  text-align: center;
-}
-
-.appActiveBg, .appRedBg, .appGreenBg, .appOrangeBg, .appBlueBg {
-  .counter-value {
-    color: #FFF;
-  }
-}
-
-.appGreyBg, .appPinkBg {
-  .counter-value {
-    color: #000;
-  }
-}
-
 .triangle-row {
   pointer-events: none;
   padding-left: 9px;

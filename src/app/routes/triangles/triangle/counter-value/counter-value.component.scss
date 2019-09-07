@@ -1,0 +1,27 @@
+.counter-value {
+  color: #000;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 21px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.appActiveBg, .appRedBg, .appGreenBg, .appOrangeBg, .appBlueBg {
+  .counter-value {
+    color: #FFF;
+  }
+}
+
+.appGreyBg, .appPinkBg {
+  .counter-value {
+    color: #000;
+  }
+}
+
+.hebrew-char {
+  font-size: 45px;
+  position: relative;
+  top: -27px;
+  font-family: serif;
+}

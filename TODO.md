@@ -1,7 +1,7 @@
 MAJOR TODOs
 ===========
 
-Think about diff modes for Hebrew letters - off ordinal and std - maybe a tav which has diff values not alef?
+Think about diff modes for Hebrew letters - off ordinal and std - maybe a tav which has diff values not alef? - other mode for Hebrew letter is numbers as they appear in bible
 
 ESD scanner - look for Yeshua
 find all hebrew letters in word Elohim
