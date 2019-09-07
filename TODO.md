@@ -3,7 +3,7 @@ MAJOR TODOs
 
 triangle colour buttons should color all and points and perim
 toFixed on all display numbers
-show Hebrew letters
+show Hebrew letters - for any value group
 make numbers in list non clickable
 layers
 Remove constants and replace with Links and videos - 1 or 2 main gem videos + video on Psalm 86
