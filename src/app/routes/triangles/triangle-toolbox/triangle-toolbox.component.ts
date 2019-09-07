@@ -23,6 +23,7 @@ export class TriangleToolboxComponent extends DestroyerComponent implements OnIn
 
   @Input() rowCount: number
   alignCenter: boolean
+  hebrewLetter: string
   lineDirection: string
   shortLines: boolean
   zoom: boolean
@@ -63,6 +64,7 @@ export class TriangleToolboxComponent extends DestroyerComponent implements OnIn
     this.shortLines = storageShortLines != null ? storageShortLines : true
     this.lineDirection = this.storageService.getItem('triangle-line-direction') || 'left-right'
 
+    this.hebrewLetter = this.storageService.getItem('hebrew-letter') || 'off'
     this.color = this.storageService.getItem('triangle-counter-color') || 'appRed'
     this.counterValuesOption = this.storageService.getItem('triangle-counter-values') || TriangleCounterValues.None
     this.mode = this.storageService.getItem('triangle-mode') || 'paint'
@@ -201,6 +203,17 @@ export class TriangleToolboxComponent extends DestroyerComponent implements OnIn
     this.lineDirection = direction
     this.storageService.setItem('triangle-line-direction', direction)
     this.trianglesService.onCycleLineDirections(direction)
+  }
+
+  onCycleHebrewLettersClick() {
+    const hebrewLetters = ['off', 'standard', 'ordinal']
+    let idx = hebrewLetters.indexOf(this.hebrewLetter)
+    idx++
+    if (idx === hebrewLetters.length) idx = 0
+    const hebrewLetter = hebrewLetters[idx]
+    this.hebrewLetter = hebrewLetter
+    this.storageService.setItem('hebrew-letter', hebrewLetter)
+    this.trianglesService.onCycleHebrewLetters(hebrewLetter)
   }
 
   onTrianglePerimeter() {

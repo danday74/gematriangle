@@ -78,6 +78,26 @@
           <i class="fa" [ngClass]="zoom ? 'fa-search-plus' : 'fa-search-minus'" aria-hidden="true"></i>
         </button>
       </div>
+      <div class="btn-group mr-2 mb-2" role="group">
+        <button class="btn btn-dark btn-sm image-icon tav" title="Cycle Hebrew Letters" (click)="onCycleHebrewLettersClick()"></button>
+        <div class="gematria-value-for-tav">
+          <ng-container *ngIf="hebrewLetter === 'standard'">
+            <div class="digit standard">4</div>
+            <div class="digit standard">0</div>
+            <div class="digit standard">0</div>
+          </ng-container>
+          <ng-container *ngIf="hebrewLetter === 'ordinal'">
+            <div class="digit ordinal">2</div>
+            <div class="digit ordinal">2</div>
+            <div class="digit ordinal">&nbsp;</div>
+          </ng-container>
+          <ng-container *ngIf="hebrewLetter === 'off'">
+            <div class="digit off">0</div>
+            <div class="digit off">F</div>
+            <div class="digit off">F</div>
+          </ng-container>
+        </div>
+      </div>
     </div>
 
     <ng-container>
@@ -200,8 +220,10 @@
   <ng-container *ngIf="starOfDavid">
     <div class="shapes">
       <div class="star">
-        <img src="/assets/images/israel-star.png" class="israel-star" [title]="'T' + rowCount.toFixed() + ' houses a star of David (ST' + starOfDavid.n.toFixed() + ') perfectly'">
-        <div class="term" [title]="'T' + rowCount.toFixed() + ' houses a star of David (S' + starOfDavid.n.toFixed() + ') perfectly'">{{ starOfDavid.term.toFixed() }}</div>
+        <img src="/assets/images/israel-star.png" class="israel-star"
+             [title]="'T' + rowCount.toFixed() + ' houses a star of David (ST' + starOfDavid.n.toFixed() + ') perfectly'">
+        <div class="term"
+             [title]="'T' + rowCount.toFixed() + ' houses a star of David (S' + starOfDavid.n.toFixed() + ') perfectly'">{{ starOfDavid.term.toFixed() }}</div>
       </div>
     </div>
   </ng-container>

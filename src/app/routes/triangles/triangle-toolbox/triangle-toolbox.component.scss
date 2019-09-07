@@ -129,3 +129,22 @@ $activeColorBorderRadius: 5px;
     color: #444;
   }
 }
+
+.gematria-value-for-tav {
+  font-size: 10px;
+  background-color: #222;
+  color: #bdbdbd;
+  padding-left: 6px;
+  min-width: 15px;
+  user-select: none;
+
+  .digit {
+    height: 10px;
+    position: relative;
+    top: -2px;
+
+    &.ordinal {
+      top: 3px;
+    }
+  }
+}

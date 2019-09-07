@@ -1,6 +1,8 @@
 MAJOR TODOs
 ===========
 
+Think about diff modes for Hebrew letters - off ordinal and std - maybe a tav which has diff values not alef?
+
 ESD scanner - look for Yeshua
 find all hebrew letters in word Elohim
 color certain number only

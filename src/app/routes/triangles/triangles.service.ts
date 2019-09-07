@@ -104,4 +104,8 @@ export class TrianglesService {
   onTotalValueUpdated(value: Decimal) {
     this.totalValueUpdatedSource.next(value)
   }
+
+  onCycleHebrewLetters(hebrewLetters: string) {
+    this.onTriangleToolboxMessage(TriangleToolboxMessage.CycleHebrewLetters, hebrewLetters)
+  }
 }

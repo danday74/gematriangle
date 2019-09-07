@@ -22,7 +22,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   @Input() rowCount = 1
 
   posAdjusts: any
-
+  hebrewLetter: string
   lineDirection: string
   alignCenter: boolean
   shortLines: boolean
@@ -56,6 +56,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
     this.shortLines = storageShortLines != null ? storageShortLines : true
     this.zoom = storageZoom != null ? storageZoom : false
 
+    this.hebrewLetter = this.storageService.getItem('hebrew-letter') || 'off'
     this.lineDirection = this.storageService.getItem('triangle-line-direction') || 'left-right'
 
     this.spinInterval = setInterval(() => {
@@ -112,6 +113,9 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
           break
         case TriangleToolboxMessage.CycleLineDirections:
           this.lineDirection = message.value
+          break
+        case TriangleToolboxMessage.CycleHebrewLetters:
+          this.hebrewLetter = message.value
           break
         case TriangleToolboxMessage.DrawLines:
           this.drawLines(this.color)
