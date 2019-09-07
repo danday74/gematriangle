@@ -200,8 +200,8 @@
   <ng-container *ngIf="starOfDavid">
     <div class="shapes">
       <div class="star">
-        <img src="/assets/images/israel-star.png" class="israel-star" [title]="'T' + rowCount + ' houses a star of David (ST' + starOfDavid.n + ') perfectly'">
-        <div class="term" [title]="'T' + rowCount + ' houses a star of David (S' + starOfDavid.n + ') perfectly'">{{ starOfDavid.term }}</div>
+        <img src="/assets/images/israel-star.png" class="israel-star" [title]="'T' + rowCount.toFixed() + ' houses a star of David (ST' + starOfDavid.n.toFixed() + ') perfectly'">
+        <div class="term" [title]="'T' + rowCount.toFixed() + ' houses a star of David (S' + starOfDavid.n.toFixed() + ') perfectly'">{{ starOfDavid.term.toFixed() }}</div>
       </div>
     </div>
   </ng-container>

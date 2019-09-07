@@ -1,6 +1,8 @@
 MAJOR TODOs
 ===========
 
+triangle colour buttons should color all and points and perim
+toFixed on all display numbers
 show Hebrew letters
 make numbers in list non clickable
 layers
