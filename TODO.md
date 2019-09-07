@@ -1,10 +1,12 @@
 MAJOR TODOs
 ===========
 
+ESD scanner - look for Yeshua
+find all hebrew letters in word Elohim
+color certain number only
 prime or prime factors
 faded-layer - work on it as normal and when fade it values become 0 but it remains faded in bg
 can faded layer be diff size or shape to main layer - yes would be nice but then how do you center it
-bug - when in line mode if you click line mode it clears spinners
 triangle colour buttons should color all and points and perim
 toFixed on all display numbers
 show Hebrew letters - for any value group

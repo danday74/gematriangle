@@ -10,7 +10,6 @@ import { TriangleCounterValues } from './triangle-counter-values.enum'
 import { TriangleToolboxMessage } from '../triangle-toolbox/triangle-toolbox-message.enum'
 import { ColorService } from '../../../reusable/color/color.service'
 import { StorageService } from '../../../services/storage/storage.service'
-import { precision } from 'src/app/utils/mathjs-precision'
 
 @Component({
   selector: 'app-triangle',
@@ -99,7 +98,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
           this.updateCounterValues()
           break
         case TriangleToolboxMessage.ChangeMode:
-          this.clearActive()
+          if (this.mode === 'line' && message.value !== 'line') this.clearActive()
           this.mode = message.value
           break
         case TriangleToolboxMessage.ClearActive:
