@@ -1,6 +1,8 @@
 MAJOR TODOs
 ===========
 
+Google Analytics not clocking some1 as active when they dont click links - send an event every x secs to record user as active
+
 Tetrahedrons
 
 Pascals Tetrahedron
