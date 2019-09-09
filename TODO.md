@@ -3,6 +3,10 @@ MAJOR TODOs
 
 Tetrahedrons
 
+Pascals Tetrahedron
+
+Add findings section
+
 Fix contact us route
 
 ltr and rtl
