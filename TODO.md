@@ -1,6 +1,8 @@
 MAJOR TODOs
 ===========
 
+bug - modals reset scroll pos
+
 Google Analytics not clocking some1 as active when they dont click links - send an event every x secs to record user as active
 
 Tetrahedrons
@@ -14,6 +16,9 @@ Fix contact us route
 ltr and rtl
 
 Think about diff modes for Hebrew letters - off ordinal and std - maybe a tav which has diff values not alef? - other mode for Hebrew letter is numbers as they appear in bible
+
+star button should have options - e.g. up triangle down triangle intersections etc
+
 
 ESD scanner - look for Yeshua
 find all hebrew letters in word Elohim
