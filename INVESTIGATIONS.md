@@ -12,3 +12,5 @@ When you colour the centered triangle counters on T37 and T73 using Pascal value
 T73 center dot value on Pascal - T37 center dot value on Pascal!
 
 Remember Stars of David in Pascal makes square numbers - Get this formula and then apply it to T37 star and T73 star
+
+T49 is the central layer of TET73 - investigate particularly middle dot value
