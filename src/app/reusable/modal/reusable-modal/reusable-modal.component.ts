@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { debounce } from 'lodash'
 
 @Component({
   selector: 'app-reusable-modal',
@@ -6,16 +7,22 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
   styleUrls: ['./reusable-modal.component.scss']
 })
 
-export class ReusableModalComponent implements OnInit {
-  @Input() modalTitle = 'Untitled'
+export class ReusableModalComponent {
+  @Input() display = false
   @Input() imgSrc: string
-  @Output() cancel = new EventEmitter<boolean>()
+  @Input() modalTitle = 'Untitled'
+  @Output() hide = new EventEmitter<boolean>()
+  @Output() show = new EventEmitter<boolean>()
 
-  constructor() {}
+  constructor() {
+    this.onHide = debounce(this.onHide, 300, {leading: true, trailing: false})
+  }
 
-  ngOnInit() {}
+  onShow() {
+    this.show.next(true)
+  }
 
-  onCancelClick() {
-    this.cancel.emit(true)
+  onHide() {
+    this.hide.next(true)
   }
 }

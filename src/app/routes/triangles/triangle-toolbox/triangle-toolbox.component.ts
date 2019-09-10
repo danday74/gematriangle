@@ -8,9 +8,6 @@ import { TriangleCounterValues } from '../triangle/triangle-counter-values.enum'
 import * as $ from 'jquery'
 import { Location } from '@angular/common'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
-import { OtherValuesModalComponent } from './other-values-modal/other-values-modal.component'
-import { DestroyerComponent } from '../../../utils/destroyer.component'
-import { takeUntil } from 'rxjs/operators'
 import { GoogleAnalyticsService } from '../../../services/google-analytics/google-analytics.service'
 
 @Component({
@@ -19,7 +16,7 @@ import { GoogleAnalyticsService } from '../../../services/google-analytics/googl
   styleUrls: ['./triangle-toolbox.component.scss', './triangle-toolbox-buttons.component.scss']
 })
 
-export class TriangleToolboxComponent extends DestroyerComponent implements OnInit {
+export class TriangleToolboxComponent implements OnInit {
 
   @Input() rowCount: number
   alignCenter: boolean
@@ -29,6 +26,11 @@ export class TriangleToolboxComponent extends DestroyerComponent implements OnIn
   zoom: boolean
   color: string
   mode: string
+
+  otherValuesModal = {
+    display: false,
+    action: null
+  }
 
   get starOfDavid() {
     const n = shapeTriangle.housesStarOfDavid(this.rowCount)
@@ -49,7 +51,6 @@ export class TriangleToolboxComponent extends DestroyerComponent implements OnIn
 
   constructor(private trianglesService: TrianglesService, private storageService: StorageService, private location: Location,
               private modalService: NgbModal, private googleAnalyticsService: GoogleAnalyticsService) {
-    super()
     this.onChangeRowCount = debounce(this.onChangeRowCount, 500, {leading: false, trailing: true})
   }
 
@@ -141,15 +142,13 @@ export class TriangleToolboxComponent extends DestroyerComponent implements OnIn
   }
 
   onMultipleClick() {
-    const otherValuesModal = this.modalService.open(OtherValuesModalComponent, {backdrop: 'static', keyboard: false, centered: true})
+    this.otherValuesModal.action = this.mode === 'line' ? 'Activate' : 'Paint'
+    this.otherValuesModal.display = true
+  }
 
-    otherValuesModal.componentInstance.action = this.mode === 'line' ? 'Activate' : 'Paint'
-    otherValuesModal.componentInstance.done.pipe(
-      takeUntil(this.unsubscribe$)
-    ).subscribe(({done, multiple, offset}) => {
-      if (done) this.trianglesService.onMultiple(multiple, offset)
-      otherValuesModal.close()
-    })
+  onHideOtherValuesModal(value) {
+    this.otherValuesModal.display = false
+    if (value) this.trianglesService.onMultiple(value.multiple, value.offset)
   }
 
   onToggleZoom() {

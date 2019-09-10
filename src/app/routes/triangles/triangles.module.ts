@@ -8,7 +8,7 @@ import { TriangleStatsComponent } from './triangle-stats/triangle-stats.componen
 import { NumberModule } from '../../reusable/number/number.module'
 import { DropdownModule } from 'primeng/dropdown'
 import { FormsModule } from '@angular/forms'
-import { SpinnerModule } from 'primeng/primeng'
+import { DialogModule, SpinnerModule } from 'primeng/primeng'
 import { BaseModule } from '../../base/base.module'
 import { ColorModule } from '../../reusable/color/color.module'
 import { OtherValuesModalComponent } from './triangle-toolbox/other-values-modal/other-values-modal.component'
@@ -38,9 +38,6 @@ import { CounterValueComponent } from './triangle/counter-value/counter-value.co
     ColorModule,
     ModalModule,
     DirectivesModule
-  ],
-  entryComponents: [
-    OtherValuesModalComponent
   ]
 })
 

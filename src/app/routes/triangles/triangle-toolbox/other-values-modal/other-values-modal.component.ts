@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 
 @Component({
   selector: 'app-other-values-modal',
@@ -6,21 +6,28 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core'
   styleUrls: ['./other-values-modal.component.scss']
 })
 
-export class OtherValuesModalComponent implements OnInit {
-  @Output() done = new EventEmitter<{ done: boolean, multiple: number, offset: number }>()
-  action: string
-  multiple = 3
-  offset = 0
+export class OtherValuesModalComponent {
+  @Input() action: string
+  @Input() display = false
+  @Output() hide = new EventEmitter<any>()
 
-  constructor() {}
-
-  ngOnInit() {}
-
-  onCancel() {
-    this.done.emit({done: false, multiple: null, offset: null})
-  }
+  multiple: number
+  offset: number
 
   onApply() {
-    this.done.emit({done: true, multiple: this.multiple, offset: this.offset})
+    this.hide.next({multiple: this.multiple, offset: this.offset})
+  }
+
+  onCancel() {
+    this.hide.next(null)
+  }
+
+  onHide() {
+    this.hide.next(null)
+  }
+
+  onShow() {
+    this.multiple = 3
+    this.offset = 0
   }
 }
