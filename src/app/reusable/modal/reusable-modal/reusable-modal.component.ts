@@ -12,14 +12,14 @@ export class ReusableModalComponent {
   @Input() imgSrc: string
   @Input() modalTitle = 'Untitled'
   @Output() hide = new EventEmitter<boolean>()
-  @Output() show = new EventEmitter<boolean>()
+  @Output() shower = new EventEmitter<boolean>()
 
   constructor() {
     this.onHide = debounce(this.onHide, 300, {leading: true, trailing: false})
   }
 
   onShow() {
-    this.show.next(true)
+    this.shower.next(true)
   }
 
   onHide() {

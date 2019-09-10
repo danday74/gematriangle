@@ -5,8 +5,6 @@ For Pascals Triangle allow top dot value to be changed
 
 Import own values
 
-bug - modals reset scroll pos
-
 Google Analytics not clocking some1 as active when they dont click links - send an event every x secs to record user as active
 
 Tetrahedrons
