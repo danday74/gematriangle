@@ -8,4 +8,8 @@ p:first-child {
 
 .spinner-wrapper {
   margin: 0 8px;
+
+  &:last-child {
+    margin: 0 0 0 8px;
+  }
 }

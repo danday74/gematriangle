@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { debounce } from 'lodash'
+import * as $ from 'jquery'
 
 @Component({
   selector: 'app-reusable-modal',
@@ -8,6 +9,8 @@ import { debounce } from 'lodash'
 })
 
 export class ReusableModalComponent {
+
+  @Input() width = 500
   @Input() display = false
   @Input() imgSrc: string
   @Input() modalTitle = 'Untitled'
@@ -20,9 +23,18 @@ export class ReusableModalComponent {
 
   onShow() {
     this.shower.next(true)
+    this.center()
   }
 
   onHide() {
     this.hide.next(true)
+  }
+
+  private center() {
+    setTimeout(() => {
+      const el = $('.reusable-modal')[0]
+      const pos = $(el).position()
+      $(el).css({top: pos.top + 'px', left: (pos.left - 8) + 'px'})
+    }, 300)
   }
 }

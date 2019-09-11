@@ -1,5 +1,6 @@
-<p-dialog [visible]="display" [modal]="true" [appendTo]="'body'" [closeOnEscape]="false" [focusOnShow]="false" (onShow)="onShow()" (onHide)="onHide()"
-          (visibleChange)="onHide()">
+<p-dialog [style]="{width: width + 'px'}"
+          [visible]="display" [modal]="true" [appendTo]="'body'" [closeOnEscape]="false" [focusOnShow]="false"
+          (onShow)="onShow()" (onHide)="onHide()" (visibleChange)="onHide()" [styleClass]="'reusable-modal'">
   <p-header>
     <img class="reusable-modal-image" *ngIf="imgSrc" [src]="imgSrc">
     <span>{{ modalTitle }}</span>
