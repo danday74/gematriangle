@@ -1,6 +1,8 @@
 MAJOR TODOs
 ===========
 
+Live preview when using multiple modal - so awesome
+
 For Pascals Triangle allow top dot value to be changed
 
 Import own values
