@@ -1,8 +1,6 @@
 MAJOR TODOs
 ===========
 
-think about - modal add center button - @ViewChild(Dialog, {static: false}) modalRef: Dialog OR @ViewChild(Dialog, {static: false}) modalRef: Dialog
-
 Live preview when using multiple modal - so awesome
 
 For Pascals Triangle allow top dot value to be changed
