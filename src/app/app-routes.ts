@@ -6,6 +6,10 @@ export const routes: Routes = [
     loadChildren: () => import('./routes/constants/constants.module').then(mod => mod.ConstantsModule)
   },
   {
+    path: 'values',
+    loadChildren: () => import('./routes/values/values.module').then(mod => mod.ValuesModule)
+  },
+  {
     path: 'triangles',
     loadChildren: () => import('./routes/triangles/triangles.module').then(mod => mod.TrianglesModule)
   },
