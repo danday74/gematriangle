@@ -34,7 +34,8 @@ export class ReusableModalComponent {
     setTimeout(() => {
       const el = $('.reusable-modal')[0]
       const pos = $(el).position()
-      $(el).css({top: pos.top + 'px', left: (pos.left - 8) + 'px'})
+      const halfScrollBarWidth = 8
+      $(el).css({top: pos.top + 'px', left: (pos.left - halfScrollBarWidth) + 'px'})
     }, 300)
   }
 }

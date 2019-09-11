@@ -1,8 +1,6 @@
 MAJOR TODOs
 ===========
 
-bug - modal not central because of scroll bar (17px)
-bug - modal squashes on right hand side
 think about - modal add center button - @ViewChild(Dialog, {static: false}) modalRef: Dialog OR @ViewChild(Dialog, {static: false}) modalRef: Dialog
 
 Live preview when using multiple modal - so awesome
