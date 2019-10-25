@@ -30,6 +30,7 @@
     "debug": "^4.1.1",
     "decimal.js": "^10.2.0",
     "font-awesome": "^4.7.0",
+    "gematria-ot-values": "0.0.4",
     "integer-sequences": "^1.0.4",
     "jquery": "^3.4.1",
     "lodash": "^4.17.15",

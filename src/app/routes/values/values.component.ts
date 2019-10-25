@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import * as gotv from 'gematria-ot-values'
 
 @Component({
   selector: 'app-values',
@@ -9,5 +10,8 @@ import { Component, OnInit } from '@angular/core'
 export class ValuesComponent implements OnInit {
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    const gem = gotv('Genesis 1', 'sv')
+    console.log('gem', gem)
+  }
 }
