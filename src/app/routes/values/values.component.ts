@@ -26,11 +26,16 @@ export class ValuesComponent implements OnInit {
     chapterNums.forEach(num => {
       const lc = gotv(`${this.book} ${num}`, 'lc')
       const wc = gotv(`${this.book} ${num}`, 'wc')
+      const sw = gotv(`${this.book} ${num}`, 'sw')
+      const ow = gotv(`${this.book} ${num}`, 'ow')
+
       if (wc) {
         this.chapters.push({
           num,
           letterCount: sum(lc),
-          wordCount: sum(wc)
+          wordCount: sum(wc),
+          standard: sum(sw),
+          ordinal: sum(ow)
         })
       }
     })
