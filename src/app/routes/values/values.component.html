@@ -1,20 +1,24 @@
-<div class="values-list">
-  <table class="table table-striped table-hover table-sm table-dark">
-    <thead>
-    <tr class="d-flex">
-      <th class="col-3 text-center">A</th>
-      <th class="col-3 text-center">B</th>
-      <th class="col-3 text-center">C</th>
-      <th class="col-3 text-center">D</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="d-flex">
-      <td class="col-3 text-center">A</td>
-      <td class="col-3 text-center">B</td>
-      <td class="col-3 text-center">C</td>
-      <td class="col-3 text-center">D</td>
-    </tr>
-    </tbody>
-  </table>
+<div class="values">
+  <div class="book">{{ book }}</div>
+
+  <div class="values-list">
+    <table class="table table-striped table-hover table-sm table-dark">
+      <thead>
+      <tr class="d-flex">
+        <th class="col-3 text-center">Chapter</th>
+        <th class="col-3 text-center">Letter Count</th>
+        <th class="col-3 text-center">Word Count</th>
+        <th class="col-3 text-center">Verse Count</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let chapter of chapters" class="d-flex">
+        <td class="col-3 text-center">{{ chapter.num }}</td>
+        <td class="col-3 text-center">{{ chapter.letterCount }}</td>
+        <td class="col-3 text-center">{{ chapter.wordCount }}</td>
+        <td class="col-3 text-center">&nbsp;</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

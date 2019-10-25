@@ -1,6 +1,8 @@
 MAJOR TODOs
 ===========
 
+Datagrid for sorting
+
 Live preview when using multiple modal - so awesome
 
 For Pascals Triangle allow top dot value to be changed
