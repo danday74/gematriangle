@@ -1,12 +1,12 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core'
 import { Decimal } from 'decimal.js'
-import { shapeTriangle } from '../../../utils/shape-triangle'
 import { precision } from 'src/app/utils/mathjs-precision'
 import { NavbarService } from 'src/app/base/navbar/navbar.service'
 import { StorageService } from '../../../services/storage/storage.service'
 import { DestroyerComponent } from '../../../utils/destroyer.component'
 import { filter, takeUntil } from 'rxjs/operators'
 import { NavbarMessage } from '../../../base/navbar/navbar-message.enum'
+import { NumberService } from './number.service'
 import { appNumber } from 'src/app/utils/app-number'
 
 interface Prop {
@@ -34,9 +34,9 @@ export class NumberComponent extends DestroyerComponent implements OnInit, OnCha
   flipped: Decimal
 
   activeProps: Array<Prop>
-  props: Array<Prop>
 
-  constructor(private navbarService: NavbarService, private storageService: StorageService /*, private toastr: ToastrService */) {
+  constructor(private navbarService: NavbarService, private storageService: StorageService,
+              private numberService: NumberService /*, private toastr: ToastrService */) {
     super()
   }
 
@@ -62,42 +62,16 @@ export class NumberComponent extends DestroyerComponent implements OnInit, OnCha
     }
   }
 
-  checkNumber(num: Decimal) {
-    if (this.breakdown) {
-      this.props = [
-        {name: '37', value: appNumber.isMultiple(this.num, 37), multiple: true, flipped: null},
-        {name: '73', value: appNumber.isMultiple(this.num, 73), multiple: true, flipped: null},
-        {name: 'T', value: shapeTriangle.isTerm(num), multiple: false, flipped: null}
-      ]
-      this.activeProps = this.props.filter(prop => prop.value != null && !this.excluded.includes(prop.name)).map(prop => {
-        prop.flipped = prop.value.plus(this.reverseNumber(prop.value))
-        return prop
-      })
-    }
-
-    this.flipped = num.plus(this.reverseNumber(num))
-
-    // const special = numberData[this.num.toFixed()]
-    // this.alert(special, this.source)
-    // const flippedSpecial = numberData[this.flipped.toFixed()]
-    // this.alert(flippedSpecial, this.source + ' flipped')
-  }
-
-  // private alert(special, source) {
-  //   if (special) {
-  //     const title = `<strong>${special.number}</strong> for <strong>${source}</strong>`
-  //     const msg = special.reason
-  //     this.toastr.info(title + '<br>' + msg)
-  //   }
-  // }
-
-  private reverseNumber(num: Decimal) {
-    return num.toFixed().split('').reverse().join('')
-  }
-
   onClick(num: Decimal) {
     if (num) {
       console.log('onClick', num.toFixed())
     }
+  }
+
+  private checkNumber(num: Decimal) {
+    if (this.breakdown) {
+      this.activeProps = this.numberService.getActiveProps(num)
+    }
+    this.flipped = num.plus(appNumber.reverseNumber(num))
   }
 }

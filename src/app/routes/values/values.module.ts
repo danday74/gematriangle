@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common'
 import { ValuesRoutingModule } from './values-routing.module'
 import { ValuesComponent } from './values.component'
 import { NumberModule } from '../../reusable/number/number.module'
+import { DxDataGridModule } from 'devextreme-angular'
+import { ButtonModule } from '../../reusable/button/button.module'
 
 @NgModule({
   declarations: [
@@ -11,7 +13,10 @@ import { NumberModule } from '../../reusable/number/number.module'
   imports: [
     CommonModule,
     ValuesRoutingModule,
-    NumberModule
+    NumberModule,
+    DxDataGridModule,
+    ButtonModule
   ]
 })
+
 export class ValuesModule {}

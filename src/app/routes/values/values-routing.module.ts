@@ -5,7 +5,10 @@ import { ValuesComponent } from './values.component'
 const routes: Routes = [
   {
     path: '',
-    component: ValuesComponent
+    component: ValuesComponent,
+    data: {
+      theme: 'dark'
+    }
   }
 ]
 

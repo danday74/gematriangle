@@ -1,0 +1,19 @@
+.sticky-buttons-bar {
+  position: sticky;
+  top: 58px;
+  z-index: 1;
+}
+
+.dx-datagrid-header-panel {
+  position: sticky !important;
+  top: 110px;
+  z-index: 2;
+}
+
+.dx-datagrid-headers {
+  position: sticky !important;
+  top: 136px;
+  z-index: 1;
+  background-color: #000;
+  color: #FFF !important;
+}

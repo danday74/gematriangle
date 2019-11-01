@@ -1,11 +1,20 @@
-.book {
-  text-align: center;
-  font-size: 2em;
+@import '../../colors.scss';
+
+.values {
+  background-color: #2B2B2B;
+  padding-bottom: 10px;
 }
 
-.values-list {
-  width: 60%;
-  margin: 10px auto 20px;
-  padding: 0 15px 1px;
-  background-color: #343434;
+.buttons-bar-wrapper {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.datagrid-wrapper {
+  margin: 0 auto;
+  width: 90%;
+}
+
+.dxTemplateNumber {
+  color: $appYellow;
 }

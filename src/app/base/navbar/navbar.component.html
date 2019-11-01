@@ -11,7 +11,7 @@
     </li>
   </ul>
   <ul class="navbar-nav navbar-right">
-    <ng-container *ngIf="router.url === '/triangles' || router.url.startsWith('/triangles/') || router.url === '/triangles-list'">
+    <ng-container *ngIf="router.url === '/triangles' || router.url.startsWith('/triangles/') || router.url === '/triangles-list' || router.url === '/values'">
       <li>
         <div class="breakdown-wrapper">
           <label (click)="toggleBreakdown()">Breakdown</label>
@@ -29,31 +29,6 @@
     <ng-container *ngIf="isFullscreen !== true">
       <li>
         <img class="navbar-icon" src="/assets/icons/fullscreen.png" (click)="fullscreen()">
-      </li>
-    </ng-container>
-  </ul>
-</nav>
-
-<nav class="navbar navbar-expand navbar-dark bg-dark bg-custom">
-  <ul class="navbar-nav mr-auto">
-    <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link" routerLink="/constants">Constants</a>
-    </li>
-    <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link" routerLink="/triangles">Triangles</a>
-    </li>
-  </ul>
-  <ul class="navbar-nav navbar-right">
-    <ng-container *ngIf="router.url === '/triangles' || router.url.startsWith('/triangles/')">
-      <li>
-        <a class="list" [routerLink]="['/triangles-list']">
-          <img class="navbar-icon" src="/assets/icons/list.png">
-        </a>
-      </li>
-    </ng-container>
-    <ng-container *ngIf="isFullscreen !== true">
-      <li>
-        <img class="navbar-icon" src="/assets/icons/fullscreen.png">
       </li>
     </ng-container>
   </ul>

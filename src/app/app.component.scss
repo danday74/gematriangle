@@ -1,3 +1,21 @@
-.router-outlet-wrapper {
-  padding: 20px 0 10px;
+$navbarHeight: 58px;
+
+.app-wrapper {
+  height: 100%;
+
+  .navbar-wrapper {
+    height: $navbarHeight;
+  }
+
+  .router-outlet-wrapper {
+    height: calc(100% - #{$navbarHeight});
+
+    &.routerOutletWithPadding {
+      padding: 20px 0 10px;
+    }
+
+    &.routerOutletDarkTheme {
+      background-color: #2B2B2B;
+    }
+  }
 }

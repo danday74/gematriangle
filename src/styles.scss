@@ -1,4 +1,6 @@
 @import './app/colors.scss';
+@import './styles/sticky.scss';
+@import './styles/dx.scss';
 
 html {
   overflow-y: scroll;
@@ -106,4 +108,8 @@ button.btn-lg.image-icon {
 
 .ui-dialog-titlebar.ui-widget-header {
   cursor: grab;
+}
+
+.leading-zero {
+  color: #666;
 }

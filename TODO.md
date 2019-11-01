@@ -1,7 +1,17 @@
 MAJOR TODOs
 ===========
 
-Datagrid for sorting
+Datagrid for sorting ...
+fade table in? fade in on all route changes?
+think about how UI will work
+Need to add sticky buttons bar and allow back to chapters - when it does this it should remember the current chapter
+total row?
+2 modes should allow - chapter then drill down to verse - AND - all verses mode
+Introduced datagrid to values BUT need to improve searching for e.g. number contains
+Need icons for "add values - letters, words"
+Need box to add to (possibly two boxes - so can multiply box 1 by box 2 - or just one box and a modal for decisions - e.g. if already values, multiply, add, etc - same as last time)
+Need to rip out all tables, see also number.component.scss
+
 
 Live preview when using multiple modal - so awesome
 

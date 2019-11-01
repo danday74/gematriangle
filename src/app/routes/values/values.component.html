@@ -1,36 +1,51 @@
 <div class="values">
-  <div class="book">{{ book }}</div>
 
-  <div class="values-list">
-    <table class="table table-striped table-hover table-sm table-dark">
-      <thead>
-      <tr class="d-flex">
-        <th class="col-2 text-center">Chapter</th>
-        <th class="col-2 text-center">Letter Count</th>
-        <th class="col-2 text-center">Word Count</th>
-        <th class="col-2 text-center">Verse Count</th>
-        <th class="col-2 text-center">Standard</th>
-        <th class="col-2 text-center">Ordinal</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let chapter of chapters" class="d-flex">
-        <td class="col-2 text-center">{{ chapter.num }}</td>
-        <td class="col-2 text-center">
-          <app-number [source]="'values list letter count'" [n]="chapter.letterCount"></app-number>
-        </td>
-        <td class="col-2 text-center">
-          <app-number [source]="'values list word count'" [n]="chapter.wordCount"></app-number>
-        </td>
-        <td class="col-2 text-center">&nbsp;</td>
-        <td class="col-2 text-center">
-          <app-number [source]="'values list standard'" [n]="chapter.standard"></app-number>
-        </td>
-        <td class="col-2 text-center">
-          <app-number [source]="'values list ordinal'" [n]="chapter.ordinal"></app-number>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="buttons-bar-wrapper sticky-buttons-bar">
+    <app-sticky-buttons-bar>
+      <ng-container class="buttons-left">
+        <app-back-button></app-back-button>
+      </ng-container>
+      <ng-container class="buttons-right">
+        <button class="btn btn-sm btn-primary" [disabled]="mode === 'Chapter'" (click)="showChapters()">Chapters</button>
+      </ng-container>
+    </app-sticky-buttons-bar>
+  </div>
+
+  <div class="datagrid-wrapper">
+    <dx-data-grid [dataSource]="items" [hoverStateEnabled]="true" [showBorders]="true" [rowAlternationEnabled]="true" (onRowClick)="showChapterVerses($event)">
+      <dxo-search-panel [visible]="true" placeholder="Search"></dxo-search-panel>
+      <!-- <dxo-state-storing [enabled]="true" type="localStorage" storageKey="datagrid-values"></dxo-state-storing> -->
+      <dxo-paging [pageSize]="20"></dxo-paging>
+      <dxo-pager [showPageSizeSelector]="true" [visible]="true" [allowedPageSizes]="[10, 20, 50, 100]"></dxo-pager>
+
+      <!-- Chapter or verse -->
+      <dxi-column dataField="number" sortOrder="asc" [caption]="mode"></dxi-column>
+      <dxi-column dataField="item" caption="Reference" cellTemplate="dxTemplateChapter"></dxi-column>
+
+      <dxi-column dataField="letterCount"></dxi-column>
+      <dxi-column dataField="letterCount" caption="Breakdown" cellTemplate="dxTemplateNumber"
+                  [calculateCellValue]="calculateLetterCount" [visible]="breakdown"></dxi-column>
+
+      <dxi-column dataField="wordCount"></dxi-column>
+      <dxi-column dataField="wordCount" caption="Breakdown" cellTemplate="dxTemplateNumber"
+                  [calculateCellValue]="calculateWordCount" [visible]="breakdown"></dxi-column>
+
+      <dxi-column dataField="standard"></dxi-column>
+      <dxi-column dataField="standard" caption="Breakdown" cellTemplate="dxTemplateNumber"
+                  [calculateCellValue]="calculateStandard" [visible]="breakdown"></dxi-column>
+
+      <dxi-column dataField="ordinal"></dxi-column>
+      <dxi-column dataField="ordinal" caption="Breakdown" cellTemplate="dxTemplateNumber"
+                  [calculateCellValue]="calculateOrdinal" [visible]="breakdown"></dxi-column>
+
+      <div *dxTemplate="let data of 'dxTemplateChapter'">
+        <div class="dxTemplateChapter" [innerHTML]="data.value === '~' ? '' : data.value"></div>
+      </div>
+      <div *dxTemplate="let data of 'dxTemplateNumber'">
+        <div class="dxTemplateNumber">
+          <span>{{ data.value === '~' ? '' : data.value }}</span>
+        </div>
+      </div>
+    </dx-data-grid>
   </div>
 </div>
