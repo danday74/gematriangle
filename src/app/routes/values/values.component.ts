@@ -149,14 +149,6 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
     })
   }
 
-  // TODO: This should be which verse in the Bible it is - e.g. 999th verse = 999
-  private getVerseNumber(book, chapterNum, verseNum) {
-    const bookDigit2 = (this.books.indexOf(book) + 1).toString().padStart(2, '0')
-    const chapterDigit3 = chapterNum.toString().padStart(3, '0')
-    const verseDigit3 = verseNum.toString().padStart(3, '0')
-    return parseInt(bookDigit2 + chapterDigit3 + verseDigit3, 10)
-  }
-
   sortReference(item1, item2) {
     if (!item1.includes(':')) {
       const parts1 = item1.split(' ')
@@ -232,5 +224,13 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
 
   private calculate(val) {
     return this.numberService.getActivePropsString(val)
+  }
+
+  // TODO: This should be which verse in the Bible it is - e.g. 999th verse = 999
+  private getVerseNumber(book, chapterNum, verseNum) {
+    const bookDigit2 = (this.books.indexOf(book) + 1).toString().padStart(2, '0')
+    const chapterDigit3 = chapterNum.toString().padStart(3, '0')
+    const verseDigit3 = verseNum.toString().padStart(3, '0')
+    return parseInt(bookDigit2 + chapterDigit3 + verseDigit3, 10)
   }
 }
