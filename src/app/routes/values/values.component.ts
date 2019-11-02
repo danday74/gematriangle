@@ -3,7 +3,6 @@ import * as gotv from 'gematria-ot-values'
 import * as chapterAndVerse from 'chapter-and-verse/js/cv'
 import { range, sum } from 'lodash'
 import { NumberService } from '../../reusable/number/number/number.service'
-import * as $ from 'jquery'
 import { StorageService } from '../../services/storage/storage.service'
 import { filter, takeUntil } from 'rxjs/operators'
 import { NavbarMessage } from '../../base/navbar/navbar-message.enum'
@@ -86,22 +85,23 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
       this.mode = 'ChapterVerse'
       this.items = []
 
-      const chapterNumSpan = evt.data.item
-      const html = $.parseHTML(chapterNumSpan)
-      const chapter = $(html).text()
-      const cv = chapterAndVerse(chapter)
+      const ref = evt.data.item
+      const cv = chapterAndVerse(ref)
       const verseNums = range(1, cv.book.versesPerChapter[cv.chapter - 1] + 1)
 
-      verseNums.forEach((num, i) => { // TODO: Is i needed?
-        const lc = gotv(`${chapter}:${num}`, 'lc')
-        const wc = gotv(`${chapter}:${num}`, 'wc')
-        const sw = gotv(`${chapter}:${num}`, 'sw')
-        const ow = gotv(`${chapter}:${num}`, 'ow')
+      const book = cv.book.name
+      const chapterNum = cv.chapter
+
+      verseNums.forEach(verseNum => {
+        const lc = gotv(`${ref}:${verseNum}`, 'lc')
+        const wc = gotv(`${ref}:${verseNum}`, 'wc')
+        const sw = gotv(`${ref}:${verseNum}`, 'sw')
+        const ow = gotv(`${ref}:${verseNum}`, 'ow')
 
         if (wc) {
           this.items.push({
-            number: i + 1, // TODO: This should be which verse in the Bible it is - e.g. 999th verse = 999
-            item: `${chapterNumSpan}:${num}`,
+            number: this.getVerseNumber(book, chapterNum, verseNum),
+            item: `${ref}:${verseNum}`,
             letterCount: sum(lc),
             wordCount: sum(wc),
             standard: sum(sw),
@@ -134,12 +134,8 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
             const ow = gotv(`${book} ${chapterNum}:${verseNum}`, 'ow')
 
             if (wc) {
-              const bookDigit2 = (this.books.indexOf(book) + 1).toString().padStart(2, '0')
-              const chapterDigit3 = chapterNum.toString().padStart(3, '0')
-              const verseDigit3 = verseNum.toString().padStart(3, '0')
               this.items.push({
-                // TODO: This should be which verse in the Bible it is - e.g. 999th verse = 999
-                number: parseInt(bookDigit2 + chapterDigit3 + verseDigit3, 10),
+                number: this.getVerseNumber(book, chapterNum, verseNum),
                 item: `${book} ${chapterNum}:${verseNum}`,
                 letterCount: sum(lc),
                 wordCount: sum(wc),
@@ -151,6 +147,14 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
         }
       })
     })
+  }
+
+  // TODO: This should be which verse in the Bible it is - e.g. 999th verse = 999
+  private getVerseNumber(book, chapterNum, verseNum) {
+    const bookDigit2 = (this.books.indexOf(book) + 1).toString().padStart(2, '0')
+    const chapterDigit3 = chapterNum.toString().padStart(3, '0')
+    const verseDigit3 = verseNum.toString().padStart(3, '0')
+    return parseInt(bookDigit2 + chapterDigit3 + verseDigit3, 10)
   }
 
   sortReference(item1, item2) {

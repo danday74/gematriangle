@@ -2,6 +2,7 @@ MAJOR TODOs
 ===========
 
 Datagrid for sorting ...
+totals box showing letter count of selected
 button to just list ALL verses
 restore dx state storing?
 improve dx performance
