@@ -18,8 +18,7 @@
                     (onRowClick)="showChapterVerses($event)">
         <dxo-search-panel [visible]="true" placeholder="Search"></dxo-search-panel>
         <!-- <dxo-state-storing [enabled]="true" type="localStorage" storageKey="datagrid-values"></dxo-state-storing> -->
-        <dxo-paging [pageSize]="20"></dxo-paging>
-        <dxo-pager [showPageSizeSelector]="true" [visible]="true" [showInfo]="true" [allowedPageSizes]="[10, 20, 50, 100]"></dxo-pager>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
 
         <!-- Chapter or verse -->
         <dxi-column dataField="number" sortOrder="asc" [caption]="mode === 'ChapterVerse' ? 'Verse' : mode"></dxi-column>
