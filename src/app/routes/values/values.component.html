@@ -2,13 +2,13 @@
 
   <div class="buttons-bar-wrapper sticky-buttons-bar">
     <app-sticky-buttons-bar>
-      <ng-container class="buttons-left">
+      <div class="buttons-left">
         <app-back-button></app-back-button>
-      </ng-container>
-      <ng-container class="buttons-right">
+      </div>
+      <div class="buttons-right">
         <button class="btn btn-sm btn-primary" [disabled]="mode === 'Chapter'" (click)="showChapters()">Chapters</button>
         <button class="btn btn-sm btn-primary" [disabled]="mode === 'Verses'" (click)="showVerses()">Verses</button>
-      </ng-container>
+      </div>
     </app-sticky-buttons-bar>
   </div>
 

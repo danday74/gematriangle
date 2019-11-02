@@ -109,3 +109,17 @@ button.btn-lg.image-icon {
 .ui-dialog-titlebar.ui-widget-header {
   cursor: grab;
 }
+
+.buttons-bar-wrapper {
+  .buttons-left {
+    .btn {
+      margin-right: 10px;
+    }
+  }
+
+  .buttons-right {
+    .btn {
+      margin-left: 10px;
+    }
+  }
+}
