@@ -81,7 +81,7 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
   }
 
   showChapterVerses(evt: any) {
-    if (this.mode !== 'ChapterVerse') {
+    if (this.mode === 'Chapter') {
 
       this.mode = 'ChapterVerse'
       this.items = []
