@@ -67,12 +67,12 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
 
         if (wc) {
           this.items.push({
-            number: count,
+            number: count.toString(),
             item: `${book} ${num}`,
-            letterCount: sum(lc),
-            wordCount: sum(wc),
-            standard: sum(sw),
-            ordinal: sum(ow)
+            letterCount: sum(lc).toString(),
+            wordCount: sum(wc).toString(),
+            standard: sum(sw).toString(),
+            ordinal: sum(ow).toString()
           })
         }
       })
@@ -206,8 +206,21 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
     return bd1.localeCompare(bd2)
   }
 
+  sortNumbers(item1, item2) {
+    const num1 = parseInt(item1, 10)
+    const num2 = parseInt(item2, 10)
+    if (num1 > num2) return 1
+    if (num1 < num2) return -1
+    return 0
+  }
+
   calculateLetterCount(rowData) {
     return this.calculate(rowData.letterCount)
+  }
+
+  filterCalculatedCell(selector) {
+    const column = this as any
+    return [[column.calculateCellValue, 'contains', selector]]
   }
 
   calculateWordCount(rowData) {
