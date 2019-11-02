@@ -9,6 +9,7 @@ import { filter, takeUntil } from 'rxjs/operators'
 import { NavbarMessage } from '../../base/navbar/navbar-message.enum'
 import { DestroyerComponent } from '../../utils/destroyer.component'
 import { NavbarService } from '../../base/navbar/navbar.service'
+import * as memoizee from 'memoizee'
 
 @Component({
   selector: 'app-values',
@@ -29,6 +30,8 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
     this.calculateWordCount = this.calculateWordCount.bind(this)
     this.calculateStandard = this.calculateStandard.bind(this)
     this.calculateOrdinal = this.calculateOrdinal.bind(this)
+    this.sortBreakdown = memoizee(this.sortBreakdown)
+    this.sortReference = memoizee(this.sortReference)
   }
 
   ngOnInit() {
@@ -66,7 +69,7 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
         if (wc) {
           this.items.push({
             number: count,
-            item: `<span>${book} ${this.getNumSpan(num)}</span>`,
+            item: `${book} ${num}`,
             letterCount: sum(lc),
             wordCount: sum(wc),
             standard: sum(sw),
@@ -78,9 +81,9 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
   }
 
   showChapterVerses(evt: any) {
-    if (this.mode !== 'Verse') {
+    if (this.mode !== 'ChapterVerse') {
 
-      this.mode = 'Verse'
+      this.mode = 'ChapterVerse'
       this.items = []
 
       const chapterNumSpan = evt.data.item
@@ -89,7 +92,7 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
       const cv = chapterAndVerse(chapter)
       const verseNums = range(1, cv.book.versesPerChapter[cv.chapter - 1] + 1)
 
-      verseNums.forEach((num, i) => {
+      verseNums.forEach((num, i) => { // TODO: Is i needed?
         const lc = gotv(`${chapter}:${num}`, 'lc')
         const wc = gotv(`${chapter}:${num}`, 'wc')
         const sw = gotv(`${chapter}:${num}`, 'sw')
@@ -98,7 +101,7 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
         if (wc) {
           this.items.push({
             number: i + 1, // TODO: This should be which verse in the Bible it is - e.g. 999th verse = 999
-            item: `${chapterNumSpan}:${this.getNumSpan(num)}`,
+            item: `${chapterNumSpan}:${num}`,
             letterCount: sum(lc),
             wordCount: sum(wc),
             standard: sum(sw),
@@ -107,6 +110,105 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
         }
       })
     }
+  }
+
+  showVerses() {
+    this.mode = 'Verse'
+    this.items = []
+
+    // let count = 0
+
+    this.books.forEach(book => {
+      const cv = chapterAndVerse(book)
+      const chapterNums = range(1, cv.book.chapters + 1)
+
+      chapterNums.forEach((chapterNum) => {
+        // count++
+        const chapterWc = gotv(`${book} ${chapterNum}`, 'wc')
+        if (chapterWc) {
+          const verseNums = range(1, cv.book.versesPerChapter[chapterNum - 1] + 1)
+          verseNums.forEach((verseNum) => {
+            const lc = gotv(`${book} ${chapterNum}:${verseNum}`, 'lc')
+            const wc = gotv(`${book} ${chapterNum}:${verseNum}`, 'wc')
+            const sw = gotv(`${book} ${chapterNum}:${verseNum}`, 'sw')
+            const ow = gotv(`${book} ${chapterNum}:${verseNum}`, 'ow')
+
+            if (wc) {
+              const bookDigit2 = (this.books.indexOf(book) + 1).toString().padStart(2, '0')
+              const chapterDigit3 = chapterNum.toString().padStart(3, '0')
+              const verseDigit3 = verseNum.toString().padStart(3, '0')
+              this.items.push({
+                // TODO: This should be which verse in the Bible it is - e.g. 999th verse = 999
+                number: parseInt(bookDigit2 + chapterDigit3 + verseDigit3, 10),
+                item: `${book} ${chapterNum}:${verseNum}`,
+                letterCount: sum(lc),
+                wordCount: sum(wc),
+                standard: sum(sw),
+                ordinal: sum(ow)
+              })
+            }
+          })
+        }
+      })
+    })
+  }
+
+  sortReference(item1, item2) {
+    console.log(item1, item2)
+    if (!item1.includes(':')) {
+      const parts1 = item1.split(' ')
+      const parts2 = item2.split(' ')
+      item1 = `${parts1[0]} ${parts1[1].padStart(3, '0')}`
+      item2 = `${parts2[0]} ${parts2[1].padStart(3, '0')}`
+      return item1.localeCompare(item2)
+    } else {
+      const parts1 = item1.split(' ')
+      const chaver1 = parts1[1].split(':')
+      const parts2 = item2.split(' ')
+      const chaver2 = parts2[1].split(':')
+      item1 = `${parts1[0]} ${chaver1[0].padStart(3, '0')} ${chaver1[1].padStart(3, '0')}`
+      item2 = `${parts2[0]} ${chaver2[0].padStart(3, '0')} ${chaver2[1].padStart(3, '0')}`
+      return item1.localeCompare(item2)
+    }
+  }
+
+  sortBreakdown(bd1, bd2) {
+    if (bd1 == null && bd2 == null) return 0
+    if (bd1 == null) return 1
+    if (bd2 == null) return -1
+    const bd1Len = bd1.split(' ').length
+    const bd2Len = bd2.split(' ').length
+    if (bd1Len < bd2Len) return 1
+    if (bd1Len > bd2Len) return -1
+    if (bd1Len > 1 && bd1Len === bd2Len) return bd1.localeCompare(bd2)
+
+    let bd1Num = null
+    let bd2Num = null
+    const prepends = ['37x', '73x', 'T']
+    prepends.forEach(prepend => {
+      if (bd1.startsWith(prepend) && bd2.startsWith(prepend)) {
+        bd1Num = parseInt(bd1.replace(prepend, ''), 10)
+        bd2Num = parseInt(bd2.replace(prepend, ''), 10)
+      }
+    })
+    if (bd1Num != null) {
+      if (bd1Num < bd2Num) return 1
+      if (bd1Num > bd2Num) return -1
+      return 0
+    }
+
+    let bd1PrependIndex = -1
+    let bd2PrependIndex = -1
+    prepends.forEach((prepend, i) => {
+      if (bd1.startsWith(prepend)) bd1PrependIndex = i
+      if (bd2.startsWith(prepend)) bd2PrependIndex = i
+    })
+
+    if (bd1PrependIndex === -1 || bd2PrependIndex === -1) console.warn('Invalid sorting breakdown', bd1, bd2)
+
+    if (bd1PrependIndex > bd2PrependIndex) return 1
+    if (bd1PrependIndex < bd2PrependIndex) return -1
+    return bd1.localeCompare(bd2)
   }
 
   calculateLetterCount(rowData) {
@@ -126,22 +228,6 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
   }
 
   private calculate(val) {
-    const value = this.numberService.getActivePropsString(val)
-    return value ? value : '~'
-  }
-
-  private getNumSpan(num) {
-    let leadingZeroes = true
-    const parts = num.toString().padStart(3, '0').split('')
-    const numSpan = parts.reduce((acc, part) => {
-      if (leadingZeroes && part === '0') {
-        acc += `<span class="leading-zero">0</span>`
-      } else {
-        leadingZeroes = false
-        acc += `<span>${part}</span>`
-      }
-      return acc
-    }, `<span class="number-${num}">`)
-    return numSpan + '</span>'
+    return this.numberService.getActivePropsString(val)
   }
 }

@@ -7,6 +7,7 @@
       </ng-container>
       <ng-container class="buttons-right">
         <button class="btn btn-sm btn-primary" [disabled]="mode === 'Chapter'" (click)="showChapters()">Chapters</button>
+        <button class="btn btn-sm btn-primary" [disabled]="mode === 'Verses'" (click)="showVerses()">Verses</button>
       </ng-container>
     </app-sticky-buttons-bar>
   </div>
@@ -16,34 +17,31 @@
       <dxo-search-panel [visible]="true" placeholder="Search"></dxo-search-panel>
       <!-- <dxo-state-storing [enabled]="true" type="localStorage" storageKey="datagrid-values"></dxo-state-storing> -->
       <dxo-paging [pageSize]="20"></dxo-paging>
-      <dxo-pager [showPageSizeSelector]="true" [visible]="true" [allowedPageSizes]="[10, 20, 50, 100]"></dxo-pager>
+      <dxo-pager [showPageSizeSelector]="true" [visible]="true" [showInfo]="true" [allowedPageSizes]="[10, 20, 50, 100]"></dxo-pager>
 
       <!-- Chapter or verse -->
       <dxi-column dataField="number" sortOrder="asc" [caption]="mode"></dxi-column>
-      <dxi-column dataField="item" caption="Reference" cellTemplate="dxTemplateChapter"></dxi-column>
+      <dxi-column dataField="item" caption="Reference" [sortingMethod]="sortReference"></dxi-column>
 
       <dxi-column dataField="letterCount"></dxi-column>
       <dxi-column dataField="letterCount" caption="Breakdown" cellTemplate="dxTemplateNumber"
-                  [calculateCellValue]="calculateLetterCount" [visible]="breakdown"></dxi-column>
+                  [calculateCellValue]="calculateLetterCount" [visible]="breakdown" [sortingMethod]="sortBreakdown"></dxi-column>
 
       <dxi-column dataField="wordCount"></dxi-column>
       <dxi-column dataField="wordCount" caption="Breakdown" cellTemplate="dxTemplateNumber"
-                  [calculateCellValue]="calculateWordCount" [visible]="breakdown"></dxi-column>
+                  [calculateCellValue]="calculateWordCount" [visible]="breakdown" [sortingMethod]="sortBreakdown"></dxi-column>
 
       <dxi-column dataField="standard"></dxi-column>
       <dxi-column dataField="standard" caption="Breakdown" cellTemplate="dxTemplateNumber"
-                  [calculateCellValue]="calculateStandard" [visible]="breakdown"></dxi-column>
+                  [calculateCellValue]="calculateStandard" [visible]="breakdown" [sortingMethod]="sortBreakdown"></dxi-column>
 
       <dxi-column dataField="ordinal"></dxi-column>
       <dxi-column dataField="ordinal" caption="Breakdown" cellTemplate="dxTemplateNumber"
-                  [calculateCellValue]="calculateOrdinal" [visible]="breakdown"></dxi-column>
+                  [calculateCellValue]="calculateOrdinal" [visible]="breakdown" [sortingMethod]="sortBreakdown"></dxi-column>
 
-      <div *dxTemplate="let data of 'dxTemplateChapter'">
-        <div class="dxTemplateChapter" [innerHTML]="data.value === '~' ? '' : data.value"></div>
-      </div>
       <div *dxTemplate="let data of 'dxTemplateNumber'">
         <div class="dxTemplateNumber">
-          <span>{{ data.value === '~' ? '' : data.value }}</span>
+          <span>{{ data.value }}</span>
         </div>
       </div>
     </dx-data-grid>
