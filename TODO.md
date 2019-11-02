@@ -4,6 +4,7 @@ MAJOR TODOs
 Datagrid for sorting ...
 button to just list ALL verses
 restore dx state storing?
+improve dx performance
 fade table in? fade in on all route changes?
 think about how UI will work
 Need to add sticky buttons bar and allow back to chapters - when it does this it should remember the current chapter
