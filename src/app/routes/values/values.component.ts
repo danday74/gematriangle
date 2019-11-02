@@ -158,7 +158,6 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
   }
 
   sortReference(item1, item2) {
-    console.log(item1, item2)
     if (!item1.includes(':')) {
       const parts1 = item1.split(' ')
       const parts2 = item2.split(' ')
