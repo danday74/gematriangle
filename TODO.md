@@ -2,6 +2,7 @@ MAJOR TODOs
 ===========
 
 Datagrid for sorting ...
+when click a verse show the text
 totals box showing letter count of selected
 button to just list ALL verses
 restore dx state storing?
