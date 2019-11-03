@@ -9,6 +9,8 @@ import { NavbarMessage } from '../../base/navbar/navbar-message.enum'
 import { DestroyerComponent } from '../../utils/destroyer.component'
 import { NavbarService } from '../../base/navbar/navbar.service'
 import * as memoizee from 'memoizee'
+import { Item } from './item'
+import { appString } from 'src/app/utils/app-string'
 
 @Component({
   selector: 'app-values',
@@ -21,7 +23,7 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
   private books = ['Genesis', 'Exodus']
   breakdown: boolean
   mode = 'Chapter'
-  items = [] // chapters or verses
+  items: Array<Item> // chapters or verses
 
   constructor(private numberService: NumberService, private storageService: StorageService, private navbarService: NavbarService) {
     super()
@@ -102,10 +104,10 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
           this.items.push({
             number: this.getVerseNumber(book, chapterNum, verseNum),
             item: `${ref}:${verseNum}`,
-            letterCount: sum(lc),
-            wordCount: sum(wc),
-            standard: sum(sw),
-            ordinal: sum(ow)
+            letterCount: sum(lc).toString(),
+            wordCount: sum(wc).toString(),
+            standard: sum(sw).toString(),
+            ordinal: sum(ow).toString()
           })
         }
       })
@@ -137,10 +139,10 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
               this.items.push({
                 number: this.getVerseNumber(book, chapterNum, verseNum),
                 item: `${book} ${chapterNum}:${verseNum}`,
-                letterCount: sum(lc),
-                wordCount: sum(wc),
-                standard: sum(sw),
-                ordinal: sum(ow)
+                letterCount: sum(lc).toString(),
+                wordCount: sum(wc).toString(),
+                standard: sum(sw).toString(),
+                ordinal: sum(ow).toString()
               })
             }
           })
@@ -175,7 +177,12 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
     const bd2Len = bd2.split(' ').length
     if (bd1Len < bd2Len) return 1
     if (bd1Len > bd2Len) return -1
-    if (bd1Len > 1 && bd1Len === bd2Len) return bd1.localeCompare(bd2)
+    if (bd1Len > 1 && bd1Len === bd2Len) {
+      const compare = bd1.localeCompare(bd2)
+      if (compare === 1) return -1
+      if (compare === -1) return 1
+      return 0
+    }
 
     let bd1Num = null
     let bd2Num = null
@@ -207,11 +214,15 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
   }
 
   sortNumbers(item1, item2) {
-    const num1 = parseInt(item1, 10)
-    const num2 = parseInt(item2, 10)
-    if (num1 > num2) return 1
-    if (num1 < num2) return -1
-    return 0
+    if (appString.isInteger(item1)) {
+      const num1 = parseInt(item1, 10)
+      const num2 = parseInt(item2, 10)
+      if (num1 > num2) return 1
+      if (num1 < num2) return -1
+      return 0
+    } else {
+      return item1.localeCompare(item2)
+    }
   }
 
   calculateLetterCount(rowData) {
@@ -244,6 +255,6 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
     const bookDigit2 = (this.books.indexOf(book) + 1).toString().padStart(2, '0')
     const chapterDigit3 = chapterNum.toString().padStart(3, '0')
     const verseDigit3 = verseNum.toString().padStart(3, '0')
-    return parseInt(bookDigit2 + chapterDigit3 + verseDigit3, 10)
+    return `${bookDigit2}-${chapterDigit3}-${verseDigit3}`
   }
 }
