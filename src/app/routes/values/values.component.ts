@@ -31,8 +31,9 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
     this.calculateWordCount = this.calculateWordCount.bind(this)
     this.calculateStandard = this.calculateStandard.bind(this)
     this.calculateOrdinal = this.calculateOrdinal.bind(this)
-    this.sortBreakdown = memoizee(this.sortBreakdown)
     this.sortReference = memoizee(this.sortReference)
+    this.sortBreakdown = memoizee(this.sortBreakdown)
+    this.sortNumbers = memoizee(this.sortNumbers)
   }
 
   ngOnInit() {
