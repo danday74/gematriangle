@@ -2,6 +2,7 @@ MAJOR TODOs
 ===========
 
 Datagrid for sorting ...
+Add Hebrew text to verse as well as English (do this after the totals box or whatever is added, after the view is split)
 totals box showing letter count of selected
 restore dx state storing?
 fade table in? fade in on all route changes?
