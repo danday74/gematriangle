@@ -1,10 +1,14 @@
-<div>
-  <ng-container *ngIf="bibleVerse">
-    <span>{{ bibleVerse.text }}</span>
-    <span>{{ bibleVerse.reference }}</span>
-    <span>{{ bibleVerse.translation_id | uppercase }}</span>
-  </ng-container>
-  <ng-container *ngIf="!bibleVerse">
-    <span>&nbsp;</span>
-  </ng-container>
+<div class="bible-api-dot-com">
+  <div class="text-truncate">
+    <ng-container *ngIf="bibleVerse">
+      <span class="reference">{{ bibleVerse.reference }}</span>
+      <span>&nbsp;</span>
+      <span class="version">{{ bibleVerse.translation_id | uppercase }}</span>
+      <span>&nbsp;</span>
+      <span class="text" [title]="bibleVerse.text">{{ bibleVerse.text }}</span>
+    </ng-container>
+    <ng-container *ngIf="!bibleVerse">
+      <span>&nbsp;</span>
+    </ng-container>
+  </div>
 </div>
