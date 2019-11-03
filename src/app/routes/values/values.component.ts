@@ -59,6 +59,15 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
     this.showChapters()
   }
 
+  onRowClick(evt) {
+    if (this.mode === 'Chapter') {
+      this.showChapterVerses(evt)
+    } else {
+      const ref = evt.data.item
+      console.log(ref)
+    }
+  }
+
   showChapters() {
     this.mode = 'Chapter'
     this.items = []
@@ -90,51 +99,45 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
     })
   }
 
-  showChapterVerses(evt: any) {
-    if (this.mode === 'Chapter') {
+  showChapterVerses(evt) {
+    this.mode = 'ChapterVerse'
+    this.items = []
 
-      this.mode = 'ChapterVerse'
-      this.items = []
+    const ref = evt.data.item
+    const cv = chapterAndVerse(ref)
+    const verseNums = range(1, cv.book.versesPerChapter[cv.chapter - 1] + 1)
 
-      const ref = evt.data.item
-      const cv = chapterAndVerse(ref)
-      const verseNums = range(1, cv.book.versesPerChapter[cv.chapter - 1] + 1)
+    const book = cv.book.name
+    const chapterNum = cv.chapter
 
-      const book = cv.book.name
-      const chapterNum = cv.chapter
+    verseNums.forEach(verseNum => {
+      const lc = gotv(`${ref}:${verseNum}`, 'lc')
+      const wc = gotv(`${ref}:${verseNum}`, 'wc')
+      const sw = gotv(`${ref}:${verseNum}`, 'sw')
+      const ow = gotv(`${ref}:${verseNum}`, 'ow')
 
-      verseNums.forEach(verseNum => {
-        const lc = gotv(`${ref}:${verseNum}`, 'lc')
-        const wc = gotv(`${ref}:${verseNum}`, 'wc')
-        const sw = gotv(`${ref}:${verseNum}`, 'sw')
-        const ow = gotv(`${ref}:${verseNum}`, 'ow')
-
-        if (wc) {
-          this.items.push({
-            number: this.getVerseNumber(book, chapterNum, verseNum),
-            item: `${ref}:${verseNum}`,
-            letterCount: sum(lc).toString(),
-            wordCount: sum(wc).toString(),
-            standard: sum(sw).toString(),
-            ordinal: sum(ow).toString()
-          })
-        }
-      })
-    }
+      if (wc) {
+        this.items.push({
+          number: this.getVerseNumber(book, chapterNum, verseNum),
+          item: `${ref}:${verseNum}`,
+          letterCount: sum(lc).toString(),
+          wordCount: sum(wc).toString(),
+          standard: sum(sw).toString(),
+          ordinal: sum(ow).toString()
+        })
+      }
+    })
   }
 
   showVerses() {
     this.mode = 'Verse'
     this.items = []
 
-    // let count = 0
-
     this.books.forEach(book => {
       const cv = chapterAndVerse(book)
       const chapterNums = range(1, cv.book.chapters + 1)
 
       chapterNums.forEach((chapterNum) => {
-        // count++
         const chapterWc = gotv(`${book} ${chapterNum}`, 'wc')
         if (chapterWc) {
           const verseNums = range(1, cv.book.versesPerChapter[chapterNum - 1] + 1)

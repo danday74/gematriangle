@@ -3,13 +3,10 @@
 
   td {
     color: #000 !important;
+    cursor: pointer;
   }
 
   .dxTemplateNumber {
     color: #444;
   }
-}
-
-.values .Chapter .dx-data-row.dx-state-hover td {
-  cursor: pointer;
 }
