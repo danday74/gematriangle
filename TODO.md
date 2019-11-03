@@ -2,10 +2,8 @@ MAJOR TODOs
 ===========
 
 Datagrid for sorting ...
-toString() for all data in grid
 column chooser - make it so one of the columns cannot be hidden
 column chooser - close on scroll
-Breakdown search not working
 when click a verse show the text
 totals box showing letter count of selected
 restore dx state storing?
