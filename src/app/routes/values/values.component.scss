@@ -1,5 +1,7 @@
 @import '../../colors.scss';
 
+$bibleVerseTop: 110px;
+
 .values {
   background-color: #2B2B2B;
   padding-bottom: 20px;
@@ -11,8 +13,28 @@
 }
 
 .bible-verse {
-  margin: 0 auto;
   width: 90%;
+  margin: -5px auto -22px auto;
+  position: sticky;
+  top: $bibleVerseTop;
+  z-index: 3;
+}
+
+.bible-verse-inner {
+  width: 75%;
+  padding: 5px 0 7px;
+  background-color: #2B2B2B;
+  // background-color: red;
+}
+
+.bible-verse-background {
+  width: 90%;
+  margin: 0 auto -26px auto;
+  background-color: #2B2B2B;
+  // background-color: red;
+  position: sticky;
+  top: $bibleVerseTop;
+  z-index: 1;
 }
 
 .datagrid-wrapper {
