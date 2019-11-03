@@ -13,6 +13,7 @@ $bibleVerseTop: 110px;
 }
 
 .bible-verse {
+  pointer-events: none;
   width: 90%;
   margin: -5px auto -22px auto;
   position: sticky;
