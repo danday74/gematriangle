@@ -2,7 +2,6 @@ MAJOR TODOs
 ===========
 
 Datagrid for sorting ...
-when click a verse show the text
 totals box showing letter count of selected
 restore dx state storing?
 fade table in? fade in on all route changes?

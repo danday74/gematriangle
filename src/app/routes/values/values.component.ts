@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core'
+import { AfterViewInit, Component, HostListener, OnInit, ViewChild } from '@angular/core'
 import * as gotv from 'gematria-ot-values'
 import * as chapterAndVerse from 'chapter-and-verse/js/cv'
 import { range, sum } from 'lodash'
@@ -19,12 +19,13 @@ import { DxDataGridComponent } from 'devextreme-angular'
   styleUrls: ['./values.component.scss']
 })
 
-export class ValuesComponent extends DestroyerComponent implements OnInit {
+export class ValuesComponent extends DestroyerComponent implements OnInit, AfterViewInit {
 
   @ViewChild(DxDataGridComponent, {static: false}) dxDataGrid: DxDataGridComponent
 
   private books = ['Genesis', 'Exodus']
 
+  visibleColumnCount: number
   bibleRef: string
   breakdown: boolean
   mode = 'Chapter'
@@ -59,6 +60,21 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
     })
 
     this.showChapters()
+  }
+
+  ngAfterViewInit() {
+    // When a column is hidden, disallow search for that column
+    this.dxDataGrid.onContentReady.subscribe((args) => {
+      let visibleColumnCount = 0
+      const grid = args.component
+      for (let i = 0; i < grid.columnCount(); i++) {
+        const visible = grid.columnOption(i, 'visible')
+        if (visible) visibleColumnCount++
+        grid.columnOption(i, 'allowSearch', visible)
+      }
+      if (visibleColumnCount !== this.visibleColumnCount && this.visibleColumnCount != null) this.dxDataGrid.instance.refresh()
+      this.visibleColumnCount = visibleColumnCount
+    })
   }
 
   onRowClick(evt) {
