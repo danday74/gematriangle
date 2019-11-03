@@ -193,9 +193,10 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
     if (bd1Len > bd2Len) return -1
     if (bd1Len > 1 && bd1Len === bd2Len) {
       const compare = bd1.localeCompare(bd2)
-      if (compare === 1) return -1
-      if (compare === -1) return 1
-      return 0
+      // if (compare === 1) return -1
+      // if (compare === -1) return 1
+      // return 0
+      return compare
     }
 
     let bd1Num = null
