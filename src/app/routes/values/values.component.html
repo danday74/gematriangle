@@ -14,7 +14,7 @@
     </div>
 
     <div class="datagrid-wrapper">
-      <dx-data-grid [dataSource]="items" [hoverStateEnabled]="true" [showBorders]="true" [rowAlternationEnabled]="true"
+      <dx-data-grid #dxDataGrid [dataSource]="items" [hoverStateEnabled]="true" [showBorders]="true" [rowAlternationEnabled]="true"
                     (onRowClick)="showChapterVerses($event)">
         <dxo-column-chooser [enabled]="true" mode="dragAndDrop"></dxo-column-chooser>
         <dxo-search-panel [visible]="true" placeholder="Search"></dxo-search-panel>

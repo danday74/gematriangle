@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core'
 import * as gotv from 'gematria-ot-values'
 import * as chapterAndVerse from 'chapter-and-verse/js/cv'
 import { range, sum } from 'lodash'
@@ -11,6 +11,7 @@ import { NavbarService } from '../../base/navbar/navbar.service'
 import * as memoizee from 'memoizee'
 import { Item } from './item'
 import { appString } from 'src/app/utils/app-string'
+import { DxDataGridComponent } from 'devextreme-angular'
 
 @Component({
   selector: 'app-values',
@@ -20,10 +21,17 @@ import { appString } from 'src/app/utils/app-string'
 
 export class ValuesComponent extends DestroyerComponent implements OnInit {
 
+  @ViewChild(DxDataGridComponent, {static: false}) dxDataGrid: DxDataGridComponent
+
   private books = ['Genesis', 'Exodus']
   breakdown: boolean
   mode = 'Chapter'
   items: Array<Item> // chapters or verses
+
+  @HostListener('window:scroll')
+  onWindowScroll() {
+    this.dxDataGrid.instance.hideColumnChooser()
+  }
 
   constructor(private numberService: NumberService, private storageService: StorageService, private navbarService: NavbarService) {
     super()
