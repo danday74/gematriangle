@@ -10,6 +10,7 @@ import { dataInitialiser } from './initialisers/data-initialiser'
 import { environment } from 'src/environments/environment'
 import * as Debug from 'debug'
 import { miscInitialiser } from './initialisers/misc-initialiser'
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { miscInitialiser } from './initialisers/misc-initialiser'
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     ToastrModule.forRoot({
       progressBar: true,
       preventDuplicates: true,

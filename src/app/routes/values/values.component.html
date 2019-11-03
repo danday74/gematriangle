@@ -12,6 +12,10 @@
     </app-sticky-buttons-bar>
   </div>
 
+  <div>
+    <app-bible-api-dot-com [ref]="bibleRef"></app-bible-api-dot-com>
+  </div>
+
   <div class="datagrid-wrapper">
     <dx-data-grid #dxDataGrid [dataSource]="items" [hoverStateEnabled]="true" [showBorders]="true" [rowAlternationEnabled]="true"
                   (onRowClick)="onRowClick($event)">

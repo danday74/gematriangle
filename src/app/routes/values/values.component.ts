@@ -24,6 +24,8 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
   @ViewChild(DxDataGridComponent, {static: false}) dxDataGrid: DxDataGridComponent
 
   private books = ['Genesis', 'Exodus']
+
+  bibleRef: string
   breakdown: boolean
   mode = 'Chapter'
   items: Array<Item> // chapters or verses
@@ -60,11 +62,11 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
   }
 
   onRowClick(evt) {
+    this.dxDataGrid.instance.hideColumnChooser()
     if (this.mode === 'Chapter') {
       this.showChapterVerses(evt)
     } else {
-      const ref = evt.data.item
-      console.log(ref)
+      this.bibleRef = evt.data.item
     }
   }
 

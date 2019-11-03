@@ -1,0 +1,10 @@
+<div>
+  <ng-container *ngIf="bibleVerse">
+    <span>{{ bibleVerse.text }}</span>
+    <span>{{ bibleVerse.reference }}</span>
+    <span>{{ bibleVerse.translation_id | uppercase }}</span>
+  </ng-container>
+  <ng-container *ngIf="!bibleVerse">
+    <span>&nbsp;</span>
+  </ng-container>
+</div>

@@ -5,6 +5,7 @@ import { ValuesComponent } from './values.component'
 import { NumberModule } from '../../reusable/number/number.module'
 import { DxDataGridModule } from 'devextreme-angular'
 import { ButtonModule } from '../../reusable/button/button.module'
+import { BibleModule } from '../../reusable/bible/bible.module'
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ButtonModule } from '../../reusable/button/button.module'
     ValuesRoutingModule,
     NumberModule,
     DxDataGridModule,
-    ButtonModule
+    ButtonModule,
+    BibleModule
   ]
 })
 
