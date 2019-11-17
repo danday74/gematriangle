@@ -123,6 +123,7 @@ export class ValuesComponent extends DestroyerComponent implements OnInit, After
   }
 
   showChapterVerses(evt) {
+    this.dxDataGrid.instance.clearFilter()
     this.mode = 'ChapterVerse'
     this.items = []
 
