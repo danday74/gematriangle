@@ -47,7 +47,11 @@ $bibleVerseTop: 110px;
   color: $appYellow;
 }
 
-.totalRowCount {
+.dxTemplateTotalRowCount {
   padding-right: 10px;
   color: #999;
+}
+
+.dxTemplateRowIndex {
+  color: #888;
 }

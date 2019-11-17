@@ -298,7 +298,7 @@ export class ValuesComponent extends DestroyerComponent implements OnInit, After
   onToolbarPreparing(evt) {
     evt.toolbarOptions.items.unshift({
       location: 'after',
-      template: 'totalRowCount'
+      template: 'dxTemplateTotalRowCount'
     })
   }
 }

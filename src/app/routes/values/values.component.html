@@ -2,9 +2,6 @@
 
   <div class="buttons-bar-wrapper sticky-buttons-bar">
     <app-sticky-buttons-bar>
-      <div class="buttons-left">
-        <app-back-button></app-back-button>
-      </div>
       <div class="buttons-right">
         <button class="btn btn-sm btn-primary" [disabled]="mode === 'Chapter'" (click)="showChapters()">Chapters</button>
         <button class="btn btn-sm btn-primary" [disabled]="mode === 'Verse'" (click)="showVerses()">Verses</button>
@@ -22,15 +19,16 @@
   <div class="datagrid-wrapper">
     <!--suppress JSUnusedGlobalSymbols -->
     <dx-data-grid #dxDataGrid noDataText="" [dataSource]="items" [hoverStateEnabled]="true" [showBorders]="true" [rowAlternationEnabled]="true"
-                  (onRowClick)="onRowClick($event)" (onToolbarPreparing)="onToolbarPreparing($event)">
+                  (onRowClick)="onRowClick($event)" (onToolbarPreparing)="onToolbarPreparing($event)" [columnAutoWidth]="true">
       <dxo-column-chooser [enabled]="true" mode="dragAndDrop"></dxo-column-chooser>
       <dxo-search-panel [visible]="true" placeholder="Search"></dxo-search-panel>
       <!-- <dxo-state-storing [enabled]="true" type="localStorage" storageKey="datagrid-values"></dxo-state-storing> -->
       <dxo-scrolling mode="virtual"></dxo-scrolling>
 
       <!-- Chapter or verse -->
+      <dxi-column alignment="right" cellTemplate="dxTemplateRowIndex" [allowHiding]="false"></dxi-column>
       <dxi-column dataField="number" alignment="right" sortOrder="asc"
-                  [caption]="mode === 'ChapterVerse' ? 'Verse' : mode" [sortingMethod]="sortNumbers" [allowHiding]="false"></dxi-column>
+                  [caption]="mode === 'ChapterVerse' ? 'Verse' : mode" [sortingMethod]="sortNumbers"></dxi-column>
       <dxi-column dataField="item" caption="Reference" [sortingMethod]="sortReference"></dxi-column>
 
       <dxi-column dataField="letterCount" alignment="right" [sortingMethod]="sortNumbers"></dxi-column>
@@ -58,8 +56,11 @@
           <span>{{ data.value }}</span>
         </div>
       </div>
-      <div *dxTemplate="let data of 'totalRowCount'">
-        <div class="totalRowCount">{{ totalRowCount }} rows</div>
+      <div *dxTemplate="let data of 'dxTemplateTotalRowCount'">
+        <div class="dxTemplateTotalRowCount">{{ totalRowCount }} rows</div>
+      </div>
+      <div *dxTemplate="let data of 'dxTemplateRowIndex'">
+        <div class="dxTemplateRowIndex">{{ data.rowIndex + 1 }}</div>
       </div>
     </dx-data-grid>
   </div>
