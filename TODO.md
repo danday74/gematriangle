@@ -2,8 +2,6 @@ MAJOR TODOs
 ===========
 
 Datagrid for sorting ...
-column selection tick, dragging is a pain, but I think its broken
-Add total row count - see ValuesComponent.ngAfterViewInit
 Add row numbers
 Add Hebrew text to verse as well as English (do this after the totals box or whatever is added, after the view is split)
 totals box showing letter count of selected

@@ -22,7 +22,7 @@
   <div class="datagrid-wrapper">
     <!--suppress JSUnusedGlobalSymbols -->
     <dx-data-grid #dxDataGrid noDataText="" [dataSource]="items" [hoverStateEnabled]="true" [showBorders]="true" [rowAlternationEnabled]="true"
-                  (onRowClick)="onRowClick($event)">
+                  (onRowClick)="onRowClick($event)" (onToolbarPreparing)="onToolbarPreparing($event)">
       <dxo-column-chooser [enabled]="true" mode="dragAndDrop"></dxo-column-chooser>
       <dxo-search-panel [visible]="true" placeholder="Search"></dxo-search-panel>
       <!-- <dxo-state-storing [enabled]="true" type="localStorage" storageKey="datagrid-values"></dxo-state-storing> -->
@@ -57,6 +57,9 @@
         <div class="dxTemplateNumber">
           <span>{{ data.value }}</span>
         </div>
+      </div>
+      <div *dxTemplate="let data of 'totalRowCount'">
+        <div class="totalRowCount">{{ totalRowCount }} rows</div>
       </div>
     </dx-data-grid>
   </div>

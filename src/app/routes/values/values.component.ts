@@ -26,6 +26,7 @@ export class ValuesComponent extends DestroyerComponent implements OnInit, After
   private books = ['Genesis', 'Exodus']
 
   visibleColumnCount: number
+  totalRowCount = 0
   bibleRef: string
   breakdown: boolean
   mode = 'Chapter'
@@ -67,6 +68,9 @@ export class ValuesComponent extends DestroyerComponent implements OnInit, After
     this.dxDataGrid.onContentReady.subscribe((args) => {
       let visibleColumnCount = 0
       const grid = args.component
+      setTimeout(() => {
+        this.totalRowCount = grid.totalCount()
+      })
       for (let i = 0; i < grid.columnCount(); i++) {
         const visible = grid.columnOption(i, 'visible')
         if (visible) visibleColumnCount++
@@ -87,6 +91,7 @@ export class ValuesComponent extends DestroyerComponent implements OnInit, After
   }
 
   showChapters() {
+    this.bibleRef = null
     this.mode = 'Chapter'
     this.items = []
 
@@ -148,6 +153,7 @@ export class ValuesComponent extends DestroyerComponent implements OnInit, After
   }
 
   showVerses() {
+    this.bibleRef = null
     this.mode = 'Verse'
     this.items = []
 
@@ -287,5 +293,12 @@ export class ValuesComponent extends DestroyerComponent implements OnInit, After
     const chapterDigit3 = chapterNum.toString().padStart(3, '0')
     const verseDigit3 = verseNum.toString().padStart(3, '0')
     return `${bookDigit2}-${chapterDigit3}-${verseDigit3}`
+  }
+
+  onToolbarPreparing(evt) {
+    evt.toolbarOptions.items.unshift({
+      location: 'after',
+      template: 'totalRowCount'
+    })
   }
 }
