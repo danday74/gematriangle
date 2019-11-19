@@ -7,40 +7,29 @@ $bibleVerseTop: 110px;
   padding-bottom: 20px;
 }
 
-.buttons-bar-wrapper {
-  margin: 0 auto;
-  width: 90%;
-}
-
 .bible-verse {
   pointer-events: none;
-  width: 90%;
-  margin: -5px auto -22px auto;
+  margin-top: -5px;
+  margin-bottom: -22px;
   position: sticky;
   top: $bibleVerseTop;
   z-index: 3;
 }
 
 .bible-verse-inner {
-  width: 75%;
+  width: 60%;
   padding: 5px 0 7px;
   background-color: #2B2B2B;
   // background-color: red;
 }
 
 .bible-verse-background {
-  width: 90%;
-  margin: 0 auto -26px auto;
+  margin-bottom: -26px;
   background-color: #2B2B2B;
   // background-color: red;
   position: sticky;
   top: $bibleVerseTop;
   z-index: 1;
-}
-
-.datagrid-wrapper {
-  margin: 0 auto;
-  width: 90%;
 }
 
 .dxTemplateNumber {
@@ -54,4 +43,13 @@ $bibleVerseTop: 110px;
 
 .dxTemplateRowIndex {
   color: #888;
+}
+
+.values-builder-wrapper {
+  margin-top: 59px;
+  position: fixed;
+}
+
+.values-summary-wrapper {
+  position: fixed;
 }

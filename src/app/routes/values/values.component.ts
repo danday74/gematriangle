@@ -12,6 +12,7 @@ import * as memoizee from 'memoizee'
 import { Item } from './item'
 import { appString } from 'src/app/utils/app-string'
 import { DxDataGridComponent } from 'devextreme-angular'
+import * as $ from 'jquery'
 
 @Component({
   selector: 'app-values',
@@ -37,6 +38,16 @@ export class ValuesComponent extends DestroyerComponent implements OnInit, After
     this.dxDataGrid.instance.hideColumnChooser()
   }
 
+  @HostListener('window:resize')
+  onWindowResize() {
+    const valuesBuilderWrapper = $('.values-builder-wrapper')
+    const valuesSummaryWrapper = $('.values-summary-wrapper')
+    const vbParentWidth = valuesBuilderWrapper.parent().width()
+    valuesBuilderWrapper.width(vbParentWidth)
+    const vsParentWidth = valuesSummaryWrapper.parent().width()
+    valuesSummaryWrapper.width(vsParentWidth)
+  }
+
   constructor(private numberService: NumberService, private storageService: StorageService, private navbarService: NavbarService) {
     super()
     this.calculateLetterCount = this.calculateLetterCount.bind(this)
@@ -49,6 +60,8 @@ export class ValuesComponent extends DestroyerComponent implements OnInit, After
   }
 
   ngOnInit() {
+
+    this.onWindowResize()
 
     const storageBreakdown = this.storageService.getItem('breakdown')
     this.breakdown = storageBreakdown != null ? storageBreakdown : true
@@ -65,9 +78,9 @@ export class ValuesComponent extends DestroyerComponent implements OnInit, After
 
   ngAfterViewInit() {
     // When a column is hidden, disallow search for that column
-    this.dxDataGrid.onContentReady.subscribe((args) => {
+    this.dxDataGrid.onContentReady.subscribe((evt) => {
       let visibleColumnCount = 0
-      const grid = args.component
+      const grid = evt.component
       setTimeout(() => {
         this.totalRowCount = grid.totalCount()
       })
@@ -78,7 +91,15 @@ export class ValuesComponent extends DestroyerComponent implements OnInit, After
       }
       if (visibleColumnCount !== this.visibleColumnCount && this.visibleColumnCount != null) this.dxDataGrid.instance.refresh()
       this.visibleColumnCount = visibleColumnCount
+      // grid.getVisibleRows().forEach((row, index) => {
+      //   console.log(row, index)
+      // })
     })
+  }
+
+  onDataGridInitialized(evt) {
+    const grid = evt.component
+    grid.columnOption('command:select', 'visibleIndex', 0)
   }
 
   onRowClick(evt) {
@@ -91,6 +112,8 @@ export class ValuesComponent extends DestroyerComponent implements OnInit, After
   }
 
   showChapters() {
+    if (this.dxDataGrid) this.dxDataGrid.instance.clearSelection()
+
     this.bibleRef = null
     this.mode = 'Chapter'
     this.items = []
@@ -123,6 +146,7 @@ export class ValuesComponent extends DestroyerComponent implements OnInit, After
   }
 
   showChapterVerses(evt) {
+    this.dxDataGrid.instance.clearSelection()
     this.dxDataGrid.instance.clearFilter()
     this.mode = 'ChapterVerse'
     this.items = []
@@ -154,6 +178,8 @@ export class ValuesComponent extends DestroyerComponent implements OnInit, After
   }
 
   showVerses() {
+    this.dxDataGrid.instance.clearSelection()
+
     this.bibleRef = null
     this.mode = 'Verse'
     this.items = []

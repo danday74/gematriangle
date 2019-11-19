@@ -1,67 +1,82 @@
 <div class="values">
 
-  <div class="buttons-bar-wrapper sticky-buttons-bar">
-    <app-sticky-buttons-bar>
-      <div class="buttons-right">
-        <button class="btn btn-sm btn-primary" [disabled]="mode === 'Chapter'" (click)="showChapters()">Chapters</button>
-        <button class="btn btn-sm btn-primary" [disabled]="mode === 'Verse'" (click)="showVerses()">Verses</button>
-      </div>
-    </app-sticky-buttons-bar>
-  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-9">
+        <div class="buttons-bar-wrapper sticky-buttons-bar">
+          <app-sticky-buttons-bar>
+            <div class="buttons-right">
+              <button class="btn btn-sm btn-primary" [disabled]="mode === 'Chapter'" (click)="showChapters()">Chapters</button>
+              <button class="btn btn-sm btn-primary" [disabled]="mode === 'Verse'" (click)="showVerses()">Verses</button>
+            </div>
+          </app-sticky-buttons-bar>
+        </div>
 
-  <div class="bible-verse">
-    <div class="bible-verse-inner">
-      <app-bible-api-dot-com [ref]="bibleRef"></app-bible-api-dot-com>
-    </div>
-  </div>
-  <div class="bible-verse-background">&nbsp;</div>
+        <div class="bible-verse">
+          <div class="bible-verse-inner">
+            <app-bible-api-dot-com [ref]="bibleRef"></app-bible-api-dot-com>
+          </div>
+        </div>
+        <div class="bible-verse-background">&nbsp;</div>
 
-  <div class="datagrid-wrapper">
-    <!--suppress JSUnusedGlobalSymbols -->
-    <dx-data-grid #dxDataGrid noDataText="" [dataSource]="items" [hoverStateEnabled]="true" [showBorders]="true" [rowAlternationEnabled]="true"
-                  (onRowClick)="onRowClick($event)" (onToolbarPreparing)="onToolbarPreparing($event)" [columnAutoWidth]="true">
-      <dxo-column-chooser [enabled]="true" mode="dragAndDrop"></dxo-column-chooser>
-      <dxo-search-panel [visible]="true" placeholder="Search"></dxo-search-panel>
-      <!-- <dxo-state-storing [enabled]="true" type="localStorage" storageKey="datagrid-values"></dxo-state-storing> -->
-      <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <div class="datagrid-wrapper">
+          <!--suppress JSUnusedGlobalSymbols -->
+          <dx-data-grid #dxDataGrid noDataText="" [dataSource]="items" [hoverStateEnabled]="true" [showBorders]="true" [rowAlternationEnabled]="true"
+                        (onRowClick)="onRowClick($event)" (onToolbarPreparing)="onToolbarPreparing($event)" (onInitialized)="onDataGridInitialized($event)">
+            <dxo-column-chooser [enabled]="true" mode="dragAndDrop"></dxo-column-chooser>
+            <dxo-search-panel [visible]="true" placeholder="Search"></dxo-search-panel>
+            <!-- <dxo-state-storing [enabled]="true" type="localStorage" storageKey="datagrid-values"></dxo-state-storing> -->
+            <dxo-scrolling mode="virtual"></dxo-scrolling>
+            <dxo-selection showCheckBoxesMode="always" mode="multiple" [allowSelectAll]="mode === 'ChapterVerse'"></dxo-selection>
 
-      <!-- Chapter or verse -->
-      <dxi-column alignment="right" cellTemplate="dxTemplateRowIndex" [allowSearch]="false" [allowHiding]="false"></dxi-column>
-      <dxi-column dataField="number" alignment="right" sortOrder="asc"
-                  [caption]="mode === 'ChapterVerse' ? 'Verse' : mode" [sortingMethod]="sortNumbers"></dxi-column>
-      <dxi-column dataField="item" caption="Reference" [sortingMethod]="sortReference"></dxi-column>
+            <!-- Chapter or verse -->
+            <dxi-column alignment="right" cellTemplate="dxTemplateRowIndex" width="auto" [allowSearch]="false" [allowHiding]="false"></dxi-column>
+            <dxi-column dataField="number" alignment="right" sortOrder="asc"
+                        [caption]="mode === 'ChapterVerse' ? 'Verse' : mode" [sortingMethod]="sortNumbers"></dxi-column>
+            <dxi-column dataField="item" caption="Reference" [sortingMethod]="sortReference"></dxi-column>
 
-      <dxi-column dataField="letterCount" alignment="right" [sortingMethod]="sortNumbers"></dxi-column>
-      <dxi-column dataField="letterCount" caption="LC Breakdown" cellTemplate="dxTemplateNumber"
-                  [calculateCellValue]="calculateLetterCount" [calculateFilterExpression]="filterCalculatedCell"
-                  [visible]="breakdown" [sortingMethod]="sortBreakdown"></dxi-column>
+            <dxi-column dataField="letterCount" alignment="right" [sortingMethod]="sortNumbers"></dxi-column>
+            <dxi-column dataField="letterCount" caption="LC Breakdown" cellTemplate="dxTemplateNumber"
+                        [calculateCellValue]="calculateLetterCount" [calculateFilterExpression]="filterCalculatedCell"
+                        [visible]="breakdown" [sortingMethod]="sortBreakdown"></dxi-column>
 
-      <dxi-column dataField="wordCount" alignment="right" [sortingMethod]="sortNumbers"></dxi-column>
-      <dxi-column dataField="wordCount" caption="WC Breakdown" cellTemplate="dxTemplateNumber"
-                  [calculateCellValue]="calculateWordCount" [calculateFilterExpression]="filterCalculatedCell"
-                  [visible]="breakdown" [sortingMethod]="sortBreakdown"></dxi-column>
+            <dxi-column dataField="wordCount" alignment="right" [sortingMethod]="sortNumbers"></dxi-column>
+            <dxi-column dataField="wordCount" caption="WC Breakdown" cellTemplate="dxTemplateNumber"
+                        [calculateCellValue]="calculateWordCount" [calculateFilterExpression]="filterCalculatedCell"
+                        [visible]="breakdown" [sortingMethod]="sortBreakdown"></dxi-column>
 
-      <dxi-column dataField="standard" alignment="right" [sortingMethod]="sortNumbers"></dxi-column>
-      <dxi-column dataField="standard" caption="Std Breakdown" cellTemplate="dxTemplateNumber"
-                  [calculateCellValue]="calculateStandard" [calculateFilterExpression]="filterCalculatedCell"
-                  [visible]="breakdown" [sortingMethod]="sortBreakdown"></dxi-column>
+            <dxi-column dataField="standard" alignment="right" [sortingMethod]="sortNumbers"></dxi-column>
+            <dxi-column dataField="standard" caption="Std Breakdown" cellTemplate="dxTemplateNumber"
+                        [calculateCellValue]="calculateStandard" [calculateFilterExpression]="filterCalculatedCell"
+                        [visible]="breakdown" [sortingMethod]="sortBreakdown"></dxi-column>
 
-      <dxi-column dataField="ordinal" alignment="right" [sortingMethod]="sortNumbers"></dxi-column>
-      <dxi-column dataField="ordinal" caption="Ord Breakdown" cellTemplate="dxTemplateNumber"
-                  [calculateCellValue]="calculateOrdinal" [calculateFilterExpression]="filterCalculatedCell"
-                  [visible]="breakdown" [sortingMethod]="sortBreakdown"></dxi-column>
+            <dxi-column dataField="ordinal" alignment="right" [sortingMethod]="sortNumbers"></dxi-column>
+            <dxi-column dataField="ordinal" caption="Ord Breakdown" cellTemplate="dxTemplateNumber"
+                        [calculateCellValue]="calculateOrdinal" [calculateFilterExpression]="filterCalculatedCell"
+                        [visible]="breakdown" [sortingMethod]="sortBreakdown"></dxi-column>
 
-      <div *dxTemplate="let data of 'dxTemplateNumber'">
-        <div class="dxTemplateNumber">
-          <span>{{ data.value }}</span>
+            <div *dxTemplate="let data of 'dxTemplateNumber'">
+              <div class="dxTemplateNumber">
+                <span>{{ data.value }}</span>
+              </div>
+            </div>
+            <div *dxTemplate="let data of 'dxTemplateTotalRowCount'">
+              <div class="dxTemplateTotalRowCount">{{ totalRowCount }} rows</div>
+            </div>
+            <div *dxTemplate="let data of 'dxTemplateRowIndex'">
+              <div class="dxTemplateRowIndex">{{ data.rowIndex + 1 }}</div>
+            </div>
+          </dx-data-grid>
         </div>
       </div>
-      <div *dxTemplate="let data of 'dxTemplateTotalRowCount'">
-        <div class="dxTemplateTotalRowCount">{{ totalRowCount }} rows</div>
+      <div class="col-3">
+        <div class="values-summary-wrapper">
+          <app-selected-summary></app-selected-summary>
+        </div>
+        <div class="values-builder-wrapper">
+          <app-values-builder></app-values-builder>
+        </div>
       </div>
-      <div *dxTemplate="let data of 'dxTemplateRowIndex'">
-        <div class="dxTemplateRowIndex">{{ data.rowIndex + 1 }}</div>
-      </div>
-    </dx-data-grid>
+    </div>
   </div>
 </div>

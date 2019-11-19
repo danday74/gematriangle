@@ -6,10 +6,14 @@ import { NumberModule } from '../../reusable/number/number.module'
 import { DxDataGridModule } from 'devextreme-angular'
 import { ButtonModule } from '../../reusable/button/button.module'
 import { BibleModule } from '../../reusable/bible/bible.module'
+import { ValuesBuilderComponent } from './values-builder/values-builder.component'
+import { SelectedSummaryComponent } from './selected-summary/selected-summary.component'
 
 @NgModule({
   declarations: [
-    ValuesComponent
+    ValuesComponent,
+    ValuesBuilderComponent,
+    SelectedSummaryComponent
   ],
   imports: [
     CommonModule,
