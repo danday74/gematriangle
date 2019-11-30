@@ -2,8 +2,9 @@ MAJOR TODOs
 ===========
 
 Datagrid for sorting ...
+Shows -1 rows when toggling breakdown
+Dont like the sticky too much, just stay where it is and rows scroll underneath
 Bible verse language toggle
-rowIndex does not working with virtual scrolling - https://www.devexpress.com/Support/Center/Question/Details/T713834/datagrid-the-row-index-of-the-celltemplate-is-sometimes-calculated-incorrectly-when-the
 Add Hebrew text to verse as well as English (do this after the totals box or whatever is added, after the view is split)
 totals box showing letter count of selected
 restore dx state storing?

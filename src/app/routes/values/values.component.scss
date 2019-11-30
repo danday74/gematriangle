@@ -1,5 +1,3 @@
-@import '../../colors.scss';
-
 $bibleVerseTop: 110px;
 
 .values {
@@ -20,29 +18,14 @@ $bibleVerseTop: 110px;
   width: 60%;
   padding: 5px 0 7px;
   background-color: #2B2B2B;
-  // background-color: red;
 }
 
 .bible-verse-background {
   margin-bottom: -26px;
   background-color: #2B2B2B;
-  // background-color: red;
   position: sticky;
   top: $bibleVerseTop;
   z-index: 1;
-}
-
-.dxTemplateNumber {
-  color: $appYellow;
-}
-
-.dxTemplateTotalRowCount {
-  padding-right: 10px;
-  color: #999;
-}
-
-.dxTemplateRowIndex {
-  color: #888;
 }
 
 .values-builder-wrapper {

@@ -6,6 +6,10 @@
     cursor: pointer;
   }
 
+  .dx-datagrid-search-text {
+    color: #000 !important;
+  }
+
   .dxTemplateNumber {
     color: #444;
   }
@@ -14,16 +18,4 @@
 .dx-datagrid-search-text {
   background-color: transparent !important;
   color: lighten(#1ca8dd, 10%) !important;
-}
-
-.dxTemplateRowIndex {
-  .dx-datagrid-search-text {
-    color: #888 !important;
-  }
-}
-
-.dx-data-row.dx-state-hover {
-  .dx-datagrid-search-text {
-    color: #000 !important;
-  }
 }
