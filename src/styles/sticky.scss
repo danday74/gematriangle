@@ -1,18 +1,20 @@
+$stickyTop: 50;
+
 .sticky-buttons-bar {
   position: sticky;
-  top: 58px;
+  top: ($stickyTop + 28) + unquote("px");
   z-index: 1;
 }
 
 .dx-datagrid-header-panel {
   position: sticky !important;
-  top: 120px;
+  top: ($stickyTop + 90) + unquote("px");
   z-index: 2;
 }
 
 .dx-datagrid-headers {
   position: sticky !important;
-  top: 146px;
+  top: ($stickyTop + 116) + unquote("px");
   z-index: 1;
   background-color: #000;
   color: #FFF !important;

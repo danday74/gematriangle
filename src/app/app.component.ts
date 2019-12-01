@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service'
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
 import { filter, map, mergeMap } from 'rxjs/operators'
+import * as $ from 'jquery'
 
 const DEFAULTS = {
   THEME: 'light',
@@ -39,5 +40,8 @@ export class AppComponent implements OnInit {
   private setThemeAndPadding(data) {
     this.theme = data.theme != null ? data.theme : DEFAULTS.THEME
     this.padding = data.padding != null ? data.padding : DEFAULTS.PADDING
+    const html = $('html')
+    html.removeClass('theme-light').removeClass('theme-dark')
+    html.addClass('theme-' + this.theme)
   }
 }
