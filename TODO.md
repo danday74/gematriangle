@@ -2,7 +2,6 @@ MAJOR TODOs
 ===========
 
 Datagrid for sorting ...
-Shows -1 rows when toggling breakdown
 Dont like the sticky too much, just stay where it is and rows scroll underneath
 Bible verse language toggle
 Add Hebrew text to verse as well as English (do this after the totals box or whatever is added, after the view is split)

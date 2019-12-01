@@ -38,6 +38,11 @@
     </div>
   </div>
   <div *dxTemplate="let data of 'dxTemplateTotalRowCount'">
-    <div class="dxTemplateTotalRowCount">{{ totalRowCount }} rows</div>
+    <ng-container *ngIf="totalRowCount >= 0">
+      <div class="dxTemplateTotalRowCount">{{ totalRowCount }} rows</div>
+    </ng-container>
+    <ng-container *ngIf="totalRowCount < 0">
+      <div class="dxTemplateTotalRowCount">0 rows</div>
+    </ng-container>
   </div>
 </dx-data-grid>
