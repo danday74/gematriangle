@@ -222,7 +222,7 @@ export class TriangleComponent extends DestroyerComponent implements OnInit, OnC
   }
 
   private midpoints(plus = false) {
-    let positions = []
+    let positions
     const isOdd = this.rowCount % 2 === 1
     if (isOdd) {
       const middle = (this.rowCount + 1) / 2
