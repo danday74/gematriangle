@@ -22,13 +22,13 @@
     <ng-container *ngIf="router.url === '/triangles' || router.url.startsWith('/triangles/')">
       <li>
         <a class="list" [routerLink]="['/triangles-list']">
-          <img class="navbar-icon" src="/assets/icons/list.png">
+          <img alt="Triangles List" class="navbar-icon" src="/assets/icons/list.png">
         </a>
       </li>
     </ng-container>
     <ng-container *ngIf="isFullscreen !== true">
       <li>
-        <img class="navbar-icon" src="/assets/icons/fullscreen.png" (click)="fullscreen()">
+        <img alt="Fullscreen" class="navbar-icon" src="/assets/icons/fullscreen.png" (click)="fullscreen()">
       </li>
     </ng-container>
   </ul>

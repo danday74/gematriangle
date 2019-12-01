@@ -39,13 +39,13 @@
 
     <ng-container *ngIf="mode === 'line'">
       <ng-container *ngIf="lineDirection === 'left-right'">
-        <img class="hexagon-dots" src="/assets/icons/hexagon-dots-reach1.png">
+        <img alt="Reach 1 Lines" class="hexagon-dots" src="/assets/icons/hexagon-dots-reach1.png">
       </ng-container>
       <ng-container *ngIf="lineDirection === 'up-down'">
-        <img class="hexagon-dots" src="/assets/icons/hexagon-dots-reach2.png">
+        <img alt="Reach 2 Lines" class="hexagon-dots" src="/assets/icons/hexagon-dots-reach2.png">
       </ng-container>
       <ng-container *ngIf="lineDirection === 'all'">
-        <img class="hexagon-dots" src="/assets/icons/hexagon-dots-all.png">
+        <img alt="Reach 1 and 2 Lines" class="hexagon-dots" src="/assets/icons/hexagon-dots-all.png">
       </ng-container>
     </ng-container>
 
@@ -220,7 +220,7 @@
   <ng-container *ngIf="starOfDavid">
     <div class="shapes">
       <div class="star">
-        <img src="/assets/images/israel-star.png" class="israel-star"
+        <img alt="Star of David" src="/assets/images/israel-star.png" class="israel-star"
              [title]="'T' + rowCount.toFixed() + ' houses a star of David (ST' + starOfDavid.n.toFixed() + ') perfectly'">
         <div class="term"
              [title]="'T' + rowCount.toFixed() + ' houses a star of David (S' + starOfDavid.n.toFixed() + ') perfectly'">{{ starOfDavid.term.toFixed() }}</div>
