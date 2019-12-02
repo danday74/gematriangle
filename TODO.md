@@ -2,6 +2,7 @@ MAJOR TODOs
 ===========
 
 Datagrid for sorting ...
+Remember current lang
 Update packages
 totals box showing letter count of selected
 restore dx state storing?
