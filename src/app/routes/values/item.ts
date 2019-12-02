@@ -5,4 +5,5 @@ export interface Item {
   wordCount: string
   standard: string
   ordinal: string
+  text: string
 }

@@ -21,7 +21,8 @@ export class ValuesDatagridComponent extends DestroyerComponent implements OnIni
 
   @ViewChild(DxDataGridComponent, {static: false}) dxDataGrid: DxDataGridComponent
   @Input() breakdown: boolean
-  @Output() bibleRefChange = new EventEmitter<string>()
+  @Output() activeRowChange = new EventEmitter<any>()
+  @Output() langToggle = new EventEmitter<boolean>()
   @Output() modeChange = new EventEmitter<string>()
 
   private books = ['Genesis', 'Exodus']
@@ -85,7 +86,7 @@ export class ValuesDatagridComponent extends DestroyerComponent implements OnIni
   private showChapters() {
     if (this.dxDataGrid) this.dxDataGrid.instance.clearSelection()
 
-    this.bibleRefChange.emit(null)
+    this.activeRowChange.emit(null)
     this.setMode('Chapter')
     this.items = []
 
@@ -109,7 +110,8 @@ export class ValuesDatagridComponent extends DestroyerComponent implements OnIni
             letterCount: sum(lc).toString(),
             wordCount: sum(wc).toString(),
             standard: sum(sw).toString(),
-            ordinal: sum(ow).toString()
+            ordinal: sum(ow).toString(),
+            text: null
           })
         }
       })
@@ -130,10 +132,12 @@ export class ValuesDatagridComponent extends DestroyerComponent implements OnIni
     const chapterNum = cv.chapter
 
     verseNums.forEach(verseNum => {
+
       const lc = gotv(`${ref}:${verseNum}`, 'lc')
       const wc = gotv(`${ref}:${verseNum}`, 'wc')
       const sw = gotv(`${ref}:${verseNum}`, 'sw')
       const ow = gotv(`${ref}:${verseNum}`, 'ow')
+      const he = gotv(`${ref}:${verseNum}`, 'he')
 
       if (wc) {
         this.items.push({
@@ -142,7 +146,8 @@ export class ValuesDatagridComponent extends DestroyerComponent implements OnIni
           letterCount: sum(lc).toString(),
           wordCount: sum(wc).toString(),
           standard: sum(sw).toString(),
-          ordinal: sum(ow).toString()
+          ordinal: sum(ow).toString(),
+          text: he
         })
       }
     })
@@ -151,7 +156,7 @@ export class ValuesDatagridComponent extends DestroyerComponent implements OnIni
   private showVerses() {
     this.dxDataGrid.instance.clearSelection()
 
-    this.bibleRefChange.emit(null)
+    this.activeRowChange.emit(null)
     this.setMode('Verse')
     this.items = []
 
@@ -168,6 +173,7 @@ export class ValuesDatagridComponent extends DestroyerComponent implements OnIni
             const wc = gotv(`${book} ${chapterNum}:${verseNum}`, 'wc')
             const sw = gotv(`${book} ${chapterNum}:${verseNum}`, 'sw')
             const ow = gotv(`${book} ${chapterNum}:${verseNum}`, 'ow')
+            const he = gotv(`${book} ${chapterNum}:${verseNum}`, 'he')
 
             if (wc) {
               this.items.push({
@@ -176,7 +182,8 @@ export class ValuesDatagridComponent extends DestroyerComponent implements OnIni
                 letterCount: sum(lc).toString(),
                 wordCount: sum(wc).toString(),
                 standard: sum(sw).toString(),
-                ordinal: sum(ow).toString()
+                ordinal: sum(ow).toString(),
+                text: he
               })
             }
           })
@@ -292,7 +299,7 @@ export class ValuesDatagridComponent extends DestroyerComponent implements OnIni
     if (this.mode === 'Chapter') {
       this.showChapterVerses(evt)
     } else {
-      this.bibleRefChange.emit(evt.data.item)
+      this.activeRowChange.emit(evt.data)
     }
   }
 
@@ -302,10 +309,23 @@ export class ValuesDatagridComponent extends DestroyerComponent implements OnIni
   }
 
   onToolbarPreparing(evt) {
+    // noinspection JSUnusedGlobalSymbols
     evt.toolbarOptions.items.unshift({
-      location: 'after',
-      template: 'dxTemplateTotalRowCount'
-    })
+        location: 'after',
+        template: 'dxTemplateTotalRowCount'
+      },
+      {
+        widget: 'dxButton',
+        options: {
+          icon: 'globe', onClick: () => {
+            this.langToggle.next(true)
+          },
+          elementAttr: {
+            title: 'Bible Verse Language Toggle'
+          }
+        },
+        location: 'after'
+      })
   }
 
   // TODO: This should be which verse in the Bible it is - e.g. 999th verse = 999

@@ -14,12 +14,18 @@
 
         <div class="bible-verse">
           <div class="bible-verse-inner">
-            <app-bible-api-dot-com [ref]="bibleRef"></app-bible-api-dot-com>
+            <div [ngClass]="{'d-none': lang !== 'en'}">
+              <app-bible-api-dot-com [ref]="bible.ref"></app-bible-api-dot-com>
+            </div>
+            <div [ngClass]="{'d-none': lang !== 'he'}">
+              <app-hebrew-text [ref]="bible.ref" [text]="bible.text"></app-hebrew-text>
+            </div>
           </div>
         </div>
         <div class="bible-verse-background">&nbsp;</div>
 
-        <app-values-datagrid [breakdown]="breakdown" (bibleRefChange)="bibleRefChange($event)" (modeChange)="modeChange($event)"></app-values-datagrid>
+        <app-values-datagrid [breakdown]="breakdown" (activeRowChange)="bibleRefChange($event)" (langToggle)="langToggle()" (modeChange)="modeChange($event)">
+        </app-values-datagrid>
 
       </div>
       <div class="col-3">

@@ -1,0 +1,14 @@
+.hebrew-text {
+  width: 100%;
+  text-align: right;
+
+  .text {
+    color: #CCC;
+    font-weight: bold;
+    pointer-events: auto;
+  }
+
+  .reference {
+    font-size: 12px;
+  }
+}

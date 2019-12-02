@@ -15,8 +15,9 @@ import { ValuesService } from './values.service'
 
 export class ValuesComponent extends DestroyerComponent implements OnInit {
 
+  bible = {ref: null, text: null}
   breakdown: boolean
-  bibleRef: string
+  lang = 'en'
   mode: string
 
   @HostListener('window:resize')
@@ -48,9 +49,15 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
     })
   }
 
-  bibleRefChange(bibleRef: string) {
+  bibleRefChange(data) {
     setTimeout(() => {
-      this.bibleRef = bibleRef
+      if (data) {
+        this.bible.ref = data.item
+        this.bible.text = data.text
+      } else {
+        this.bible.ref = null
+        this.bible.text = null
+      }
     })
   }
 
@@ -64,5 +71,11 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
 
   modeChange(mode: string) {
     this.mode = mode
+  }
+
+  langToggle() {
+    if (this.lang === 'en') {
+      this.lang = 'he'
+    } else if (this.lang === 'he') this.lang = 'en'
   }
 }
