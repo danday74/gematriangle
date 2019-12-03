@@ -1,6 +1,7 @@
 <!--suppress JSUnusedGlobalSymbols -->
 <dx-data-grid #dxDataGrid noDataText="" [dataSource]="items" [hoverStateEnabled]="true" [showBorders]="true" [rowAlternationEnabled]="true"
-              (onRowClick)="onRowClick($event)" (onToolbarPreparing)="onToolbarPreparing($event)" (onInitialized)="onDataGridInitialized($event)">
+              (onRowClick)="onRowClick($event)" (onToolbarPreparing)="onToolbarPreparing($event)" (onInitialized)="onDataGridInitialized($event)"
+              (onSelectionChanged)="onSelectionChanged()" [(selectedRowKeys)]="selectedRows">
   <dxo-column-chooser [enabled]="true" mode="dragAndDrop"></dxo-column-chooser>
   <dxo-search-panel [visible]="true" placeholder="Search"></dxo-search-panel>
   <!-- <dxo-state-storing [enabled]="true" type="localStorage" storageKey="datagrid-values"></dxo-state-storing> -->

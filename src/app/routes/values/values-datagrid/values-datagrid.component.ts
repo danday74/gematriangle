@@ -30,6 +30,7 @@ export class ValuesDatagridComponent extends DestroyerComponent implements OnIni
 
   items: Array<Item> // chapters or verses
   mode: string
+  selectedRows = []
   totalRowCount = 0
 
   @HostListener('window:scroll')
@@ -326,6 +327,10 @@ export class ValuesDatagridComponent extends DestroyerComponent implements OnIni
         },
         location: 'after'
       })
+  }
+
+  onSelectionChanged() {
+    this.valuesService.onDatagridSelectionChange(this.selectedRows)
   }
 
   // TODO: This should be which verse in the Bible it is - e.g. 999th verse = 999

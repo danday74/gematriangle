@@ -1,3 +1,30 @@
 <div class="selected-summary bg-primary">
-  Selected Summary
+  <span class="user-select-none">Selected Summary</span>
+  <table class="table table-responsive table-dark table-striped table-borderless table-sm">
+    <tr>
+      <td title="Letter Count">LC</td>
+      <td title="Word Count">WC</td>
+      <td title="Standard">Std</td>
+      <td title="Ordinal">Ord</td>
+    </tr>
+    <tr>
+      <td>{{ summary.letterCount }}</td>
+      <td>{{ summary.wordCount }}</td>
+      <td>{{ summary.standard }}</td>
+      <td>{{ summary.ordinal }}</td>
+    </tr>
+  </table>
+  <span class="user-select-none">Items:&nbsp;</span>
+  <span *ngIf="summary.items.length === 0; else listItems">None</span>
+  <ng-template #listItems>
+    <span *ngIf="summary.items.length <= 3; else tooManyItems">
+      <span *ngFor="let item of summary.items; last as last">
+        <span class="fake-link" (click)="onItemClicked(item)">{{ item }}</span>
+        <span *ngIf="!last">&nbsp;</span>
+      </span>
+    </span>
+  </ng-template>
+  <ng-template #tooManyItems>
+    <span [title]="summary.items.join(', ')">{{ summary.items.length }} selected</span>
+  </ng-template>
 </div>

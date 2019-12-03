@@ -4,6 +4,7 @@ import { Subject } from 'rxjs'
 export enum ValuesMessage {
   ShowChapters = 'show-chapters',
   ShowVerses = 'show-verses',
+  DatagridSelectionChange = 'datagrid-selection-change'
 }
 
 @Injectable({providedIn: 'root'})
@@ -22,5 +23,9 @@ export class ValuesService {
 
   onShowVerses() {
     this.onValuesMessage(ValuesMessage.ShowVerses, null)
+  }
+
+  onDatagridSelectionChange(rows) {
+    this.onValuesMessage(ValuesMessage.DatagridSelectionChange, rows)
   }
 }
