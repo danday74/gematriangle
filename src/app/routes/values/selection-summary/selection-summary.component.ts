@@ -5,12 +5,12 @@ import { DestroyerComponent } from '../../../utils/destroyer.component'
 import { cloneDeep } from 'lodash'
 
 @Component({
-  selector: 'app-selected-summary',
-  templateUrl: './selected-summary.component.html',
-  styleUrls: ['./selected-summary.component.scss']
+  selector: 'app-selection-summary',
+  templateUrl: './selection-summary.component.html',
+  styleUrls: ['./selection-summary.component.scss']
 })
 
-export class SelectedSummaryComponent extends DestroyerComponent implements OnInit {
+export class SelectionSummaryComponent extends DestroyerComponent implements OnInit {
 
   DEFAULT_SUMMARY = {
     items: [],

@@ -7,14 +7,14 @@ import { DxDataGridModule } from 'devextreme-angular'
 import { ButtonModule } from '../../reusable/button/button.module'
 import { BibleModule } from '../../reusable/bible/bible.module'
 import { ValuesBuilderComponent } from './values-builder/values-builder.component'
-import { SelectedSummaryComponent } from './selected-summary/selected-summary.component'
+import { SelectionSummaryComponent } from './selection-summary/selection-summary.component'
 import { ValuesDatagridComponent } from './values-datagrid/values-datagrid.component'
 
 @NgModule({
   declarations: [
     ValuesComponent,
     ValuesBuilderComponent,
-    SelectedSummaryComponent,
+    SelectionSummaryComponent,
     ValuesDatagridComponent
   ],
   imports: [

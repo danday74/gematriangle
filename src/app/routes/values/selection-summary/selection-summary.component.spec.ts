@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
-import { SelectedSummaryComponent } from './selected-summary.component'
+import { SelectionSummaryComponent } from './selection-summary.component'
 
-describe('SelectedSummaryComponent', () => {
-  let component: SelectedSummaryComponent
-  let fixture: ComponentFixture<SelectedSummaryComponent>
+describe('SelectionSummaryComponent', () => {
+  let component: SelectionSummaryComponent
+  let fixture: ComponentFixture<SelectionSummaryComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SelectedSummaryComponent]
+      declarations: [SelectionSummaryComponent]
     })
       .compileComponents()
   }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SelectedSummaryComponent)
+    fixture = TestBed.createComponent(SelectionSummaryComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })
