@@ -17,7 +17,7 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
 
   bible = {ref: null, text: null}
   breakdown: boolean
-  lang = 'en'
+  lang: string
   mode: string
 
   @HostListener('window:resize')
@@ -35,6 +35,8 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.lang = this.storageService.getItem('bible-verse-lang') || 'en'
 
     this.onWindowResize()
 
@@ -77,5 +79,6 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
     if (this.lang === 'en') {
       this.lang = 'he'
     } else if (this.lang === 'he') this.lang = 'en'
+    this.storageService.setItem('bible-verse-lang', this.lang)
   }
 }
