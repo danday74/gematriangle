@@ -17,9 +17,9 @@
   <span class="user-select-none">Items:&nbsp;</span>
   <span *ngIf="summary.items.length === 0; else listItems">None</span>
   <ng-template #listItems>
-    <span *ngIf="summary.items.length <= 3; else tooManyItems">
+    <span *ngIf="summary.items.length <= 10; else tooManyItems">
       <span *ngFor="let item of summary.items; last as last">
-        <span class="fake-link" (click)="onItemClicked(item)">{{ item }}</span>
+        <span class="fake-link d-inline-block" (click)="onItemClicked(item)">{{ item }}</span>
         <span *ngIf="!last">&nbsp;</span>
       </span>
     </span>
