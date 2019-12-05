@@ -5,7 +5,7 @@ import { NavbarMessage } from '../../base/navbar/navbar-message.enum'
 import { DestroyerComponent } from '../../utils/destroyer.component'
 import { NavbarService } from '../../base/navbar/navbar.service'
 import * as $ from 'jquery'
-import { ValuesService } from './values.service'
+import { ValuesMessage, ValuesService } from './values.service'
 
 @Component({
   selector: 'app-values',
@@ -48,6 +48,15 @@ export class ValuesComponent extends DestroyerComponent implements OnInit {
       filter(message => message.name === NavbarMessage.ToggleBreakdown)
     ).subscribe((message) => {
       this.breakdown = message.value
+    })
+
+    this.valuesService.valuesMessage$.pipe(
+      takeUntil(this.unsubscribe$),
+      filter(message => message.name === ValuesMessage.SelectionClicked)
+    ).subscribe((message) => {
+      const sel = message.value
+      this.bible.ref = sel.item
+      this.bible.text = sel.text
     })
   }
 

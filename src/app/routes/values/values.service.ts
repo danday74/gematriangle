@@ -4,7 +4,8 @@ import { Subject } from 'rxjs'
 export enum ValuesMessage {
   ShowChapters = 'show-chapters',
   ShowVerses = 'show-verses',
-  DatagridSelectionChange = 'datagrid-selection-change'
+  DatagridSelectionChange = 'datagrid-selection-change',
+  SelectionClicked = 'selection-clicked'
 }
 
 @Injectable({providedIn: 'root'})
@@ -27,5 +28,9 @@ export class ValuesService {
 
   onDatagridSelectionChange(rows) {
     this.onValuesMessage(ValuesMessage.DatagridSelectionChange, rows)
+  }
+
+  onSelectionClicked(sel) {
+    this.onValuesMessage(ValuesMessage.SelectionClicked, sel)
   }
 }

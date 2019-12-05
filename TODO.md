@@ -2,6 +2,8 @@ MAJOR TODOs
 ===========
 
 Datagrid for sorting ...
+Only show selected rows
+When a row is selected its color is wrong
 totals box showing letter count of selected
 restore dx state storing?
 fade table in? fade in on all route changes?

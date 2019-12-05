@@ -15,16 +15,15 @@
     </tr>
   </table>
   <span class="user-select-none">Items:&nbsp;</span>
-  <span *ngIf="summary.items.length === 0; else listItems">None</span>
+  <span *ngIf="summary.rows.length === 0; else listItems">None</span>
   <ng-template #listItems>
-    <span *ngIf="summary.items.length <= 10; else tooManyItems">
-      <span *ngFor="let item of summary.items; last as last">
-        <span class="fake-link d-inline-block" (click)="onItemClicked(item)">{{ item }}</span>
-        <span *ngIf="!last">&nbsp;</span>
+    <span *ngIf="summary.rows.length <= 10; else tooManyItems">
+      <span *ngFor="let row of summary.rows">
+        <span class="d-inline-block selected-row" [ngClass]="{fakeLink: row.item.includes(':')}" (click)="onRowClicked(row)">{{ row.item }}</span>
       </span>
     </span>
   </ng-template>
   <ng-template #tooManyItems>
-    <span [title]="summary.items.join(', ')">{{ summary.items.length }} selected</span>
+    <span [title]="summary.items.join(', ')">{{ summary.rows.length }} selected</span>
   </ng-template>
 </div>

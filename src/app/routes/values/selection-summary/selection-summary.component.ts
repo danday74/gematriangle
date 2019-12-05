@@ -13,6 +13,7 @@ import { cloneDeep } from 'lodash'
 export class SelectionSummaryComponent extends DestroyerComponent implements OnInit {
 
   DEFAULT_SUMMARY = {
+    rows: [],
     items: [],
     letterCount: 0,
     wordCount: 0,
@@ -32,6 +33,7 @@ export class SelectionSummaryComponent extends DestroyerComponent implements OnI
     ).subscribe((message) => {
       const rows = message.value
       this.summary = rows.reduce((acc, row) => {
+        acc.rows.push(row)
         acc.items.push(row.item)
         acc.letterCount += parseInt(row.letterCount, 10)
         acc.wordCount += parseInt(row.wordCount, 10)
@@ -42,7 +44,7 @@ export class SelectionSummaryComponent extends DestroyerComponent implements OnI
     })
   }
 
-  onItemClicked(item) {
-    console.log('search for item in dt', item)
+  onRowClicked(row) {
+    if (row.item.includes(':')) this.valuesService.onSelectionClicked(row)
   }
 }
