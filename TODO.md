@@ -3,6 +3,7 @@ MAJOR TODOs
 
 Datagrid for sorting ...
 Only show selected rows
+If selected rows filter is applied - select all rows not working
 When a row is selected its color is wrong
 totals box showing letter count of selected
 restore dx state storing?

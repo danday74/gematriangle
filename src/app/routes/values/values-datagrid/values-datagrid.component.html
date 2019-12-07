@@ -13,6 +13,8 @@
               [caption]="mode === 'ChapterVerse' ? 'Verse' : mode" [sortingMethod]="sortNumbers" [allowHiding]="false"></dxi-column>
   <dxi-column dataField="item" caption="Reference" [sortingMethod]="sortReference"></dxi-column>
 
+  <dxi-column [calculateCellValue]="calculateSelected" width="0"></dxi-column>
+
   <dxi-column dataField="letterCount" alignment="right" [sortingMethod]="sortNumbers"></dxi-column>
   <dxi-column dataField="letterCount" caption="LC Breakdown" cellTemplate="dxTemplateNumber"
               [calculateCellValue]="calculateLetterCount" [calculateFilterExpression]="filterCalculatedCell"

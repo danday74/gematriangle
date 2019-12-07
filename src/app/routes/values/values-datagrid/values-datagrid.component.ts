@@ -25,6 +25,8 @@ export class ValuesDatagridComponent extends DestroyerComponent implements OnIni
   @Output() langToggle = new EventEmitter<boolean>()
   @Output() modeChange = new EventEmitter<string>()
 
+  private SELECTED = 's̲e̲l̲e̲c̲t̲e̲d̲'
+
   private books = ['Genesis', 'Exodus']
   private visibleColumnCount: number
 
@@ -40,6 +42,7 @@ export class ValuesDatagridComponent extends DestroyerComponent implements OnIni
 
   constructor(private numberService: NumberService, private valuesService: ValuesService) {
     super()
+    this.calculateSelected = this.calculateSelected.bind(this)
     this.calculateLetterCount = this.calculateLetterCount.bind(this)
     this.calculateWordCount = this.calculateWordCount.bind(this)
     this.calculateStandard = this.calculateStandard.bind(this)
@@ -268,6 +271,12 @@ export class ValuesDatagridComponent extends DestroyerComponent implements OnIni
     }
   }
 
+  calculateSelected(rowData) {
+    const selectedRows = this.dxDataGrid.instance.getSelectedRowsData()
+    const selected = selectedRows.some(selectedRow => selectedRow.number === rowData.number)
+    return selected ? this.SELECTED : null
+  }
+
   calculateLetterCount(rowData) {
     return this.calculate(rowData.letterCount)
   }
@@ -314,6 +323,24 @@ export class ValuesDatagridComponent extends DestroyerComponent implements OnIni
     evt.toolbarOptions.items.unshift({
         location: 'after',
         template: 'dxTemplateTotalRowCount'
+      },
+      {
+        widget: 'dxButton',
+        options: {
+          icon: 'check', onClick: () => {
+            const instance = this.dxDataGrid.instance
+            const searchText = instance.option('searchPanel.text')
+            if (searchText === this.SELECTED) {
+              instance.clearFilter()
+            } else {
+              instance.searchByText(this.SELECTED)
+            }
+          },
+          elementAttr: {
+            title: 'Selected Toggle'
+          }
+        },
+        location: 'after'
       },
       {
         widget: 'dxButton',
