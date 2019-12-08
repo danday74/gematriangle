@@ -11,6 +11,7 @@ export class NumberService {
 
   getActiveProps(num, excluded = []) {
     num = precision.bignumber(num)
+    if (num.eq(0)) return []
     const props = [
       {name: '37', value: appNumber.isMultiple(num, 37), multiple: true, flipped: null},
       {name: '73', value: appNumber.isMultiple(num, 73), multiple: true, flipped: null},

@@ -1,21 +1,35 @@
 <div class="selection-summary bg-primary">
   <span class="user-select-none">Selection Summary</span>
-  <table class="table table-responsive table-dark table-striped table-borderless table-sm">
-    <tr>
-      <td title="Letter Count">LC</td>
-      <td title="Word Count">WC</td>
-      <td title="Standard">Std</td>
-      <td title="Ordinal">Ord</td>
-    </tr>
-    <tr>
-      <td><app-number source="summary letter count" [n]="summary.letterCount"></app-number></td>
-      <td><app-number source="summary word count" [n]="summary.wordCount"></app-number></td>
-      <td><app-number source="summary standard" [n]="summary.standard"></app-number></td>
-      <td><app-number source="summary ordinal" [n]="summary.ordinal"></app-number></td>
-    </tr>
-  </table>
+  <ng-container *ngIf="!summary">
+    <div>No rows selected</div>
+  </ng-container>
+  <ng-container *ngIf="summary">
+    <table class="table table-dark table-striped table-borderless table-sm">
+      <tr>
+        <td title="Letter Count">LC</td>
+        <td title="Word Count">WC</td>
+        <td title="Standard">Std</td>
+        <td title="Ordinal">Ord</td>
+      </tr>
+      <tr>
+        <td>
+          <app-number source="summary letter count" [n]="summary.letterCount"></app-number>
+        </td>
+        <td>
+          <app-number source="summary word count" [n]="summary.wordCount"></app-number>
+        </td>
+        <td>
+          <app-number source="summary standard" [n]="summary.standard"></app-number>
+        </td>
+        <td>
+          <app-number source="summary ordinal" [n]="summary.ordinal"></app-number>
+        </td>
+      </tr>
+    </table>
+  </ng-container>
+
   <span class="user-select-none">Items:&nbsp;</span>
-  <span *ngIf="summary.rows.length === 0; else listItems">None</span>
+  <span *ngIf="summary == null; else listItems">None</span>
   <ng-template #listItems>
     <span *ngIf="summary.rows.length <= 10; else tooManyItems">
       <span *ngFor="let row of summary.rows">

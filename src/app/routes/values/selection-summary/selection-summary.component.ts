@@ -20,7 +20,7 @@ export class SelectionSummaryComponent extends DestroyerComponent implements OnI
     standard: 0,
     ordinal: 0
   }
-  summary = cloneDeep(this.DEFAULT_SUMMARY)
+  summary
 
   constructor(private valuesService: ValuesService) {
     super()
@@ -32,15 +32,19 @@ export class SelectionSummaryComponent extends DestroyerComponent implements OnI
       filter(message => message.name === ValuesMessage.DatagridSelectionChange)
     ).subscribe((message) => {
       const rows = message.value
-      this.summary = rows.reduce((acc, row) => {
-        acc.rows.push(row)
-        acc.items.push(row.item)
-        acc.letterCount += parseInt(row.letterCount, 10)
-        acc.wordCount += parseInt(row.wordCount, 10)
-        acc.standard += parseInt(row.standard, 10)
-        acc.ordinal += parseInt(row.ordinal, 10)
-        return acc
-      }, cloneDeep(this.DEFAULT_SUMMARY))
+      if (rows.length === 0) {
+        this.summary = null
+      } else {
+        this.summary = rows.reduce((acc, row) => {
+          acc.rows.push(row)
+          acc.items.push(row.item)
+          acc.letterCount += parseInt(row.letterCount, 10)
+          acc.wordCount += parseInt(row.wordCount, 10)
+          acc.standard += parseInt(row.standard, 10)
+          acc.ordinal += parseInt(row.ordinal, 10)
+          return acc
+        }, cloneDeep(this.DEFAULT_SUMMARY))
+      }
     })
   }
 
