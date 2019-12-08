@@ -8,7 +8,7 @@
       <dxo-column-chooser [enabled]="true" mode="dragAndDrop"></dxo-column-chooser>
       <dxo-search-panel [visible]="true" placeholder="Search"></dxo-search-panel>
       <!-- <dxo-state-storing [enabled]="true" type="localStorage" storageKey="datagrid-values"></dxo-state-storing> -->
-      <dxo-scrolling mode="virtual"></dxo-scrolling>
+      <dxo-scrolling mode="virtual" [preloadEnabled]="true"></dxo-scrolling>
       <dxo-selection showCheckBoxesMode="always" mode="multiple" [allowSelectAll]="mode === 'ChapterVerse'"></dxo-selection>
 
       <!-- Chapter or verse -->
@@ -19,30 +19,25 @@
       <dxi-column [calculateCellValue]="calculateSelected" width="0"></dxi-column>
 
       <dxi-column dataField="letterCount" alignment="right" [sortingMethod]="sortNumbers"></dxi-column>
-      <dxi-column dataField="letterCount" caption="LC Breakdown" cellTemplate="dxTemplateNumber"
+      <dxi-column dataField="letterCount" caption="LC Breakdown" cssClass="breakdown-for-dx"
                   [calculateCellValue]="calculateLetterCount" [calculateFilterExpression]="filterCalculatedCell"
                   [visible]="breakdown" [sortingMethod]="sortBreakdown"></dxi-column>
 
       <dxi-column dataField="wordCount" alignment="right" [sortingMethod]="sortNumbers"></dxi-column>
-      <dxi-column dataField="wordCount" caption="WC Breakdown" cellTemplate="dxTemplateNumber"
+      <dxi-column dataField="wordCount" caption="WC Breakdown" cssClass="breakdown-for-dx"
                   [calculateCellValue]="calculateWordCount" [calculateFilterExpression]="filterCalculatedCell"
                   [visible]="breakdown" [sortingMethod]="sortBreakdown"></dxi-column>
 
       <dxi-column dataField="standard" alignment="right" [sortingMethod]="sortNumbers"></dxi-column>
-      <dxi-column dataField="standard" caption="Std Breakdown" cellTemplate="dxTemplateNumber"
+      <dxi-column dataField="standard" caption="Std Breakdown" cssClass="breakdown-for-dx"
                   [calculateCellValue]="calculateStandard" [calculateFilterExpression]="filterCalculatedCell"
                   [visible]="breakdown" [sortingMethod]="sortBreakdown"></dxi-column>
 
       <dxi-column dataField="ordinal" alignment="right" [sortingMethod]="sortNumbers"></dxi-column>
-      <dxi-column dataField="ordinal" caption="Ord Breakdown" cellTemplate="dxTemplateNumber"
+      <dxi-column dataField="ordinal" caption="Ord Breakdown" cssClass="breakdown-for-dx"
                   [calculateCellValue]="calculateOrdinal" [calculateFilterExpression]="filterCalculatedCell"
                   [visible]="breakdown" [sortingMethod]="sortBreakdown"></dxi-column>
 
-      <div *dxTemplate="let data of 'dxTemplateNumber'">
-        <div class="dxTemplateNumber">
-          <span>{{ data.value }}</span>
-        </div>
-      </div>
       <div *dxTemplate="let data of 'dxTemplateTotalRowCount'">
         <ng-container *ngIf="totalRowCount >= 0">
           <div class="dxTemplateTotalRowCount">{{ totalRowCount }} rows</div>

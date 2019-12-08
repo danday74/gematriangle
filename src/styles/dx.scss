@@ -1,3 +1,9 @@
+@import './app/colors.scss';
+
+.dx-data-row .breakdown-for-dx {
+  color: $appYellow !important;
+}
+
 .dx-data-row.dx-state-hover {
   background-color: #edf6f9;
 
@@ -10,8 +16,8 @@
     color: #000 !important;
   }
 
-  .dxTemplateNumber {
-    color: #444;
+  .breakdown-for-dx {
+    color: #444 !important;
   }
 }
 
