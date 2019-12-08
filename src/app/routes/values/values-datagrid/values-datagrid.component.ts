@@ -40,6 +40,11 @@ export class ValuesDatagridComponent extends DestroyerComponent implements OnIni
     this.dxDataGrid.instance.hideColumnChooser()
   }
 
+  get isShowingSelected() {
+    const searchText = this.dxDataGrid ? this.dxDataGrid.instance.option('searchPanel.text') : null
+    return searchText === this.SELECTED
+  }
+
   constructor(private numberService: NumberService, private valuesService: ValuesService) {
     super()
     this.calculateSelected = this.calculateSelected.bind(this)

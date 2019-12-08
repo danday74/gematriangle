@@ -19,3 +19,11 @@
   background-color: transparent !important;
   color: lighten(#1ca8dd, 10%) !important;
 }
+
+.isShowingSelected .dx-header-row .dx-select-checkbox {
+  opacity: 0;
+}
+
+:not(.isShowingSelected) .dx-header-row .dx-select-checkbox {
+  transition: opacity 2s ease-in;
+}
