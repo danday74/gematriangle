@@ -8,10 +8,10 @@
       <td title="Ordinal">Ord</td>
     </tr>
     <tr>
-      <td>{{ summary.letterCount }}</td>
-      <td>{{ summary.wordCount }}</td>
-      <td>{{ summary.standard }}</td>
-      <td>{{ summary.ordinal }}</td>
+      <td><app-number source="summary letter count" [n]="summary.letterCount"></app-number></td>
+      <td><app-number source="summary word count" [n]="summary.wordCount"></app-number></td>
+      <td><app-number source="summary standard" [n]="summary.standard"></app-number></td>
+      <td><app-number source="summary ordinal" [n]="summary.ordinal"></app-number></td>
     </tr>
   </table>
   <span class="user-select-none">Items:&nbsp;</span>
