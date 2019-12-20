@@ -2,7 +2,8 @@
   <div class="navbar-wrapper">
     <app-navbar></app-navbar>
   </div>
-  <div class="router-outlet-wrapper" [ngClass]="{routerOutletWithPadding: padding, routerOutletDarkTheme: theme === 'dark'}">
+  <div class="router-outlet-wrapper" [ngClass]="{routerOutletDarkTheme: theme === 'dark'}"
+       [style.paddingTop.px]="padding.top" [style.paddingRight.px]="padding.right" [style.paddingBottom.px]="padding.bottom" [style.paddingLeft.px]="padding.left">
     <router-outlet></router-outlet>
   </div>
 </div>

@@ -1,3 +1,5 @@
+@import "../../colors.scss";
+
 .bg-custom {
   background: #444 !important;
 }
@@ -36,7 +38,7 @@ label {
 }
 
 :host-context(.theme-dark) .under-nav {
-  background-color: #2B2B2B;
+  background-color: $themeDark;
 }
 
 :host-context(.theme-light) .under-nav {

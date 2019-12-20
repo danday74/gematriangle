@@ -1,7 +1,9 @@
+@import "../../colors.scss";
+
 $bibleVerseTop: 130px;
 
 .values {
-  background-color: #2B2B2B;
+  background-color: $themeDark;
   padding-bottom: 20px;
 }
 
@@ -17,12 +19,12 @@ $bibleVerseTop: 130px;
 .bible-verse-inner {
   width: 60%;
   padding: 5px 0 7px;
-  background-color: #2B2B2B;
+  background-color: $themeDark;
 }
 
 .bible-verse-background {
   margin-bottom: -26px;
-  background-color: #2B2B2B;
+  background-color: $themeDark;
   position: sticky;
   top: $bibleVerseTop;
   z-index: 1;

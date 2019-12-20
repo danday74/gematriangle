@@ -1,3 +1,5 @@
+@import "colors.scss";
+
 $navbarHeight: 58px;
 
 .app-wrapper {
@@ -10,12 +12,8 @@ $navbarHeight: 58px;
   .router-outlet-wrapper {
     height: calc(100% - #{$navbarHeight});
 
-    &.routerOutletWithPadding {
-      padding: 20px 0 10px;
-    }
-
     &.routerOutletDarkTheme {
-      background-color: #2B2B2B;
+      background-color: $themeDark;
     }
   }
 }

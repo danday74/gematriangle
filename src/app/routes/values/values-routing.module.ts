@@ -7,7 +7,9 @@ const routes: Routes = [
     path: '',
     component: ValuesComponent,
     data: {
-      theme: 'dark'
+      theme: 'dark',
+      paddingLeft: 5,
+      paddingRight: 8
     }
   }
 ]
