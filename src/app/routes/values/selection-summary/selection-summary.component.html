@@ -1,49 +1,56 @@
 <div class="selection-summary appBox">
-  <span class="user-select-none">Selection Summary</span>
-  <ng-container *ngIf="!summary">
-    <div>No rows selected</div>
-  </ng-container>
-  <ng-container *ngIf="summary">
-    <div class="text-center">
-      <div class="row">
-        <div class="col-6">
-          <div title="Letter Count">LC</div>
-        </div>
-        <div class="col-6">
-          <div title="Word Count">WC</div>
-        </div>
-        <div class="col-6">
-          <app-number source="summary letter count" [n]="summary.letterCount"></app-number>
-        </div>
-        <div class="col-6">
-          <app-number source="summary word count" [n]="summary.wordCount"></app-number>
-        </div>
-        <div class="col-6">
-          <div title="Standard">Std</div>
-        </div>
-        <div class="col-6">
-          <div title="Ordinal">Ord</div>
-        </div>
-        <div class="col-6">
-          <app-number source="summary standard" [n]="summary.standard"></app-number>
-        </div>
-        <div class="col-6">
-          <app-number source="summary ordinal" [n]="summary.ordinal"></app-number>
+
+  <div class="appBoxHeader heading user-select-none">Selection Summary</div>
+
+  <div class="appBoxBody">
+    <ng-container *ngIf="!summary">
+      <div>No rows selected</div>
+    </ng-container>
+    <ng-container *ngIf="summary">
+      <div class="text-center">
+        <div class="row">
+          <div class="col-6">
+            <div class="heading" title="Letter Count">LC</div>
+          </div>
+          <div class="col-6">
+            <div class="heading" title="Word Count">WC</div>
+          </div>
+          <div class="col-6">
+            <app-number source="summary letter count" [n]="summary.letterCount"></app-number>
+          </div>
+          <div class="col-6">
+            <app-number source="summary word count" [n]="summary.wordCount"></app-number>
+          </div>
+          <div class="col-6">
+            <div class="heading" title="Standard">Std</div>
+          </div>
+          <div class="col-6">
+            <div class="heading" title="Ordinal">Ord</div>
+          </div>
+          <div class="col-6">
+            <app-number source="summary standard" [n]="summary.standard"></app-number>
+          </div>
+          <div class="col-6">
+            <app-number source="summary ordinal" [n]="summary.ordinal"></app-number>
+          </div>
         </div>
       </div>
-    </div>
-  </ng-container>
+    </ng-container>
+  </div>
 
-  <span class="user-select-none">Items:&nbsp;</span>
-  <span *ngIf="summary == null; else listItems">None</span>
-  <ng-template #listItems>
+  <div class="appBoxFooter">
+    <span class="heading user-select-none">Items</span>
+    <span>&nbsp;&nbsp;</span>
+    <span *ngIf="summary == null; else listItems">None</span>
+    <ng-template #listItems>
     <span *ngIf="summary.rows.length <= 10; else tooManyItems">
       <span *ngFor="let row of summary.rows">
         <span class="d-inline-block selected-row" [ngClass]="{fakeLink: row.item.includes(':')}" (click)="onRowClicked(row)">{{ row.item }}</span>
       </span>
     </span>
-  </ng-template>
-  <ng-template #tooManyItems>
-    <span [title]="summary.items.join(', ')">{{ summary.rows.length }} selected</span>
-  </ng-template>
+    </ng-template>
+    <ng-template #tooManyItems>
+      <span [title]="summary.items.join(', ')">{{ summary.rows.length }} selected</span>
+    </ng-template>
+  </div>
 </div>

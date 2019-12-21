@@ -1,0 +1,33 @@
+$appBoxColor: #333;
+$appBoxHeaderAndFooterColor: darken($appBoxColor, 10%);
+$appBoxPadding: 10px 15px;
+$appBoxBorderRadius: 5px;
+$appBoxBorder: 1px solid #848484;
+
+.appBox {
+  border: $appBoxBorder;
+  color: #BBB;
+  border-radius: $appBoxBorderRadius;
+}
+
+.appBoxHeader {
+  background-color: $appBoxHeaderAndFooterColor;
+  padding: $appBoxPadding;
+  border-top-left-radius: $appBoxBorderRadius;
+  border-top-right-radius: $appBoxBorderRadius;
+  border-bottom: $appBoxBorder;
+}
+
+.appBoxBody {
+  background-color: $appBoxColor;
+  padding: $appBoxPadding;
+  min-height: 160px;
+}
+
+.appBoxFooter {
+  background-color: $appBoxHeaderAndFooterColor;
+  padding: $appBoxPadding;
+  border-bottom-left-radius: $appBoxBorderRadius;
+  border-bottom-right-radius: $appBoxBorderRadius;
+  border-top: $appBoxBorder;
+}

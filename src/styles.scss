@@ -1,6 +1,7 @@
 @import './app/colors.scss';
-@import './styles/sticky.scss';
+@import './styles/app-box.scss';
 @import './styles/dx.scss';
+@import './styles/sticky.scss';
 
 html {
   overflow-y: scroll;
@@ -135,9 +136,4 @@ button.btn-lg.image-icon {
 .fakeLink {
   text-decoration: underline;
   cursor: pointer;
-}
-
-.appBox {
-  background-color: #444;
-  border: 1px solid #848484;
 }
