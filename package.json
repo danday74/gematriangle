@@ -35,7 +35,7 @@
     "font-awesome": "^4.7.0",
     "gematria-ot-values": "0.0.7",
     "integer-sequences": "^1.0.4",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "lodash": "^4.17.15",
     "mathjs": "^6.2.5",
     "memoizee": "^0.4.14",
